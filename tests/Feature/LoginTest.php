@@ -16,7 +16,14 @@ class LoginTest extends TestCase
     public function testLogin()
     {
         // create a user instance
-        $user = factory(\App\Models\User::class)->create(['password' => 'secret', 'username' => 'tookit','email'=>'wangqiangshen@gmail.com','flag' => 1]);
+        $user = \App\Models\User::factory()->create(
+            [
+                'password' => 'secret',
+                'username' => 'tookit',
+                'email'=>'wangqiangshen@gmail.com',
+                'flag' => 1
+            ]
+        );
         $resp = $this->post('/api/auth/login', [
             'email' => $user->email,
             'password' => 'secret'

@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+//public route
+
+Route::post('/auth/login',['uses'=>'Auth\LoginController@login','desc'=>'Login'])->name('auth.login');
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });

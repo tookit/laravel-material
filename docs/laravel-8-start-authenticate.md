@@ -53,3 +53,29 @@ class LoginTest extends TestCase
 - The User Model/Migration
 - The User Model factory definition
 - The API end point `/api/auth/login`
+
+
+## Configure user model for tymon/jwt-auth
+
+implement `Tymon\JWTAuth\Contracts\JWTSubject`
+
+More details [https://jwt-auth.readthedocs.io/en/develop/quick-start/](https://jwt-auth.readthedocs.io/en/develop/quick-start/)
+
+## step 1. run migration
+
+
+```bash
+php artisan migrate
+
+```
+
+## step 2. make seeder to generate sample data,
+
+```bash
+php artisan make:seeder UserSeeder
+
+php artisan db:seed --class=UserSeeder
+
+```
+
+php artisan make:Controller Api/Auth/LoginController
