@@ -14,20 +14,14 @@ class LoginTest extends TestCase
     use DatabaseTransactions;
 
     /**
-     * A basic feature test example.
+     * Auth Test.
      *
      * @return void
      */
     public function testLogin()
     {
         // create a user instance
-        $user = \App\Models\User::factory()->create(
-            [
-                'password' => 'secret',
-                'username' => 'tookit_test',
-                'flag' => 1
-            ]
-        );
+        $user = $this->createUniqueUser();
         $resp = $this->post('/api/auth/login', [
             'email' => $user->email,
             'password' => 'secret'
@@ -37,5 +31,27 @@ class LoginTest extends TestCase
             'access_token',
             'expires_in'
         ]);
+    }
+
+    public function testLoginFailed()
+    {
+        $user = $this->createUniqueUser();
+        $resp = $this->post('/api/auth/login', [
+            'email' => $user->email,
+            'password' => 'ｗrong password'
+        ]);
+        $resp->assertStatus(JsonResponse::HTTP_UNAUTHORIZED);
+
+    }
+
+    protected function createUniqueUser()
+    {
+        return \App\Models\User::factory()->create(
+            [
+                'password' => 'secret',
+                'username' => 'tookit_test',
+                'flag' => 1
+            ]
+        );
     }
 }
