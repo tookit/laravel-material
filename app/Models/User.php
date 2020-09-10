@@ -14,8 +14,8 @@ class User extends Authenticatable implements JWTSubject
 
     const GENDER = ['male','female','other'];
     const GENDER_DEFAULT = 'other';
-    const FLAG_ACTIVE = 0;
-    const FLAG_INACTIVE = 1;
+    const FLAG_ACTIVE = 1;
+    const FLAG_INACTIVE = 0;
     const FLAG_FROZEN = 2;
 
     /**
@@ -66,6 +66,26 @@ class User extends Authenticatable implements JWTSubject
         ];
     }
 
+    public  function isActive()
+    {
+        return $this->getAttribute('flag') === self::FLAG_ACTIVE;
+    }
+
+    /**
+     * Scope a query to only include active users.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('flag', self::FLAG_ACTIVE);
+    }
+
+    public function isRoot()
+    {
+        return $this->getAttribute('username') === config('admin.username');
+    }
 
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.

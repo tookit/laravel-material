@@ -4,10 +4,15 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Http\JsonResponse;
 use Tests\TestCase;
 
 class LoginTest extends TestCase
 {
+
+    use DatabaseTransactions;
+
     /**
      * A basic feature test example.
      *
@@ -19,8 +24,7 @@ class LoginTest extends TestCase
         $user = \App\Models\User::factory()->create(
             [
                 'password' => 'secret',
-                'username' => 'tookit',
-                'email'=>'wangqiangshen@gmail.com',
+                'username' => 'tookit_test',
                 'flag' => 1
             ]
         );
@@ -28,7 +32,7 @@ class LoginTest extends TestCase
             'email' => $user->email,
             'password' => 'secret'
         ]);
-        $resp->assertStatus(200);
+        $resp->assertStatus(JsonResponse::HTTP_OK);
         $resp->assertJsonStructure([
             'access_token',
             'expires_in'
