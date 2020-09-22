@@ -20,4 +20,4 @@ jobs:
         NAME: production
         PORT: ${{ secrets.PORT }}
         USER: ${{ secrets.USER }}
-    - run: ssh production ls --help
+    - run: whoami
