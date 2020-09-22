@@ -1,4 +1,4 @@
-name: remote ssh command
+name: Simple  cmd
 on: [push]
 jobs:
 
