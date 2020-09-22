@@ -49,7 +49,7 @@ class LoginTest extends TestCase
         return \App\Models\User::factory()->create(
             [
                 'password' => 'secret',
-                'username' => 'tookit_test',
+                'username' => 'tookit_test', // make name unique
                 'flag' => 1
             ]
         );
