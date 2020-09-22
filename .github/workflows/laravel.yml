@@ -1,23 +1,34 @@
-name: Ubuntu
+# This is a basic workflow to help you get started with Actions
 
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
 on:
   push:
-    branches:
-    - master
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  test:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
     runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - uses: LuisEnMarroquin/setup-ssh-action@v1.8
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+
+    # Your SSH step
+    - name: Run sshpass commands
+      uses: matheusvanzan/sshpass-action@v1
       with:
-        SSHKEY: ${{ secrets.SSH_GITHUB }}
-    - run: ssh -T git@github.com || true
-    - uses: LuisEnMarroquin/setup-ssh-action@v1.8
-      with:
-        ORIGIN: ${{ secrets.HOST }}
-        SSHKEY: ${{ secrets.SSH_SERVER }}
-        NAME: production
-        PORT: ${{ secrets.PORT }}
-        USER: ${{ secrets.USER }}
-    - run: whoami
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        run: |
+          pwd
+          ls -lha
