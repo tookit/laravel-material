@@ -23,12 +23,11 @@ jobs:
     - uses: actions/checkout@v2
 
     # Your SSH step
-    - name: Run sshpass commands
-      uses: matheusvanzan/sshpass-action@v1
+    - name: executing remote ssh commands using ssh key
+      uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
-        run: |
-          pwd
-          ls -lha
+        key: ${{ secrets.KEY }}
+        port: ${{ secrets.PORT }}
+        script: whoami
