@@ -30,6 +30,4 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
-        script: |
-        whoami
-        ls -al
+        script: whoami
