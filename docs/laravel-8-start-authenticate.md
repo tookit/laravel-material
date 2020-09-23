@@ -61,7 +61,7 @@ implement `Tymon\JWTAuth\Contracts\JWTSubject`
 
 More details [https://jwt-auth.readthedocs.io/en/develop/quick-start/](https://jwt-auth.readthedocs.io/en/develop/quick-start/)
 
-## step 1. run migration
+## step 1. run migration to create the database schema we need
 
 
 ```bash
