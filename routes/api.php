@@ -17,8 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 //public route
 
-Route::post('/auth/login',['uses'=>'Auth\LoginController@login','desc'=>'Login'])->name('auth.login');
+Route::post('/auth/login',['uses'=>'Auth\LoginController@login','desc'=>'Login']);
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+    return ['hello world'];
 });
