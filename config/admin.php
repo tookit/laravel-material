@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'username' => 'tookit',
+    'username' => 'admin',
     'email' => 'wangqiangshen@gmail.com',
     'mobile' => '18682507492',
-    'password' => 'secret',//secret
+    'password' => 'admin',//secret
     'notify_email' => 'wangqiangshen@gmail.com',
 ];

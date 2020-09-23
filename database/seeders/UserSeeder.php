@@ -23,7 +23,8 @@ class UserSeeder extends Seeder
                 'email' => Config::get('admin.email'),
                 'phone' => Config::get('admin.mobile'),
                 'flag'=> User::FLAG_ACTIVE,
-                'gender' => 'male'
+                'gender' => 'male',
+                'avatar' => 'https://ui-avatars.com/api/?name=Michael+Wang'
             ]
         );
         if(Config::get('app.env') !== 'production'){
