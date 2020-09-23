@@ -51,3 +51,7 @@ php artisan vendor:publish --provider="Spatie\QueryBuilder\QueryBuilderServicePr
     php artisan key:generate
     php artisan jwt:secret
 ```
+
+## reference
+
+- [JWT Installation](https://jwt-auth.readthedocs.io/en/develop/laravel-installation/)

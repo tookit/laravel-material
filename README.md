@@ -29,10 +29,11 @@ composer install
 create database vma
 
 ```
-### create database schema
+### create database schema and create a sample user
 
 ```bash
 php artisan migrate
+php artisan db:seed --class=UserSeeder
 
 ```
 
