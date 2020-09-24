@@ -26,7 +26,6 @@ class UserController extends Controller
     {
 
         $builder = QueryBuilder::for(Model::class)
-            ->with(['roles'])
             ->allowedFilters([
                 AllowedFilter::exact('active'),
                 AllowedFilter::exact('name'),
