@@ -35,11 +35,11 @@ Route::middleware(['auth:api'])->group(function () {
     Route::prefix('acl')->group(function (){
 
         //User
-        Route::get('users',['uses'=>'Acl\UserController@index','desc'=>'List user'])->name('user.index');
-        Route::post('users',['uses'=>'Acl\UserController@store','desc'=>'Create user'])->name('user.create');
-        Route::get('users/{id}',['uses'=>'Acl\UserController@show','desc'=>'View user detail'])->where('id', '[0-9]+')->name('user.view');
-        Route::put('users/{id}',['uses'=>'Acl\UserController@update','desc'=>'Update user'])->where('id', '[0-9]+')->name('user.edit');
-        Route::delete('users/{id}',['uses'=>'Acl\UserController@destroy','desc'=>'Delete User'])->where('id', '[0-9]+')->name('user.delete');
+        Route::get('user',['uses'=>'Acl\UserController@index','desc'=>'List user'])->name('user.index');
+        Route::post('user',['uses'=>'Acl\UserController@store','desc'=>'Create user'])->name('user.create');
+        Route::get('user/{id}',['uses'=>'Acl\UserController@show','desc'=>'View user detail'])->where('id', '[0-9]+')->name('user.view');
+        Route::put('user/{id}',['uses'=>'Acl\UserController@update','desc'=>'Update user'])->where('id', '[0-9]+')->name('user.edit');
+        Route::delete('user/{id}',['uses'=>'Acl\UserController@destroy','desc'=>'Delete User'])->where('id', '[0-9]+')->name('user.delete');
 
     });
 });

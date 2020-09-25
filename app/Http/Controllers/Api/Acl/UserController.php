@@ -56,7 +56,17 @@ class UserController extends Controller
      */
     public function store(ValidateRequest $request): Resource
     {
-        return new Resource(Model::create($request->validated()));
+        $item = Model::create($request->validated());
+        $resoure = new Resource($item);
+         return $resoure
+             ->additional(
+                 [
+                     'meta' =>
+                         [
+                             'message' => 'User updated',
+                         ]
+                 ]
+             );
     }
 
     /**
@@ -82,7 +92,16 @@ class UserController extends Controller
     {
         $item = Model::findOrFail($id);
         $item->update($request->validated());
-        return new Resource($item);
+        $resource = new Resource($item);
+        return $resource
+            ->additional(
+                [
+                    'meta' =>
+                    [
+                        'message' => 'User updated',
+                    ]
+                ]
+            );
     }
 
     /**

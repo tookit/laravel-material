@@ -49,10 +49,13 @@ class UserRequest extends FormRequest
     {
         return [
             'username' => ['required','unique:users,username'],
+            'firstname' => ['string', 'nullable'],
+            'lastname' => ['string', 'nullable'],
             'email' => ['required','email','unique:users,email'],
-            'mobile' => ['required','unique:users,mobile'],
+            'phone' => ['required','unique:users,phone'],
             'active' => ['boolean'],
-            'password' => ['required','confirmed'],
+            'avatar' => ['url','nullable'],
+            'password' => ['required'],
         ];
 
     }
@@ -61,11 +64,13 @@ class UserRequest extends FormRequest
     {
         return [
             'username' => ['unique:users,username,'.$this->uniqueIdentifier()],
+            'firstname' => ['string', 'nullable'],
+            'lastname' => ['string', 'nullable'],
             'email' => ['email','unique:users,email,'.$this->uniqueIdentifier()],
-            'mobile' => ['unique:users,mobile,'.$this->uniqueIdentifier()],
+            'phone' => ['unique:users,phone,'.$this->uniqueIdentifier()],
             'active' => ['boolean'],
-            'avatar' => ['string','nullable'],
-            'password' => ['required','confirmed'],
+            'avatar' => ['url','nullable'],
+//            'password' => ['required','confirmed'],
         ];
     }
 
