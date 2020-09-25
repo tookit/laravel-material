@@ -28,7 +28,7 @@ class UserController extends Controller
         $builder = QueryBuilder::for(Model::class)
             ->allowedFilters([
                 AllowedFilter::exact('active'),
-                AllowedFilter::exact('name'),
+                AllowedFilter::exact('username'),
             ]);
         return Resource::collection(
 
