@@ -28,8 +28,11 @@ class UserController extends Controller
         $builder = QueryBuilder::for(Model::class)
             ->allowedFilters([
                 AllowedFilter::exact('active'),
-                AllowedFilter::exact('username'),
+                AllowedFilter::exact('gender'),
+//                AllowedFilter::exact('username'),
+                'username',
             ]);
+
         return Resource::collection(
 
             $request->get('pageSize') !== '-1'
@@ -84,7 +87,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UserRequest $request
+     * @param  \App\Http\Requests\Acl\UserRequest $request
      * @param  int $id
      * @return \Illuminate\Http\Response
      */

@@ -30,6 +30,9 @@ Route::middleware(['auth:api'])->group(function () {
     });
 
     Route::get('me',['uses'=>'Acl\UserController@me','desc'=>'View self'])->name('self.view');
+    Route::get('storage/dir',['uses'=>'StorageController@listDir','desc'=>'List dir'])->name('storage.dir.list');
+    Route::get('storage/file',['uses'=>'StorageController@listFile','desc'=>'List file'])->name('storage.file.list');
+
 
     // Access control
     Route::prefix('acl')->group(function (){
