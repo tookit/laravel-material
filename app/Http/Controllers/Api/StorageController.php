@@ -17,18 +17,18 @@ class StorageController extends BaseController
     public function listDir(Request $request)
     {
 
-        $dir = $request->get('dir','/');
-        $fs = Storage::disk('oss');
-        $dirs = $fs->allDirectories($dir, true);
+        $fs = Storage::disk('local');
+        $dirs = collect($fs->listContents('media'))->sortBy('type');
         return new JsonResource($dirs);
     }
 
     public function listFile(Request $request)
     {
 
-        $dir = $request->get('dir','/');
-        $fs = Storage::disk('oss');
-        $files = $fs->allFiles($dir, true);
+        $path = $request->get('path','/media');
+        $fs = Storage::disk('local');
+        $files = collect($fs->listContents($path))->sortBy('type');
         return new JsonResource($files);
     }
-}
+
+    }
