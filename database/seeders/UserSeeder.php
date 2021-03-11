@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
     {
         // seed admin
         User::updateOrCreate(
+            ['email' => Config::get('admin.email')],
             [
                 'username' => Config::get('admin.username'),
                 'password' => (Config::get('admin.password')),
