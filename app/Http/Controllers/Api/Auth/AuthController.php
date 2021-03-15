@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers\Api\Auth;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use App\Http\Requests\RegisterRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
-class LoginController extends Controller
+class AuthController extends Controller
 {
-
 
     use ValidatesRequests;
 
+    const IDENTIFIERS = ['username','email','mobile'];
 
     /**
      * Create a new AuthController instance.
@@ -22,7 +24,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
+        // $this->middleware('auth:api', ['except' => ['login','register']]);
     }
 
     /**
@@ -33,52 +35,30 @@ class LoginController extends Controller
     public function login(Request $request)
     {
 
-        $this->validateLogin($request);
-        $token = $this->attemptLogin($request);
 
+        $token = $this->guard()->attempt($this->credentials($request));
 
-        if (!$token ) {
-            return new JsonResponse(['errors'=>['Unauthorized']], JsonResponse::HTTP_UNAUTHORIZED);
-        }
-
-        if(!$this->guard()->getLastAttempted()->isActive()){
-            return new JsonResponse(['errors'=>['You account is inactive']], JsonResponse::HTTP_UNAUTHORIZED);
+        if (!$token) {
+            return new JsonResponse(['errors' => ['Unauthorized']], JsonResponse::HTTP_UNAUTHORIZED);
         }
 
         return $this->respondWithToken($token);
     }
 
-
     /**
-     * Validate the user login request.
+     * Register a new user
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return void
-     *
-     * @throws \Illuminate\Validation\ValidationException
+     * @return \Illuminate\Http\JsonResponse
      */
-    protected function validateLogin(Request $request)
+    public function register(RegisterRequest $request)
     {
-        $this->validate($request,[
-            $this->username() => 'required|string',
-            'password' => 'required|string',
-        ]);
+        $user = User::create($request->validated());
+        return $this->login($request);
 
     }
 
-    /**
-     * Attempt to log the user into the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return bool
-     */
-    protected function attemptLogin(Request $request)
-    {
 
-        return $this->guard()->attempt(
-            $this->credentials($request)
-        );
-    }
+
 
     /**
      * Get the needed authorization credentials from the request.
@@ -88,30 +68,25 @@ class LoginController extends Controller
      */
     protected function credentials(Request $request)
     {
-        return $request->only($this->username(), 'password');
+
+        $keys = array_keys($request->all());
+        foreach(self::IDENTIFIERS as $identifier) {
+            if(in_array($identifier, $keys)) {
+                return $request->only($identifier, 'password');
+            }
+        }
+        return $request->only('email', 'password');
     }
 
     /**
      * Get the guard to be used during authentication.
      *
-     * @return \Illuminate\Contracts\Auth\Guard
+     * @return \Illuminate\Contracts\Auth\Guard|\Tymon\JWTAuth\JWTGuard
      */
     protected function guard()
     {
         return Auth::guard('api');
     }
-
-    /**
-     * Get the login username to be used by the controller.
-     *
-     * @return string
-     */
-    public function username()
-    {
-        return 'username';
-    }
-
-
 
     /**
      * Log the user out (Invalidate the token).
@@ -120,7 +95,7 @@ class LoginController extends Controller
      */
     public function logout()
     {
-        auth('api')->logout();
+        $this->guard()->logout();
 
         return response()->json(['message' => 'Successfully logged out']);
     }
@@ -131,7 +106,7 @@ class LoginController extends Controller
      */
     public function refresh()
     {
-        return $this->respondWithToken(auth('api')->refresh());
+        return $this->respondWithToken($this->guard()->refresh());
     }
 
     /**
@@ -146,7 +121,7 @@ class LoginController extends Controller
         return new JsonResponse([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth('api')->factory()->getTTL() * 60
+            'expires_in' => $this->guard()->factory()->getTTL() * 60,
         ]);
     }
 }

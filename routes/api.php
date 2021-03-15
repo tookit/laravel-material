@@ -17,7 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 //public route
 
-Route::post('/auth/login',['uses'=>'Auth\LoginController@login','desc'=>'Login'])->name('auth.login');
+Route::post('/auth/login',['uses'=>'Auth\AuthController@login','desc'=>'Login'])->name('auth.login');
+Route::post('/auth/register',['uses'=>'Auth\AuthController@register','desc'=>'Register'])->name('auth.register');
 
 
 //protected route

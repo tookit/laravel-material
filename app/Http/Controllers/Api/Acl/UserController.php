@@ -62,14 +62,14 @@ class UserController extends Controller
         $item = Model::create($request->validated());
         $resoure = new Resource($item);
          return $resoure
-             ->additional(
+            ->additional(
                  [
                      'meta' =>
-                         [
+                        [
                              'message' => 'User updated',
-                         ]
+                        ]
                  ]
-             );
+            );
     }
 
     /**
