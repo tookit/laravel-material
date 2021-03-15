@@ -25,6 +25,7 @@ class MessageController extends Controller
     {
 
         $builder = QueryBuilder::for(Model::class)
+        ->with(['user'])
             ->allowedFilters([
             ]);
 

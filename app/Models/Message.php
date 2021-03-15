@@ -17,7 +17,12 @@ class Message extends Model
      * @var array
      */
     protected $fillable = [
-        'content'
+        'content', 'user_id'
     ];    
 
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
