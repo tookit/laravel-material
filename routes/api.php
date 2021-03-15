@@ -26,14 +26,17 @@ Route::post('/auth/register',['uses'=>'Auth\AuthController@register','desc'=>'Re
 Route::middleware(['auth:api'])->group(function () {
 
     Route::prefix('auth')->group(function (){
-        Route::post('logout',['uses'=>'Auth\LoginController@logout','desc'=>'Logout'])->name('lauth.ogout');
-        Route::post('refresh',['uses'=>'Auth\LoginController@refresh','desc'=>'Refresh token'])->name('token.refresh');
+        Route::post('logout',['uses'=>'Auth\AuthController@logout','desc'=>'Logout'])->name('lauth.ogout');
+        Route::post('refresh',['uses'=>'Auth\AuthController@refresh','desc'=>'Refresh token'])->name('token.refresh');
     });
 
     Route::get('me',['uses'=>'Acl\UserController@me','desc'=>'View self'])->name('self.view');
     Route::get('storage/dir',['uses'=>'StorageController@listDir','desc'=>'List dir'])->name('storage.dir.list');
     Route::get('storage/file',['uses'=>'StorageController@listFile','desc'=>'List file'])->name('storage.file.list');
 
+    // message
+    Route::get('message',['uses'=>'MessageController@index','desc'=>'List message'])->name('message.list');
+    Route::post('message',['uses'=>'MessageController@store','desc'=>'Create messsage'])->name('message.create');
 
     // Access control
     Route::prefix('acl')->group(function (){

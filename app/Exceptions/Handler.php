@@ -33,10 +33,10 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->renderable(function (RouteNotFoundException $e, $request) {
-            return response()->json([
-                'msg' => 'route not found'
-            ]);
-        });        
+        // $this->renderable(function (RouteNotFoundException $e, $request) {
+        //     return response()->json([
+        //         'msg' => 'route not found'
+        //     ]);
+        // });        
     }
 }
