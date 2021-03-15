@@ -25,9 +25,12 @@ class StorageController extends BaseController
     public function listFile(Request $request)
     {
 
-        $path = $request->get('path','/media');
-        $fs = Storage::disk('local');
-        $files = collect($fs->listContents($path))->sortBy('type');
+        $path = $request->get('path','/');
+        $fs = Storage::disk('oss');
+        $files = collect($fs->listContents($path))->sortBy('type')->map(function($file) {
+            $file['url'] = 'https://vma.isocked.com/'.$file['path'];
+            return $file;
+        });
         return new JsonResource($files);
     }
 
