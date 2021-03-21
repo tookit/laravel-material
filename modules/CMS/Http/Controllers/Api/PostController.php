@@ -52,11 +52,6 @@ class PostController extends Controller
     public function store(ValidateRequest $request): Resource
     {
         $item = Model::create($request->validated());
-        $tags = $request->get('tags');
-        if($tags) {
-            $item->attachTags($tags);
-            $item->load(['tags']);
-        }        
         $resoure = new Resource($item);
         return $resoure
             ->additional(
@@ -77,7 +72,7 @@ class PostController extends Controller
      */
     public function show($id): Resource
     {
-        $item = Model::with(['tags'])->findOrFail($id);
+        $item = Model::with([])->findOrFail($id);
         return new Resource($item);
     }
 
@@ -92,12 +87,6 @@ class PostController extends Controller
     {
         $item = Model::findOrFail($id);
         $item->update($request->validated());
-        $tags = $request->get('tags');
-        if($tags) {
-            $item->attachTags($tags);
-            $item->load(['tags']);
-
-        }
         $resource = new Resource($item);
         return $resource
             ->additional(

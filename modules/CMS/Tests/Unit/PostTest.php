@@ -23,7 +23,6 @@ class PostTest extends TestCase
     public function testCreatePost()
     {
         $item = Post::factory()->make()->toArray();
-        $item['tags'] = ['test'];
         $response = $this->actingAs($this->makeAdmin(), 'api')->postJson('/api/cms/post', $item);
         $response->assertStatus(201);
     }

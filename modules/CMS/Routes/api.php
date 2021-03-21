@@ -19,7 +19,6 @@ Route::middleware(['auth:api'])->group(function () {
     Route::prefix('cms')->group(function (){
         Route::resource('post','PostController');
         Route::resource('category','CategoryController');
-        Route::resource('tag','TagController');
     });
 
 });

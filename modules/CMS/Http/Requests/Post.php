@@ -27,9 +27,6 @@ class Post extends FormRequest
         return [
             'name' => ['required','string', 'unique_translation:cms_post,name'],
             'description'=>['nullable', 'string','max:256'],
-            'tags' => ['array'],
-            'tags' => ['array'],
-            'tags.*' => ['string']            
 
 
         ];
@@ -39,8 +36,6 @@ class Post extends FormRequest
         return [
             'name' => ['string','unique_translation:cms_post,name,'.$this->id],
             'description'=>['nullable','string'],
-            'tags' => ['array'],
-            'tags.*' => ['string']
         ];
     }
 }
