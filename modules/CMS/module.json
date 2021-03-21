@@ -1,0 +1,13 @@
+{
+    "name": "CMS",
+    "alias": "cms",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\CMS\\Providers\\CMSServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

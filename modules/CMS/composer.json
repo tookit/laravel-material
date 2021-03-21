@@ -1,0 +1,23 @@
+{
+    "name": "tookit/cms",
+    "description": "",
+    "authors": [
+        {
+            "name": "Michael Wang",
+            "email": "wangqiangshen@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\CMS\\": ""
+        }
+    }
+}
