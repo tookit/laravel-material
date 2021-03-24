@@ -27,8 +27,6 @@ class Post extends FormRequest
         return [
             'name' => ['required','string', 'unique_translation:cms_post,name'],
             'description'=>['nullable', 'string','max:256'],
-
-
         ];
     }
     public  function updateRule()
