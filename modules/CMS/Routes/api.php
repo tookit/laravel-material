@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::middleware(['auth:api'])->group(function () {
+Route::middleware([])->group(function () {
 
     Route::prefix('cms')->group(function (){
         Route::resource('post','PostController');

@@ -19,7 +19,7 @@ class Post extends FormRequest
 
     public  function rules()
     {
-        return $this->id ? $this->createRule() : $this->updateRule();
+        return !$this->id ? $this->createRule() : $this->updateRule();
     }
 
     public   function createRule()
@@ -31,6 +31,7 @@ class Post extends FormRequest
     }
     public  function updateRule()
     {
+
         return [
             'name' => ['string','unique_translation:cms_post,name,'.$this->id],
             'description'=>['nullable','string'],

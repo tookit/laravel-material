@@ -17,9 +17,9 @@ class CreateCmsTable extends Migration
             $table->id();
             $table->integer('category_id',false, true)->default(0)->comment('post category');
             $table->string('slug')->unique();
-            $table->json('name')->comment('post title');
-            $table->json('description')->nullable()->comment('post short description');
-            $table->json('body')->nullable();
+            $table->string('name')->comment('post title');
+            $table->mediumText('description')->nullable()->comment('post short description');
+            $table->text('body')->nullable();
             $table->tinyInteger('status')->default(0)->comment('post status');
             $table->softDeletes();
             $table->timestamps();
@@ -28,9 +28,9 @@ class CreateCmsTable extends Migration
         Schema::create('cms_category', function (Blueprint $table) {
             $table->id();
             $table->string('slug')->unique();
-            $table->json('name')->comment('category title');
-            $table->json('description')->nullable()->comment('category short description');
-            $table->json('body')->nullable();
+            $table->string('name')->comment('category title');
+            $table->mediumText('description')->nullable()->comment('category short description');
+            $table->text('body')->nullable();
             $table->unsignedInteger('sort_number');
             $table->tinyInteger('status')->default(0)->comment('category status');
             $table->softDeletes();
