@@ -51,6 +51,7 @@ class PostController extends Controller
      */
     public function store(ValidateRequest $request): Resource
     {
+
         $item = Model::create($request->validated());
         $resoure = new Resource($item);
         return $resoure

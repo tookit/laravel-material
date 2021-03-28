@@ -17,7 +17,13 @@ use Illuminate\Support\Facades\Route;
 Route::middleware([])->group(function () {
 
     Route::prefix('cms')->group(function (){
-        Route::resource('post','PostController');
+
+        Route::get('/post',['uses'=>'PostController@index','desc'=>'List post'])->name('post.index');
+        Route::post('post',['uses'=>'PostController@store','desc'=>'Create post'])->name('post.create');
+        Route::get('post/{id}',['uses'=>'PostController@show','desc'=>'View post detail'])->where('id', '[0-9]+')->name('post.view');
+        Route::put('post/{id}',['uses'=>'PostController@update','desc'=>'Update post'])->where('id', '[0-9]+')->name('post.edit');
+        Route::delete('post/{id}',['uses'=>'PostController@destroy','desc'=>'Delete post'])->where('id', '[0-9]+')->name('post.delete');    
+
         Route::resource('category','CategoryController');
     });
 
