@@ -19,16 +19,17 @@ class TaskRequest extends FormRequest
 
     public  function rules()
     {
-        return $this->id ? $this->createRule() : $this->updateRule();
+        return !$this->id ? $this->createRule() : $this->updateRule();
     }
 
     public   function createRule()
     {
         return [
-            'name' => ['required','string', 'unique_translation:task,name'],
+            'name' => ['required','string', 'unique:task,name'],
             'description'=>['nullable', 'string','max:256'],
             'owner'=>['nullable', 'string','max:256'],
-            'status' => ['integer']
+            'status' => ['integer'],
+            'project_id' => ['required','integer']
 
 
         ];
@@ -36,10 +37,11 @@ class TaskRequest extends FormRequest
     public  function updateRule()
     {
         return [
-            'name' => ['string','unique_translation:task,name,'.$this->id],
+            'name' => ['string','unique:task,name,'.$this->id],
             'description'=>['nullable', 'string','max:256'],
             'owner'=>['nullable', 'string','max:256'],
-            'status' => ['integer']
+            'status' => ['integer'],
+            'project_id' => ['required','integer']
         ];
     }
 }

@@ -20,13 +20,12 @@ class Task extends Model implements Sortable
 
     protected $fillable = [
 
-        'name','description', 'status', 'owner'
+        'name','description', 'status', 'owner', 'project_id'
     ];
 
 
     public $translatable = [
 
-        'name', 'description',
     ];
 
     /**
@@ -55,7 +54,7 @@ class Task extends Model implements Sortable
      * 
      */
 
-    public function task()
+    public function project()
     {
         return $this->belongsTo(Project::class);
     }

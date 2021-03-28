@@ -26,10 +26,11 @@ class TaskController extends Controller
     {
 
         $builder = QueryBuilder::for(Model::class)
+            ->with(['project'])
             ->allowedFilters([
-                AllowedFilter::exact('active'),
-                AllowedFilter::exact('gender'),
-                'username',
+                AllowedFilter::exact('status'),
+                AllowedFilter::exact('project_id'),
+                'name',
             ]);
 
         return Resource::collection(

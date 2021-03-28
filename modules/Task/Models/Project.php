@@ -26,7 +26,6 @@ class Project extends Model implements Sortable
 
     public $translatable = [
 
-        'name', 'description',
     ];
 
     /**
