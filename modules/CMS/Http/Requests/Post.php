@@ -25,7 +25,7 @@ class Post extends FormRequest
     public   function createRule()
     {
         return [
-            'name' => ['required','string', 'unique_translation:cms_post,name'],
+            'name' => ['required','string', 'unique:cms_post,name'],
             'description'=>['nullable', 'string','max:256'],
         ];
     }
@@ -33,7 +33,7 @@ class Post extends FormRequest
     {
 
         return [
-            'name' => ['string','unique_translation:cms_post,name,'.$this->id],
+            'name' => ['string','unique:cms_post,name,'.$this->id],
             'description'=>['nullable','string'],
         ];
     }
