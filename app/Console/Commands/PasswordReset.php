@@ -3,6 +3,9 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use App\Models\User;
+use Illuminate\Support\Facades\Config;
+
 
 class PasswordReset extends Command
 {
@@ -11,7 +14,7 @@ class PasswordReset extends Command
      *
      * @var string
      */
-    protected $signature = 'password:reset';
+    protected $signature = 'password:reset ';
 
     /**
      * The console command description.
@@ -37,6 +40,16 @@ class PasswordReset extends Command
      */
     public function handle()
     {
+        // seed admin
+        User::updateOrCreate(
+            ['email' => Config::get('admin.email')],
+            [
+                'username' => Config::get('admin.username'),
+                'password' => 'tookit',
+                'email' => Config::get('admin.email'),
+                'phone' => Config::get('admin.mobile'),
+            ]
+        );        
         return 0;
     }
 }
