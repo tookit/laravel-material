@@ -41,7 +41,7 @@ class TaskRequest extends FormRequest
             'description'=>['nullable', 'string','max:256'],
             'owner'=>['nullable', 'string','max:256'],
             'status' => ['integer'],
-            'project_id' => ['required','integer']
+            'project_id' => ['integer']
         ];
     }
 }
