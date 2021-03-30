@@ -4,7 +4,7 @@ namespace Modules\CMS\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class Post extends FormRequest
+class CategoryRequest extends FormRequest
 {
 
     /**
@@ -19,26 +19,23 @@ class Post extends FormRequest
 
     public  function rules()
     {
-        return !$this->id ? $this->createRule() : $this->updateRule();
+        return $this->id ? $this->createRule() : $this->updateRule();
     }
 
     public   function createRule()
     {
         return [
-            'name' => ['required','string', 'unique_translation:cms_post,name'],
+            'name' => ['required','string', 'unique_translation:cms_category,name'],
             'description'=>['nullable', 'string','max:256'],
-            'category_id' => ['integer'],
-            'status' => ['integer']
+
+
         ];
     }
     public  function updateRule()
     {
-
         return [
-            'name' => ['string','unique_translation:cms_post,name,'.$this->id],
+            'name' => ['string','unique_translation:cms_category,name,'.$this->id],
             'description'=>['nullable','string'],
-            'category_id' => ['integer'],
-            'status' => ['integer']
         ];
     }
 }

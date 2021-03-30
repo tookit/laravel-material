@@ -9,7 +9,7 @@ use Spatie\QueryBuilder\QueryBuilder;
 
 use Modules\CMS\Models\Post as Model;
 use Modules\CMS\Transformers\Post as Resource;
-use Modules\CMS\Http\Requests\Post as ValidateRequest;
+use Modules\CMS\Http\Requests\PostRequest as ValidateRequest;
 use Spatie\QueryBuilder\AllowedFilter;
 
 

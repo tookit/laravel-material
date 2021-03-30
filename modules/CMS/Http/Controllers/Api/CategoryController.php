@@ -9,7 +9,7 @@ use Spatie\QueryBuilder\QueryBuilder;
 
 use Modules\CMS\Models\Category as Model;
 use Modules\CMS\Transformers\Category as Resource;
-use Modules\CMS\Http\Requests\Category as ValidateRequest;
+use Modules\CMS\Http\Requests\CategoryRequest as ValidateRequest;
 use Spatie\QueryBuilder\AllowedFilter;
 
 
@@ -27,9 +27,7 @@ class CategoryController extends Controller
 
         $builder = QueryBuilder::for(Model::class)
             ->allowedFilters([
-                AllowedFilter::exact('active'),
-                AllowedFilter::exact('gender'),
-                'username',
+                'name',
             ]);
 
         return Resource::collection(
@@ -58,7 +56,7 @@ class CategoryController extends Controller
                 [
                     'meta' =>
                     [
-                        'message' => 'Post created',
+                        'message' => 'Category created',
                     ]
                 ]
             );
@@ -93,14 +91,14 @@ class CategoryController extends Controller
                 [
                     'meta' =>
                     [
-                        'message' => 'Post updated',
+                        'message' => 'Category updated',
                     ]
                 ]
             );
     }
 
     /**
-     * Remove the specified Post from storage.
+     * Remove the specified Category from storage.
      *
      * @param  int $id
      * @return \Illuminate\Http\Response
