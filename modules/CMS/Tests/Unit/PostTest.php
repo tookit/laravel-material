@@ -10,10 +10,12 @@ use Modules\CMS\Models\Post;
 class PostTest extends TestCase
 {
 
+    const ENDPOINT = '/api/cms/post/';
+
     public function testViewPost() 
     {
         $item = $this->createUniquePost();
-        $response = $this->actingAs($this->makeAdmin(), 'api')->getJson('/api/cms/post/'.$item->id);
+        $response = $this->actingAs($this->makeAdmin(), 'api')->getJson(self::ENDPOINT.$item->id);
         $response->assertJson([
             'data' => $item->toArray()
         ]);
@@ -23,7 +25,7 @@ class PostTest extends TestCase
     public function testCreatePost()
     {
         $item = Post::factory()->make()->toArray();
-        $response = $this->actingAs($this->makeAdmin(), 'api')->postJson('/api/cms/post', $item);
+        $response = $this->actingAs($this->makeAdmin(), 'api')->postJson(self::ENDPOINT, $item);
         $response->assertStatus(201);
     }
 
@@ -31,7 +33,7 @@ class PostTest extends TestCase
     public function testCreateFailed()
     {
         $item = Post::factory()->make(['name'=> ''])->toArray();
-        $response = $this->actingAs($this->makeAdmin(), 'api')->postJson('/api/cms/post', $item);
+        $response = $this->actingAs($this->makeAdmin(), 'api')->postJson(self::ENDPOINT, $item);
         $response->assertStatus(422);
 
     }
@@ -40,7 +42,7 @@ class PostTest extends TestCase
     {
         $item = $this->createUniquePost();
         $data = Post::factory()->make(['name'=> $item->name])->toArray();
-        $response = $this->actingAs($this->makeAdmin(), 'api')->postJson('/api/cms/post', $data);
+        $response = $this->actingAs($this->makeAdmin(), 'api')->postJson(self::ENDPOINT, $data);
         $response->assertStatus(422);
 
     }
@@ -51,7 +53,7 @@ class PostTest extends TestCase
         $item = $this->createUniquePost();
         $data = $item->toArray();
         $data['name'] = 'test_unique_name';
-        $response = $this->actingAs($this->makeAdmin(), 'api')->putJson('/api/cms/post/'.$item->id, $data);
+        $response = $this->actingAs($this->makeAdmin(), 'api')->putJson(self::ENDPOINT.$item->id, $data);
         $response->assertSee(['name'=>'test']);
         $response->assertStatus(200);
 
@@ -61,7 +63,7 @@ class PostTest extends TestCase
     public function testDeletePost()
     {
         $item = $this->createUniquePost();
-        $response = $this->actingAs($this->makeAdmin(), 'api')->delete('/api/cms/post/'.$item->id);
+        $response = $this->actingAs($this->makeAdmin(), 'api')->delete(self::ENDPOINT.$item->id);
         $response->assertSee(['message'=>'Post deleted']);
         $response->assertStatus(200);
 

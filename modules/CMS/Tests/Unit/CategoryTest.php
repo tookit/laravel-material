@@ -10,10 +10,12 @@ use Modules\CMS\Models\Category;
 class CategoryTest extends TestCase
 {
 
+    const ENDPOINT = '/api/cms/category/';
+
     public function testViewCategory() 
     {
         $item = $this->createUniqueCategory();
-        $response = $this->actingAs($this->makeAdmin(), 'api')->getJson('/api/cms/category/'.$item->id);
+        $response = $this->actingAs($this->makeAdmin(), 'api')->getJson(self::ENDPOINT.$item->id);
         $response->assertJson([
             'data' => $item->toArray()
         ]);
@@ -23,7 +25,7 @@ class CategoryTest extends TestCase
     public function testCreateCategory()
     {
         $item = Category::factory()->make()->toArray();
-        $response = $this->actingAs($this->makeAdmin(), 'api')->postJson('/api/cms/category', $item);
+        $response = $this->actingAs($this->makeAdmin(), 'api')->postJson(self::ENDPOINT, $item);
         $response->assertStatus(201);
     }
 
@@ -31,7 +33,7 @@ class CategoryTest extends TestCase
     public function testCreateCategoryFailed()
     {
         $item = Category::factory()->make(['name'=> ''])->toArray();
-        $response = $this->actingAs($this->makeAdmin(), 'api')->postJson('/api/cms/category', $item);
+        $response = $this->actingAs($this->makeAdmin(), 'api')->postJson(self::ENDPOINT, $item);
         $response->assertStatus(422);
 
     }
@@ -40,7 +42,7 @@ class CategoryTest extends TestCase
     {
         $item = $this->createUniqueCategory();
         $data = Category::factory()->make(['name'=> $item->name])->toArray();
-        $response = $this->actingAs($this->makeAdmin(), 'api')->postJson('/api/cms/category', $data);
+        $response = $this->actingAs($this->makeAdmin(), 'api')->postJson(self::ENDPOINT, $data);
         $response->assertStatus(422);
 
     }
@@ -51,7 +53,7 @@ class CategoryTest extends TestCase
         $item = $this->createUniqueCategory();
         $data = $item->toArray();
         $data['name'] = 'test';
-        $response = $this->actingAs($this->makeAdmin(), 'api')->putJson('/api/cms/category/'.$item->id, $data);
+        $response = $this->actingAs($this->makeAdmin(), 'api')->putJson(self::ENDPOINT.$item->id, $data);
         $response->assertSee(['name'=>'test']);
         $response->assertStatus(200);
 
