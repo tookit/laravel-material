@@ -4,6 +4,7 @@ namespace App\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 
 trait HasAudit
@@ -33,7 +34,7 @@ trait HasAudit
 
     protected function getAuthenticatedUserId()
     {
-        return auth()->check() ? auth()->id() : 0;
+        return Auth::check() ? Auth::id() : 0;
     }    
 
     /**

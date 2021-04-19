@@ -24,7 +24,6 @@ trait HasStatus
         return $status[$name];
     }
 
-
     /**
      * Scope a query to only include active users.
      *
