@@ -29,7 +29,6 @@ class UserController extends Controller
             ->allowedFilters([
                 AllowedFilter::exact('active'),
                 AllowedFilter::exact('gender'),
-//                AllowedFilter::exact('username'),
                 'username',
             ]);
 
