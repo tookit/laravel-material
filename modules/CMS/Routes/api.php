@@ -24,7 +24,7 @@ Route::middleware([])->group(function () {
         Route::put('post/{id}',['uses'=>'PostController@update','desc'=>'Update post'])->where('id', '[0-9]+')->name('post.edit');
         Route::delete('post/{id}',['uses'=>'PostController@destroy','desc'=>'Delete post'])->where('id', '[0-9]+')->name('post.delete');    
 
-        Route::resource('category','CategoryController');
+        Route::apiResource('category','CategoryController');
     });
 
 });

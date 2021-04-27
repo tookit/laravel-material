@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::middleware([])->group(function () {
+Route::middleware(['auth:api'])->group(function () {
 
     Route::prefix('task')->group(function (){
 
