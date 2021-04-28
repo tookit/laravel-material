@@ -33,14 +33,12 @@ Route::middleware(['auth:api'])->group(function () {
 
     Route::get('me',['uses'=>'Acl\UserController@me','desc'=>'View self'])->name('self.view');
 
-
     // message
     Route::get('message',['uses'=>'MessageController@index','desc'=>'List message'])->name('message.list');
     Route::post('message',['uses'=>'MessageController@store','desc'=>'Create messsage'])->name('message.create');
 
     // Access control
     Route::prefix('acl')->group(function (){
-
         //User
         Route::get('user',['uses'=>'Acl\UserController@index','desc'=>'List user'])->name('user.index');
         Route::post('user',['uses'=>'Acl\UserController@store','desc'=>'Create user'])->name('user.create');

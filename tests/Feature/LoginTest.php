@@ -21,16 +21,19 @@ class LoginTest extends TestCase
     public function testLogin()
     {
         // create a user instance
+        $uri = '/api/auth/login';
         $user = $this->createUniqueUser();
-        $resp = $this->post('/api/auth/login', [
+        $payload =  [
             'email' => $user->email,
             'password' => 'secret'
-        ]);
+        ];
+        $resp = $this->post($uri,$payload);
         $resp->assertStatus(JsonResponse::HTTP_OK);
         $resp->assertJsonStructure([
             'access_token',
             'expires_in'
         ]);
+        $this->logRequest($uri, 'post',$payload, $resp);
     }
 
     public function testLoginFailed()
