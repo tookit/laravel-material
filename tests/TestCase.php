@@ -25,18 +25,38 @@ abstract class TestCase extends BaseTestCase
             ]);
     }
 
-    public function logRequest($uri,$method, $payload, $resp)
+    public function logRequest($uri,$method, $payload, $resp, $status=200)
     {
 
+        $file = 'explore/response.json';
         $data = [
             'url' => $uri,
             'method' => $method,
             'payload' => $payload,
+            'status' => $status,
             'resp' => json_decode($resp->content())
         ];
-        $contents = json_encode($data);
 
-        return Storage::put('explore/resp.json',$contents);        
+        
+        if(Storage::exists($file)) {
+            $collection = collect(json_decode(Storage::get($file)));
+            $find = $collection->search(function($item) use ($data) {
+                return $item->uri === $data['uri'] && $item->method === $data['method'] && $item->status === $data['status'];
+            });
+            if($find) {
+                $find = $data;
+            }else {
+                $collection->push($data);
+            }
+
+        }else {
+            $collection = collect([]);
+            $collection->push($data);
+
+        }
+
+        $contents = json_encode($collection->toArray());
+        return Storage::put($file,$contents);        
 
     }
 }

@@ -1,0 +1,65 @@
+[
+    {
+        "url": "\/api\/auth\/login",
+        "method": "post",
+        "payload": {
+            "email": "sydnie23@example.org",
+            "password": "secret"
+        },
+        "status": 200,
+        "resp": {
+            "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvbG9jYWwuZGVtby5pc29ja2VkLmNvbVwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTYxOTU5MjkxMCwiZXhwIjoxNjE5Njc5MzEwLCJuYmYiOjE2MTk1OTI5MTAsImp0aSI6IkJPUktsVWRZSmpsT2xKTFkiLCJzdWIiOjM0LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.J_-xv6AGL7xBpgE4IkW6c-fWqHm2cOf0opkuaDOPAPI",
+            "token_type": "bearer",
+            "expires_in": 86400,
+            "debug": {
+                "database": {
+                    "total": 2,
+                    "items": [
+                        {
+                            "connection": "mysql",
+                            "query": "insert into `users` (`username`, `firstname`, `lastname`, `email`, `phone`, `gender`, `flag`, `avatar`, `email_verified_at`, `password`, `remember_token`, `updated_at`, `created_at`) values ('tookit_test', 'Darion', 'Schultz', 'sydnie23@example.org', '630.344.1843 x53106', 'female', '1', 'https:\/\/ui-avatars.com\/api\/?name=mallory61', '2021-04-28 06:55:10', '$2y$04$v08ndGQFInk69wXElmAgMubo\/1qcSIdfuNQZFPg9QR6JHRVw1MFhS', 'qLTakmuSI5', '2021-04-28 06:55:10', '2021-04-28 06:55:10');",
+                            "time": 0.47
+                        },
+                        {
+                            "connection": "mysql",
+                            "query": "select * from `users` where `email` = 'sydnie23@example.org' limit 1;",
+                            "time": 0.53
+                        }
+                    ]
+                },
+                "cache": {
+                    "hit": {
+                        "keys": [
+                            "8a5da52ed126447d359e70c05721a8aa"
+                        ],
+                        "total": 1
+                    },
+                    "miss": {
+                        "keys": [
+                            "8a5da52ed126447d359e70c05721a8aa",
+                            "8a5da52ed126447d359e70c05721a8aa:timer",
+                            "8a5da52ed126447d359e70c05721a8aa"
+                        ],
+                        "total": 3
+                    },
+                    "write": {
+                        "keys": [
+                            "8a5da52ed126447d359e70c05721a8aa:timer",
+                            "8a5da52ed126447d359e70c05721a8aa"
+                        ],
+                        "total": 2
+                    },
+                    "forget": {
+                        "keys": [],
+                        "total": 0
+                    }
+                },
+                "profiling": [],
+                "memory": {
+                    "usage": 25735264,
+                    "peak": 25781472
+                }
+            }
+        }
+    }
+]

@@ -33,7 +33,7 @@ class LoginTest extends TestCase
             'access_token',
             'expires_in'
         ]);
-        $this->logRequest($uri, 'post',$payload, $resp);
+        $this->logRequest($uri, 'post',$payload, $resp, JsonResponse::HTTP_OK);
     }
 
     public function testLoginFailed()
