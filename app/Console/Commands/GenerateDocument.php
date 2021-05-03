@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\User;
 use Closure;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Schema;
@@ -60,18 +61,28 @@ class GenerateDocument extends Command
 
         // list routes -> parse action -> 
         // $routes = $this->getRoutes();
-        $this->genRoutes();
+        // $this->genRoutes();
+        $models = $this->genModels();
         return 0;
     }
 
     /**
      * Gen all model definination
      */
-    public function genResources()
+    public function genModels()
     {
-
-
-
+        $ret = collect([]);
+        $tables = Schema::connection('mysql')->getAllTables();
+        foreach($tables as $table)
+        {
+            $item = [];
+            $tableName = $table->Tables_in_demo;
+            $item['table'] = $tableName;
+            $item['fields'] = DB::select(DB::raw("SHOW FIELDS FROM {$tableName}"));
+            $ret->push($item);
+        }
+        Storage::put('explore/models.json',$ret->toJson());        
+        return $ret;
     }
 
 

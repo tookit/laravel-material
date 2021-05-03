@@ -38,12 +38,15 @@ class LoginTest extends TestCase
 
     public function testLoginFailed()
     {
+        $uri = '/api/auth/login';
         $user = $this->createUniqueUser();
-        $resp = $this->post('/api/auth/login', [
+        $payload = [
             'email' => $user->email,
             'password' => 'ｗrong password'
-        ]);
+        ];
+        $resp = $this->post($uri, $payload);
         $resp->assertStatus(JsonResponse::HTTP_UNAUTHORIZED);
+        $this->logRequest($uri, 'post',$payload, $resp, JsonResponse::HTTP_UNAUTHORIZED);
 
     }
 

@@ -10,6 +10,9 @@ abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication, DatabaseTransactions;
 
+
+
+
     public function makeAdmin(){
 
 
@@ -41,7 +44,7 @@ abstract class TestCase extends BaseTestCase
         if(Storage::exists($file)) {
             $collection = collect(json_decode(Storage::get($file)));
             $find = $collection->search(function($item) use ($data) {
-                return $item->uri === $data['uri'] && $item->method === $data['method'] && $item->status === $data['status'];
+                return $item->url === $data['url'] && $item->method === $data['method'] && $item->status === $data['status'];
             });
             if($find) {
                 $find = $data;

@@ -3,12 +3,12 @@
         "url": "\/api\/auth\/login",
         "method": "post",
         "payload": {
-            "email": "sydnie23@example.org",
+            "email": "jedidiah.raynor@example.org",
             "password": "secret"
         },
         "status": 200,
         "resp": {
-            "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvbG9jYWwuZGVtby5pc29ja2VkLmNvbVwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTYxOTU5MjkxMCwiZXhwIjoxNjE5Njc5MzEwLCJuYmYiOjE2MTk1OTI5MTAsImp0aSI6IkJPUktsVWRZSmpsT2xKTFkiLCJzdWIiOjM0LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.J_-xv6AGL7xBpgE4IkW6c-fWqHm2cOf0opkuaDOPAPI",
+            "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvbG9jYWwuZGVtby5pc29ja2VkLmNvbVwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTYxOTU5MzE1OCwiZXhwIjoxNjE5Njc5NTU4LCJuYmYiOjE2MTk1OTMxNTgsImp0aSI6ImZhdG4ycER6b004S1FramwiLCJzdWIiOjQ0LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.1Bfp8v5ZZWN-i6ISmllW0sZ1qiiDJA9yrwni8PfbYBo",
             "token_type": "bearer",
             "expires_in": 86400,
             "debug": {
@@ -17,13 +17,13 @@
                     "items": [
                         {
                             "connection": "mysql",
-                            "query": "insert into `users` (`username`, `firstname`, `lastname`, `email`, `phone`, `gender`, `flag`, `avatar`, `email_verified_at`, `password`, `remember_token`, `updated_at`, `created_at`) values ('tookit_test', 'Darion', 'Schultz', 'sydnie23@example.org', '630.344.1843 x53106', 'female', '1', 'https:\/\/ui-avatars.com\/api\/?name=mallory61', '2021-04-28 06:55:10', '$2y$04$v08ndGQFInk69wXElmAgMubo\/1qcSIdfuNQZFPg9QR6JHRVw1MFhS', 'qLTakmuSI5', '2021-04-28 06:55:10', '2021-04-28 06:55:10');",
-                            "time": 0.47
+                            "query": "insert into `users` (`username`, `firstname`, `lastname`, `email`, `phone`, `gender`, `flag`, `avatar`, `email_verified_at`, `password`, `remember_token`, `updated_at`, `created_at`) values ('tookit_test', 'Adela', 'Stracke', 'jedidiah.raynor@example.org', '1-671-241-1240 x4813', 'female', '1', 'https:\/\/ui-avatars.com\/api\/?name=cummerata.crystel', '2021-04-28 06:59:18', '$2y$04$pCSWLtkw6Y2AGZPT9IEx5eOG7iWa1\/RZspGUymzbgIzaH\/IaVEvU2', 'meMr7G1iJm', '2021-04-28 06:59:18', '2021-04-28 06:59:18');",
+                            "time": 0.38
                         },
                         {
                             "connection": "mysql",
-                            "query": "select * from `users` where `email` = 'sydnie23@example.org' limit 1;",
-                            "time": 0.53
+                            "query": "select * from `users` where `email` = 'jedidiah.raynor@example.org' limit 1;",
+                            "time": 0.44
                         }
                     ]
                 },
@@ -56,8 +56,260 @@
                 },
                 "profiling": [],
                 "memory": {
-                    "usage": 25735264,
-                    "peak": 25781472
+                    "usage": 25735992,
+                    "peak": 25782200
+                }
+            }
+        }
+    },
+    {
+        "url": "\/api\/auth\/login",
+        "method": "post",
+        "payload": {
+            "email": "tdonnelly@example.net",
+            "password": "\uff57rong password"
+        },
+        "status": 401,
+        "resp": {
+            "errors": [
+                "Unauthorized"
+            ],
+            "debug": {
+                "database": {
+                    "total": 2,
+                    "items": [
+                        {
+                            "connection": "mysql",
+                            "query": "insert into `users` (`username`, `firstname`, `lastname`, `email`, `phone`, `gender`, `flag`, `avatar`, `email_verified_at`, `password`, `remember_token`, `updated_at`, `created_at`) values ('tookit_test', 'Toni', 'Dach', 'tdonnelly@example.net', '773-554-2577', 'male', '1', 'https:\/\/ui-avatars.com\/api\/?name=predovic.lela', '2021-04-28 06:59:18', '$2y$04$rdCc.P99VVmz5xXbLdgZfe4ieWSWk5HS9sNc2ytpiVh0iuS0l4ePq', 'yGQtF3UwvF', '2021-04-28 06:59:18', '2021-04-28 06:59:18');",
+                            "time": 0.25
+                        },
+                        {
+                            "connection": "mysql",
+                            "query": "select * from `users` where `email` = 'tdonnelly@example.net' limit 1;",
+                            "time": 0.24
+                        }
+                    ]
+                },
+                "cache": {
+                    "hit": {
+                        "keys": [
+                            "8a5da52ed126447d359e70c05721a8aa"
+                        ],
+                        "total": 1
+                    },
+                    "miss": {
+                        "keys": [
+                            "8a5da52ed126447d359e70c05721a8aa",
+                            "8a5da52ed126447d359e70c05721a8aa:timer",
+                            "8a5da52ed126447d359e70c05721a8aa"
+                        ],
+                        "total": 3
+                    },
+                    "write": {
+                        "keys": [
+                            "8a5da52ed126447d359e70c05721a8aa:timer",
+                            "8a5da52ed126447d359e70c05721a8aa"
+                        ],
+                        "total": 2
+                    },
+                    "forget": {
+                        "keys": [],
+                        "total": 0
+                    }
+                },
+                "profiling": [],
+                "memory": {
+                    "usage": 26364976,
+                    "peak": 26412624
+                }
+            }
+        }
+    },
+    {
+        "url": "\/api\/auth\/login",
+        "method": "post",
+        "payload": {
+            "email": "sylvan.thiel@example.com",
+            "password": "secret"
+        },
+        "status": 200,
+        "resp": {
+            "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvbG9jYWwuZGVtby5pc29ja2VkLmNvbVwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTYxOTc3ODg0MywiZXhwIjoxNjE5ODY1MjQzLCJuYmYiOjE2MTk3Nzg4NDMsImp0aSI6IkxHVk1HM3lVeG1YNzROS0YiLCJzdWIiOjQsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.r9FFA1hDHmDeI4DxGcBPgt_xUStYu-aPb99NcChT2nQ",
+            "token_type": "bearer",
+            "expires_in": 86400,
+            "debug": {
+                "database": {
+                    "total": 2,
+                    "items": [
+                        {
+                            "connection": "mysql",
+                            "query": "insert into `users` (`username`, `firstname`, `lastname`, `email`, `phone`, `gender`, `flag`, `avatar`, `email_verified_at`, `password`, `remember_token`, `updated_at`, `created_at`) values ('tookit_test', 'Favian', 'Hintz', 'sylvan.thiel@example.com', '1-909-257-6089 x061', 'female', '1', 'https:\/\/ui-avatars.com\/api\/?name=sandra00', '2021-04-30 10:34:03', '$2y$04$xzDq.M2OXnp5HDaNXgJizuw75TDfu.2H8ZKFNVt\/T9xYSfc0zN22e', 'V4NeuRybkH', '2021-04-30 10:34:03', '2021-04-30 10:34:03');",
+                            "time": 0.51
+                        },
+                        {
+                            "connection": "mysql",
+                            "query": "select * from `users` where `email` = 'sylvan.thiel@example.com' limit 1;",
+                            "time": 0.63
+                        }
+                    ]
+                },
+                "cache": {
+                    "hit": {
+                        "keys": [
+                            "8a5da52ed126447d359e70c05721a8aa"
+                        ],
+                        "total": 1
+                    },
+                    "miss": {
+                        "keys": [
+                            "8a5da52ed126447d359e70c05721a8aa",
+                            "8a5da52ed126447d359e70c05721a8aa:timer",
+                            "8a5da52ed126447d359e70c05721a8aa"
+                        ],
+                        "total": 3
+                    },
+                    "write": {
+                        "keys": [
+                            "8a5da52ed126447d359e70c05721a8aa:timer",
+                            "8a5da52ed126447d359e70c05721a8aa"
+                        ],
+                        "total": 2
+                    },
+                    "forget": {
+                        "keys": [],
+                        "total": 0
+                    }
+                },
+                "profiling": [],
+                "memory": {
+                    "usage": 25739072,
+                    "peak": 25785280
+                }
+            }
+        }
+    },
+    {
+        "url": "\/api\/auth\/login",
+        "method": "post",
+        "payload": {
+            "email": "wolff.alivia@example.com",
+            "password": "secret"
+        },
+        "status": 200,
+        "resp": {
+            "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvbG9jYWwuZGVtby5pc29ja2VkLmNvbVwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTYxOTc3OTIyMSwiZXhwIjoxNjE5ODY1NjIxLCJuYmYiOjE2MTk3NzkyMjEsImp0aSI6IndvY3VnVHlGTFVmOXRmdFIiLCJzdWIiOjcsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.29DxRbzpsB2Ci4An3XIa4SA_aFPwWN4UOcaO270q5OE",
+            "token_type": "bearer",
+            "expires_in": 86400,
+            "debug": {
+                "database": {
+                    "total": 2,
+                    "items": [
+                        {
+                            "connection": "mysql",
+                            "query": "insert into `users` (`username`, `firstname`, `lastname`, `email`, `phone`, `gender`, `flag`, `avatar`, `email_verified_at`, `password`, `remember_token`, `updated_at`, `created_at`) values ('tookit_test', 'Lloyd', 'Bashirian', 'wolff.alivia@example.com', '+1-589-648-5030', 'other', '1', 'https:\/\/ui-avatars.com\/api\/?name=randy87', '2021-04-30 10:40:21', '$2y$04$OeV4U6zwgjg20VxExI9B\/.uuH22iuW9\/IQei.5oNjmc3IgB7ZjNES', 'fs5pzVXAli', '2021-04-30 10:40:21', '2021-04-30 10:40:21');",
+                            "time": 0.46
+                        },
+                        {
+                            "connection": "mysql",
+                            "query": "select * from `users` where `email` = 'wolff.alivia@example.com' limit 1;",
+                            "time": 0.46
+                        }
+                    ]
+                },
+                "cache": {
+                    "hit": {
+                        "keys": [
+                            "8a5da52ed126447d359e70c05721a8aa"
+                        ],
+                        "total": 1
+                    },
+                    "miss": {
+                        "keys": [
+                            "8a5da52ed126447d359e70c05721a8aa",
+                            "8a5da52ed126447d359e70c05721a8aa:timer",
+                            "8a5da52ed126447d359e70c05721a8aa"
+                        ],
+                        "total": 3
+                    },
+                    "write": {
+                        "keys": [
+                            "8a5da52ed126447d359e70c05721a8aa:timer",
+                            "8a5da52ed126447d359e70c05721a8aa"
+                        ],
+                        "total": 2
+                    },
+                    "forget": {
+                        "keys": [],
+                        "total": 0
+                    }
+                },
+                "profiling": [],
+                "memory": {
+                    "usage": 25739680,
+                    "peak": 25785888
+                }
+            }
+        }
+    },
+    {
+        "url": "\/api\/auth\/login",
+        "method": "post",
+        "payload": {
+            "email": "lmcdermott@example.net",
+            "password": "secret"
+        },
+        "status": 200,
+        "resp": {
+            "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvbG9jYWwuZGVtby5pc29ja2VkLmNvbVwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTYxOTc4MTc0OSwiZXhwIjoxNjE5ODY4MTQ5LCJuYmYiOjE2MTk3ODE3NDksImp0aSI6InRYcTRIOWFROU1xR2RocDQiLCJzdWIiOjEwLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.H89Xz4gxMsvVAXesyXZ8y_Q8qq7rOkSuNMP_LaqOzIY",
+            "token_type": "bearer",
+            "expires_in": 86400,
+            "debug": {
+                "database": {
+                    "total": 2,
+                    "items": [
+                        {
+                            "connection": "mysql",
+                            "query": "insert into `users` (`username`, `firstname`, `lastname`, `email`, `phone`, `gender`, `flag`, `avatar`, `email_verified_at`, `password`, `remember_token`, `updated_at`, `created_at`) values ('tookit_test', 'Lewis', 'Rohan', 'lmcdermott@example.net', '882-536-7826', 'other', '1', 'https:\/\/ui-avatars.com\/api\/?name=lura.gerlach', '2021-04-30 11:22:29', '$2y$04$IXwFNjk9JwMYDpoZwP7KPu3VViMfpwdnTsiIXyUMUqlTcRGaCNtNS', '9KuR5pSRZx', '2021-04-30 11:22:29', '2021-04-30 11:22:29');",
+                            "time": 0.44
+                        },
+                        {
+                            "connection": "mysql",
+                            "query": "select * from `users` where `email` = 'lmcdermott@example.net' limit 1;",
+                            "time": 0.5
+                        }
+                    ]
+                },
+                "cache": {
+                    "hit": {
+                        "keys": [
+                            "8a5da52ed126447d359e70c05721a8aa"
+                        ],
+                        "total": 1
+                    },
+                    "miss": {
+                        "keys": [
+                            "8a5da52ed126447d359e70c05721a8aa",
+                            "8a5da52ed126447d359e70c05721a8aa:timer",
+                            "8a5da52ed126447d359e70c05721a8aa"
+                        ],
+                        "total": 3
+                    },
+                    "write": {
+                        "keys": [
+                            "8a5da52ed126447d359e70c05721a8aa:timer",
+                            "8a5da52ed126447d359e70c05721a8aa"
+                        ],
+                        "total": 2
+                    },
+                    "forget": {
+                        "keys": [],
+                        "total": 0
+                    }
+                },
+                "profiling": [],
+                "memory": {
+                    "usage": 25739968,
+                    "peak": 25786176
                 }
             }
         }
