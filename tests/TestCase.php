@@ -39,14 +39,13 @@ abstract class TestCase extends BaseTestCase
             'status' => $status,
             'resp' => json_decode($resp->content())
         ];
-
         
         if(Storage::exists($file)) {
             $collection = collect(json_decode(Storage::get($file)));
             $find = $collection->search(function($item) use ($data) {
                 return $item->url === $data['url'] && $item->method === $data['method'] && $item->status === $data['status'];
             });
-            if($find) {
+            if($find !== false) {
                 $find = $data;
             }else {
                 $collection->push($data);

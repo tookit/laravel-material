@@ -61,8 +61,8 @@ class GenerateDocument extends Command
 
         // list routes -> parse action -> 
         // $routes = $this->getRoutes();
-        // $this->genRoutes();
-        $models = $this->genModels();
+        $this->genRoutes();
+        $this->genModels();
         return 0;
     }
 
