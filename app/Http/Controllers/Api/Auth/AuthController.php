@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use App\Http\Requests\RegisterRequest;
 use Illuminate\Http\JsonResponse;
@@ -32,11 +33,11 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
 
-
-        $token = $this->guard()->attempt($this->credentials($request));
+        $credential = $request->validated();
+        $token = $this->guard()->attempt($credential);
 
         if (!$token) {
             return new JsonResponse(['errors' => ['Unauthorized']], JsonResponse::HTTP_UNAUTHORIZED);
@@ -53,35 +54,16 @@ class AuthController extends Controller
     public function register(RegisterRequest $request)
     {
         $user = User::create($request->validated());
-        return $this->login($request);
+        return $this->guard()->login($user);
 
     }
 
-
-
-
-    /**
-     * Get the needed authorization credentials from the request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    protected function credentials(Request $request)
-    {
-
-        $keys = array_keys($request->all());
-        foreach(self::IDENTIFIERS as $identifier) {
-            if(in_array($identifier, $keys)) {
-                return $request->only($identifier, 'password');
-            }
-        }
-        return $request->only('email', 'password');
-    }
+ 
 
     /**
      * Get the guard to be used during authentication.
      *
-     * @return \Illuminate\Contracts\Auth\Guard|\Tymon\JWTAuth\JWTGuard
+     * @return \Tymon\JWTAuth\JWTGuard
      */
     protected function guard()
     {

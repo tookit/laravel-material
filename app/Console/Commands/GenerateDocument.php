@@ -27,7 +27,7 @@ class GenerateDocument extends Command
      *
      * @var string
      */
-    protected $description = 'Generate API document';
+    protected $description = 'Generate REST API document';
 
 
     /**
@@ -62,7 +62,7 @@ class GenerateDocument extends Command
         // list routes -> parse action -> 
         // $routes = $this->getRoutes();
         $this->genRoutes();
-        $this->genModels();
+        // $this->genModels();
         return 0;
     }
 
@@ -101,9 +101,12 @@ class GenerateDocument extends Command
      */
     protected function getRoutes()
     {
-        $routes = collect($this->router->getRoutes())->map(function ($route) {
+        $routes = collect($this->router->getRoutes())->filter(function(Route $route){
+            return Str::contains($this->getMiddleware($route), 'api');
+        });
+        $routes = $routes->map(function (Route $route) {
             return $this->getRouteInformation($route);
-        })->filter()->all();
+        })->all();
 
         return $routes;
     }    

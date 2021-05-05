@@ -27,8 +27,6 @@ class CategoryRequest extends FormRequest
         return [
             'name' => ['required','string', 'unique_translation:cms_category,name'],
             'description'=>['nullable', 'string','max:256'],
-
-
         ];
     }
     public  function updateRule()
