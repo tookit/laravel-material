@@ -60,9 +60,8 @@ class GenerateDocument extends Command
     {
 
         // list routes -> parse action -> 
-        // $routes = $this->getRoutes();
         $this->genRoutes();
-        // $this->genModels();
+        $this->genModels();
         return 0;
     }
 
@@ -89,15 +88,14 @@ class GenerateDocument extends Command
     public function genRoutes()
     {
         $routes = $this->getRoutes();
-        $contents = json_encode($routes);
-        return Storage::put('explore/route.json',$contents);
+        return Storage::put('explore/routes.json',$routes->toJson());
 
     }
 
     /**
      * Compile the routes into a displayable format.
      *
-     * @return array
+     * @return collection | array
      */
     protected function getRoutes()
     {
@@ -106,7 +104,7 @@ class GenerateDocument extends Command
         });
         $routes = $routes->map(function (Route $route) {
             return $this->getRouteInformation($route);
-        })->all();
+        });
 
         return $routes;
     }    
