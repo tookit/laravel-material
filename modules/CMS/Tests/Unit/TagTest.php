@@ -56,7 +56,7 @@ class TagTest extends TestCase
     {
         $item = $this->createUniqueItem();
         $response = $this->actingAs($this->makeAdmin(), 'api')->delete(self::ENDPOINT.$item->id);
-        $response->assertSee(['message'=>'Post deleted']);
+        $response->assertSee(['message'=>'Tag deleted']);
         $response->assertStatus(200);
 
     }

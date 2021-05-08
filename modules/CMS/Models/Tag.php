@@ -2,9 +2,9 @@
 
 namespace Modules\CMS\Models;
 
+use Illuminate\Support\Facades\App;
 use Spatie\Tags\Tag as Base;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use App\Traits\HasTranslations;
 use Modules\CMS\Database\factories\TagFactory;
 
 class Tag extends Base
@@ -26,5 +26,19 @@ class Tag extends Base
     protected static function newFactory() : TagFactory
     {
         return TagFactory::new();
+    }    
+
+    /**
+     * Convert the model instance to an array.
+     *
+     * @return array
+     */
+    public function toArray()
+    {
+        $attributes = parent::toArray();
+        foreach ($this->getTranslatableAttributes() as $field) {
+            $attributes[$field] = $this->getTranslation($field, App::getLocale());
+        }
+        return $attributes;
     }    
 }

@@ -24,7 +24,7 @@ class LoginTest extends TestCase
         $uri = '/api/auth/login';
         $user = $this->createUniqueUser();
         $payload =  [
-            'email' => $user->email,
+            'username' => $user->username,
             'password' => 'secret'
         ];
         $resp = $this->post($uri,$payload);
@@ -41,7 +41,7 @@ class LoginTest extends TestCase
         $uri = '/api/auth/login';
         $user = $this->createUniqueUser();
         $payload = [
-            'email' => $user->email,
+            'username' => $user->username,
             'password' => 'ｗrong password'
         ];
         $resp = $this->post($uri, $payload);
