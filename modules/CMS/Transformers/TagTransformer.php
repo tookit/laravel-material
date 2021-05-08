@@ -4,7 +4,7 @@ namespace Modules\CMS\Transformers;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Category extends JsonResource
+class TagTransformer extends JsonResource
 {
     /**
      * Transform the resource into an array.

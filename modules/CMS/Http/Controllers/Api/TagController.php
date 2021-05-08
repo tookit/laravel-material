@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\QueryBuilder;
 
-use Spatie\Tags\Tag as Model;
+use Modules\CMS\Models\Tag as Model;
 use Modules\CMS\Transformers\TagTransformer as Resource;
 use Modules\CMS\Http\Requests\TagRequest as ValidateRequest;
 use Spatie\QueryBuilder\AllowedFilter;
