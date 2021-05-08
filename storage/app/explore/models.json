@@ -1,1 +1,784 @@
-[{"table":"cms_category","fields":[{"Field":"id","Type":"bigint(20) unsigned","Null":"NO","Key":"PRI","Default":null,"Extra":"auto_increment"},{"Field":"slug","Type":"varchar(255)","Null":"NO","Key":"UNI","Default":null,"Extra":""},{"Field":"name","Type":"json","Null":"NO","Key":"","Default":null,"Extra":""},{"Field":"description","Type":"mediumtext","Null":"YES","Key":"","Default":null,"Extra":""},{"Field":"body","Type":"text","Null":"YES","Key":"","Default":null,"Extra":""},{"Field":"sort_number","Type":"int(10) unsigned","Null":"NO","Key":"","Default":null,"Extra":""},{"Field":"status","Type":"tinyint(4)","Null":"NO","Key":"","Default":"0","Extra":""},{"Field":"created_at","Type":"timestamp","Null":"YES","Key":"","Default":null,"Extra":""},{"Field":"updated_at","Type":"timestamp","Null":"YES","Key":"","Default":null,"Extra":""}]},{"table":"cms_post","fields":[{"Field":"id","Type":"bigint(20) unsigned","Null":"NO","Key":"PRI","Default":null,"Extra":"auto_increment"},{"Field":"category_id","Type":"int(10) unsigned","Null":"NO","Key":"","Default":"0","Extra":""},{"Field":"slug","Type":"varchar(255)","Null":"NO","Key":"UNI","Default":null,"Extra":""},{"Field":"name","Type":"json","Null":"NO","Key":"","Default":null,"Extra":""},{"Field":"description","Type":"mediumtext","Null":"YES","Key":"","Default":null,"Extra":""},{"Field":"body","Type":"text","Null":"YES","Key":"","Default":null,"Extra":""},{"Field":"status","Type":"tinyint(4)","Null":"NO","Key":"","Default":"0","Extra":""},{"Field":"created_at","Type":"timestamp","Null":"YES","Key":"","Default":null,"Extra":""},{"Field":"updated_at","Type":"timestamp","Null":"YES","Key":"","Default":null,"Extra":""}]},{"table":"failed_jobs","fields":[{"Field":"id","Type":"bigint(20) unsigned","Null":"NO","Key":"PRI","Default":null,"Extra":"auto_increment"},{"Field":"uuid","Type":"varchar(255)","Null":"NO","Key":"UNI","Default":null,"Extra":""},{"Field":"connection","Type":"text","Null":"NO","Key":"","Default":null,"Extra":""},{"Field":"queue","Type":"text","Null":"NO","Key":"","Default":null,"Extra":""},{"Field":"payload","Type":"longtext","Null":"NO","Key":"","Default":null,"Extra":""},{"Field":"exception","Type":"longtext","Null":"NO","Key":"","Default":null,"Extra":""},{"Field":"failed_at","Type":"timestamp","Null":"NO","Key":"","Default":"CURRENT_TIMESTAMP","Extra":""}]},{"table":"messages","fields":[{"Field":"id","Type":"bigint(20) unsigned","Null":"NO","Key":"PRI","Default":null,"Extra":"auto_increment"},{"Field":"user_id","Type":"int(10) unsigned","Null":"NO","Key":"","Default":"0","Extra":""},{"Field":"content","Type":"text","Null":"YES","Key":"","Default":null,"Extra":""},{"Field":"created_at","Type":"timestamp","Null":"YES","Key":"","Default":null,"Extra":""},{"Field":"updated_at","Type":"timestamp","Null":"YES","Key":"","Default":null,"Extra":""}]},{"table":"migrations","fields":[{"Field":"id","Type":"int(10) unsigned","Null":"NO","Key":"PRI","Default":null,"Extra":"auto_increment"},{"Field":"migration","Type":"varchar(255)","Null":"NO","Key":"","Default":null,"Extra":""},{"Field":"batch","Type":"int(11)","Null":"NO","Key":"","Default":null,"Extra":""}]},{"table":"model_has_permissions","fields":[{"Field":"permission_id","Type":"bigint(20) unsigned","Null":"NO","Key":"PRI","Default":null,"Extra":""},{"Field":"model_type","Type":"varchar(255)","Null":"NO","Key":"PRI","Default":null,"Extra":""},{"Field":"model_id","Type":"bigint(20) unsigned","Null":"NO","Key":"PRI","Default":null,"Extra":""}]},{"table":"model_has_roles","fields":[{"Field":"role_id","Type":"bigint(20) unsigned","Null":"NO","Key":"PRI","Default":null,"Extra":""},{"Field":"model_type","Type":"varchar(255)","Null":"NO","Key":"PRI","Default":null,"Extra":""},{"Field":"model_id","Type":"bigint(20) unsigned","Null":"NO","Key":"PRI","Default":null,"Extra":""}]},{"table":"password_resets","fields":[{"Field":"email","Type":"varchar(255)","Null":"NO","Key":"MUL","Default":null,"Extra":""},{"Field":"token","Type":"varchar(255)","Null":"NO","Key":"","Default":null,"Extra":""},{"Field":"created_at","Type":"timestamp","Null":"YES","Key":"","Default":null,"Extra":""}]},{"table":"permissions","fields":[{"Field":"id","Type":"bigint(20) unsigned","Null":"NO","Key":"PRI","Default":null,"Extra":"auto_increment"},{"Field":"name","Type":"varchar(255)","Null":"NO","Key":"","Default":null,"Extra":""},{"Field":"guard_name","Type":"varchar(255)","Null":"NO","Key":"","Default":null,"Extra":""},{"Field":"created_at","Type":"timestamp","Null":"YES","Key":"","Default":null,"Extra":""},{"Field":"updated_at","Type":"timestamp","Null":"YES","Key":"","Default":null,"Extra":""}]},{"table":"role_has_permissions","fields":[{"Field":"permission_id","Type":"bigint(20) unsigned","Null":"NO","Key":"PRI","Default":null,"Extra":""},{"Field":"role_id","Type":"bigint(20) unsigned","Null":"NO","Key":"PRI","Default":null,"Extra":""}]},{"table":"roles","fields":[{"Field":"id","Type":"bigint(20) unsigned","Null":"NO","Key":"PRI","Default":null,"Extra":"auto_increment"},{"Field":"name","Type":"varchar(255)","Null":"NO","Key":"","Default":null,"Extra":""},{"Field":"guard_name","Type":"varchar(255)","Null":"NO","Key":"","Default":null,"Extra":""},{"Field":"created_at","Type":"timestamp","Null":"YES","Key":"","Default":null,"Extra":""},{"Field":"updated_at","Type":"timestamp","Null":"YES","Key":"","Default":null,"Extra":""}]},{"table":"task","fields":[{"Field":"id","Type":"bigint(20) unsigned","Null":"NO","Key":"PRI","Default":null,"Extra":"auto_increment"},{"Field":"project_id","Type":"int(10) unsigned","Null":"NO","Key":"","Default":"0","Extra":""},{"Field":"slug","Type":"varchar(255)","Null":"NO","Key":"UNI","Default":null,"Extra":""},{"Field":"name","Type":"varchar(255)","Null":"NO","Key":"","Default":null,"Extra":""},{"Field":"description","Type":"mediumtext","Null":"YES","Key":"","Default":null,"Extra":""},{"Field":"sort_number","Type":"int(10) unsigned","Null":"NO","Key":"","Default":null,"Extra":""},{"Field":"owner","Type":"varchar(255)","Null":"YES","Key":"","Default":null,"Extra":""},{"Field":"status","Type":"tinyint(4)","Null":"NO","Key":"","Default":"0","Extra":""},{"Field":"deleted_at","Type":"timestamp","Null":"YES","Key":"","Default":null,"Extra":""},{"Field":"created_at","Type":"timestamp","Null":"YES","Key":"","Default":null,"Extra":""},{"Field":"updated_at","Type":"timestamp","Null":"YES","Key":"","Default":null,"Extra":""}]},{"table":"task_project","fields":[{"Field":"id","Type":"bigint(20) unsigned","Null":"NO","Key":"PRI","Default":null,"Extra":"auto_increment"},{"Field":"slug","Type":"varchar(255)","Null":"NO","Key":"UNI","Default":null,"Extra":""},{"Field":"name","Type":"varchar(255)","Null":"NO","Key":"","Default":null,"Extra":""},{"Field":"description","Type":"mediumtext","Null":"YES","Key":"","Default":null,"Extra":""},{"Field":"body","Type":"text","Null":"YES","Key":"","Default":null,"Extra":""},{"Field":"sort_number","Type":"int(10) unsigned","Null":"NO","Key":"","Default":null,"Extra":""},{"Field":"status","Type":"tinyint(4)","Null":"NO","Key":"","Default":"0","Extra":""},{"Field":"deleted_at","Type":"timestamp","Null":"YES","Key":"","Default":null,"Extra":""},{"Field":"created_at","Type":"timestamp","Null":"YES","Key":"","Default":null,"Extra":""},{"Field":"updated_at","Type":"timestamp","Null":"YES","Key":"","Default":null,"Extra":""}]},{"table":"users","fields":[{"Field":"id","Type":"bigint(20) unsigned","Null":"NO","Key":"PRI","Default":null,"Extra":"auto_increment"},{"Field":"firstname","Type":"varchar(255)","Null":"YES","Key":"","Default":null,"Extra":""},{"Field":"lastname","Type":"varchar(255)","Null":"YES","Key":"","Default":null,"Extra":""},{"Field":"username","Type":"varchar(255)","Null":"NO","Key":"UNI","Default":null,"Extra":""},{"Field":"email","Type":"varchar(255)","Null":"NO","Key":"UNI","Default":null,"Extra":""},{"Field":"phone","Type":"varchar(255)","Null":"YES","Key":"","Default":null,"Extra":""},{"Field":"avatar","Type":"varchar(255)","Null":"YES","Key":"","Default":null,"Extra":""},{"Field":"password","Type":"varchar(255)","Null":"NO","Key":"","Default":null,"Extra":""},{"Field":"flag","Type":"tinyint(4)","Null":"NO","Key":"","Default":"0","Extra":""},{"Field":"gender","Type":"enum('male','female','other')","Null":"NO","Key":"","Default":"other","Extra":""},{"Field":"email_verified_at","Type":"timestamp","Null":"YES","Key":"","Default":null,"Extra":""},{"Field":"remember_token","Type":"varchar(100)","Null":"YES","Key":"","Default":null,"Extra":""},{"Field":"created_at","Type":"timestamp","Null":"YES","Key":"","Default":null,"Extra":""},{"Field":"updated_at","Type":"timestamp","Null":"YES","Key":"","Default":null,"Extra":""}]}]
+[
+    {
+        "table": "cms_category",
+        "fields": [
+            {
+                "Field": "id",
+                "Type": "bigint(20) unsigned",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "slug",
+                "Type": "varchar(255)",
+                "Null": "NO",
+                "Key": "UNI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "name",
+                "Type": "json",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "description",
+                "Type": "mediumtext",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "body",
+                "Type": "text",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "sort_number",
+                "Type": "int(10) unsigned",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "status",
+                "Type": "tinyint(4)",
+                "Null": "NO",
+                "Key": "",
+                "Default": "0",
+                "Extra": ""
+            },
+            {
+                "Field": "created_at",
+                "Type": "timestamp",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "updated_at",
+                "Type": "timestamp",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ]
+    },
+    {
+        "table": "cms_post",
+        "fields": [
+            {
+                "Field": "id",
+                "Type": "bigint(20) unsigned",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "category_id",
+                "Type": "int(10) unsigned",
+                "Null": "NO",
+                "Key": "",
+                "Default": "0",
+                "Extra": ""
+            },
+            {
+                "Field": "slug",
+                "Type": "varchar(255)",
+                "Null": "NO",
+                "Key": "UNI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "name",
+                "Type": "json",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "description",
+                "Type": "mediumtext",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "body",
+                "Type": "text",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "status",
+                "Type": "tinyint(4)",
+                "Null": "NO",
+                "Key": "",
+                "Default": "0",
+                "Extra": ""
+            },
+            {
+                "Field": "created_at",
+                "Type": "timestamp",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "updated_at",
+                "Type": "timestamp",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ]
+    },
+    {
+        "table": "failed_jobs",
+        "fields": [
+            {
+                "Field": "id",
+                "Type": "bigint(20) unsigned",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "uuid",
+                "Type": "varchar(255)",
+                "Null": "NO",
+                "Key": "UNI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "connection",
+                "Type": "text",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "queue",
+                "Type": "text",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "payload",
+                "Type": "longtext",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "exception",
+                "Type": "longtext",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "failed_at",
+                "Type": "timestamp",
+                "Null": "NO",
+                "Key": "",
+                "Default": "CURRENT_TIMESTAMP",
+                "Extra": ""
+            }
+        ]
+    },
+    {
+        "table": "messages",
+        "fields": [
+            {
+                "Field": "id",
+                "Type": "bigint(20) unsigned",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "user_id",
+                "Type": "int(10) unsigned",
+                "Null": "NO",
+                "Key": "",
+                "Default": "0",
+                "Extra": ""
+            },
+            {
+                "Field": "content",
+                "Type": "text",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "created_at",
+                "Type": "timestamp",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "updated_at",
+                "Type": "timestamp",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ]
+    },
+    {
+        "table": "migrations",
+        "fields": [
+            {
+                "Field": "id",
+                "Type": "int(10) unsigned",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "migration",
+                "Type": "varchar(255)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "batch",
+                "Type": "int(11)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ]
+    },
+    {
+        "table": "model_has_permissions",
+        "fields": [
+            {
+                "Field": "permission_id",
+                "Type": "bigint(20) unsigned",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "model_type",
+                "Type": "varchar(255)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "model_id",
+                "Type": "bigint(20) unsigned",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            }
+        ]
+    },
+    {
+        "table": "model_has_roles",
+        "fields": [
+            {
+                "Field": "role_id",
+                "Type": "bigint(20) unsigned",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "model_type",
+                "Type": "varchar(255)",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "model_id",
+                "Type": "bigint(20) unsigned",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            }
+        ]
+    },
+    {
+        "table": "password_resets",
+        "fields": [
+            {
+                "Field": "email",
+                "Type": "varchar(255)",
+                "Null": "NO",
+                "Key": "MUL",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "token",
+                "Type": "varchar(255)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "created_at",
+                "Type": "timestamp",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ]
+    },
+    {
+        "table": "permissions",
+        "fields": [
+            {
+                "Field": "id",
+                "Type": "bigint(20) unsigned",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "name",
+                "Type": "varchar(255)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "guard_name",
+                "Type": "varchar(255)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "created_at",
+                "Type": "timestamp",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "updated_at",
+                "Type": "timestamp",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ]
+    },
+    {
+        "table": "role_has_permissions",
+        "fields": [
+            {
+                "Field": "permission_id",
+                "Type": "bigint(20) unsigned",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "role_id",
+                "Type": "bigint(20) unsigned",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": ""
+            }
+        ]
+    },
+    {
+        "table": "roles",
+        "fields": [
+            {
+                "Field": "id",
+                "Type": "bigint(20) unsigned",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "name",
+                "Type": "varchar(255)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "guard_name",
+                "Type": "varchar(255)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "created_at",
+                "Type": "timestamp",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "updated_at",
+                "Type": "timestamp",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ]
+    },
+    {
+        "table": "task",
+        "fields": [
+            {
+                "Field": "id",
+                "Type": "bigint(20) unsigned",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "project_id",
+                "Type": "int(10) unsigned",
+                "Null": "NO",
+                "Key": "",
+                "Default": "0",
+                "Extra": ""
+            },
+            {
+                "Field": "slug",
+                "Type": "varchar(255)",
+                "Null": "NO",
+                "Key": "UNI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "name",
+                "Type": "varchar(255)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "description",
+                "Type": "mediumtext",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "sort_number",
+                "Type": "int(10) unsigned",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "owner",
+                "Type": "varchar(255)",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "status",
+                "Type": "tinyint(4)",
+                "Null": "NO",
+                "Key": "",
+                "Default": "0",
+                "Extra": ""
+            },
+            {
+                "Field": "deleted_at",
+                "Type": "timestamp",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "created_at",
+                "Type": "timestamp",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "updated_at",
+                "Type": "timestamp",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ]
+    },
+    {
+        "table": "task_project",
+        "fields": [
+            {
+                "Field": "id",
+                "Type": "bigint(20) unsigned",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "slug",
+                "Type": "varchar(255)",
+                "Null": "NO",
+                "Key": "UNI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "name",
+                "Type": "varchar(255)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "description",
+                "Type": "mediumtext",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "body",
+                "Type": "text",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "sort_number",
+                "Type": "int(10) unsigned",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "status",
+                "Type": "tinyint(4)",
+                "Null": "NO",
+                "Key": "",
+                "Default": "0",
+                "Extra": ""
+            },
+            {
+                "Field": "deleted_at",
+                "Type": "timestamp",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "created_at",
+                "Type": "timestamp",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "updated_at",
+                "Type": "timestamp",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ]
+    },
+    {
+        "table": "users",
+        "fields": [
+            {
+                "Field": "id",
+                "Type": "bigint(20) unsigned",
+                "Null": "NO",
+                "Key": "PRI",
+                "Default": null,
+                "Extra": "auto_increment"
+            },
+            {
+                "Field": "firstname",
+                "Type": "varchar(255)",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "lastname",
+                "Type": "varchar(255)",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "username",
+                "Type": "varchar(255)",
+                "Null": "NO",
+                "Key": "UNI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "email",
+                "Type": "varchar(255)",
+                "Null": "NO",
+                "Key": "UNI",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "phone",
+                "Type": "varchar(255)",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "avatar",
+                "Type": "varchar(255)",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "password",
+                "Type": "varchar(255)",
+                "Null": "NO",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "flag",
+                "Type": "tinyint(4)",
+                "Null": "NO",
+                "Key": "",
+                "Default": "0",
+                "Extra": ""
+            },
+            {
+                "Field": "gender",
+                "Type": "enum('male','female','other')",
+                "Null": "NO",
+                "Key": "",
+                "Default": "other",
+                "Extra": ""
+            },
+            {
+                "Field": "email_verified_at",
+                "Type": "timestamp",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "remember_token",
+                "Type": "varchar(100)",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "created_at",
+                "Type": "timestamp",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            },
+            {
+                "Field": "updated_at",
+                "Type": "timestamp",
+                "Null": "YES",
+                "Key": "",
+                "Default": null,
+                "Extra": ""
+            }
+        ]
+    }
+]

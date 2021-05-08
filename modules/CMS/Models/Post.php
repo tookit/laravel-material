@@ -9,10 +9,11 @@ use App\Traits\HasStatus;
 use Modules\CMS\Database\factories\PostFactory;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Spatie\Tags\HasTags;
 
 class Post extends Model
 {
-    use HasFactory, HasTranslations, HasSlug, HasStatus;
+    use HasFactory, HasTranslations, HasSlug, HasStatus, HasTags;
 
 
     protected $table = 'cms_post';
