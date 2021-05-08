@@ -1,1 +1,128 @@
-[{"url":"\/api\/auth\/login","method":"post","payload":{"email":"judy22@example.org","password":"secret"},"status":200,"resp":{"access_token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvbG9jYWwuZGVtby5pc29ja2VkLmNvbVwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTYyMDAzNjg0MCwiZXhwIjoxNjIwMTIzMjQwLCJuYmYiOjE2MjAwMzY4NDAsImp0aSI6Im1sMnpKcW5RQ0J0QnZQdFciLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.K25UvJiYYo7NHE7UrUbuegiurIwBaKHhpgSx7aQlxYg","token_type":"bearer","expires_in":86400,"debug":{"database":{"total":2,"items":[{"connection":"mysql","query":"insert into `users` (`username`, `firstname`, `lastname`, `email`, `phone`, `gender`, `flag`, `avatar`, `email_verified_at`, `password`, `remember_token`, `updated_at`, `created_at`) values ('tookit_test', 'Elyse', 'Goyette', 'judy22@example.org', '(256) 465-9808', 'male', '1', 'https:\/\/ui-avatars.com\/api\/?name=jtillman', '2021-05-03 10:14:00', '$2y$04$ERF3slwKRdkthQ9C1c3yN.trM\/sLVEEVACgw1mcgL.gWDbqdnAGNC', 'IjMaZSh78s', '2021-05-03 10:14:00', '2021-05-03 10:14:00');","time":0.43},{"connection":"mysql","query":"select * from `users` where `email` = 'judy22@example.org' limit 1;","time":0.62}]},"cache":{"hit":{"keys":["8a5da52ed126447d359e70c05721a8aa"],"total":1},"miss":{"keys":["8a5da52ed126447d359e70c05721a8aa","8a5da52ed126447d359e70c05721a8aa:timer","8a5da52ed126447d359e70c05721a8aa"],"total":3},"write":{"keys":["8a5da52ed126447d359e70c05721a8aa:timer","8a5da52ed126447d359e70c05721a8aa"],"total":2},"forget":{"keys":[],"total":0}},"profiling":[],"memory":{"usage":25830088,"peak":25876296}}}},{"url":"\/api\/auth\/login","method":"post","payload":{"email":"hope83@example.org","password":"\uff57rong password"},"status":401,"resp":{"errors":["Unauthorized"],"debug":{"database":{"total":2,"items":[{"connection":"mysql","query":"insert into `users` (`username`, `firstname`, `lastname`, `email`, `phone`, `gender`, `flag`, `avatar`, `email_verified_at`, `password`, `remember_token`, `updated_at`, `created_at`) values ('tookit_test', 'Enrique', 'Wiegand', 'hope83@example.org', '(904) 697-3999', 'male', '1', 'https:\/\/ui-avatars.com\/api\/?name=crist.thurman', '2021-05-03 10:14:00', '$2y$04$daiRlKc2cgfF6oZSADyZduU1mc9mayIdOOgtj7Ys0DiAaiHAZJXQy', 'aTPmztyjP6', '2021-05-03 10:14:00', '2021-05-03 10:14:00');","time":0.34},{"connection":"mysql","query":"select * from `users` where `email` = 'hope83@example.org' limit 1;","time":0.31}]},"cache":{"hit":{"keys":["8a5da52ed126447d359e70c05721a8aa"],"total":1},"miss":{"keys":["8a5da52ed126447d359e70c05721a8aa","8a5da52ed126447d359e70c05721a8aa:timer","8a5da52ed126447d359e70c05721a8aa"],"total":3},"write":{"keys":["8a5da52ed126447d359e70c05721a8aa:timer","8a5da52ed126447d359e70c05721a8aa"],"total":2},"forget":{"keys":[],"total":0}},"profiling":[],"memory":{"usage":26460192,"peak":26507840}}}}]
+[
+    {
+        "url": "\/api\/auth\/login",
+        "method": "post",
+        "payload": {
+            "email": "judy22@example.org",
+            "password": "secret"
+        },
+        "status": 200,
+        "resp": {
+            "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvbG9jYWwuZGVtby5pc29ja2VkLmNvbVwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTYyMDAzNjg0MCwiZXhwIjoxNjIwMTIzMjQwLCJuYmYiOjE2MjAwMzY4NDAsImp0aSI6Im1sMnpKcW5RQ0J0QnZQdFciLCJzdWIiOjI5LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.K25UvJiYYo7NHE7UrUbuegiurIwBaKHhpgSx7aQlxYg",
+            "token_type": "bearer",
+            "expires_in": 86400,
+            "debug": {
+                "database": {
+                    "total": 2,
+                    "items": [
+                        {
+                            "connection": "mysql",
+                            "query": "insert into `users` (`username`, `firstname`, `lastname`, `email`, `phone`, `gender`, `flag`, `avatar`, `email_verified_at`, `password`, `remember_token`, `updated_at`, `created_at`) values ('tookit_test', 'Elyse', 'Goyette', 'judy22@example.org', '(256) 465-9808', 'male', '1', 'https:\/\/ui-avatars.com\/api\/?name=jtillman', '2021-05-03 10:14:00', '$2y$04$ERF3slwKRdkthQ9C1c3yN.trM\/sLVEEVACgw1mcgL.gWDbqdnAGNC', 'IjMaZSh78s', '2021-05-03 10:14:00', '2021-05-03 10:14:00');",
+                            "time": 0.43
+                        },
+                        {
+                            "connection": "mysql",
+                            "query": "select * from `users` where `email` = 'judy22@example.org' limit 1;",
+                            "time": 0.62
+                        }
+                    ]
+                },
+                "cache": {
+                    "hit": {
+                        "keys": [
+                            "8a5da52ed126447d359e70c05721a8aa"
+                        ],
+                        "total": 1
+                    },
+                    "miss": {
+                        "keys": [
+                            "8a5da52ed126447d359e70c05721a8aa",
+                            "8a5da52ed126447d359e70c05721a8aa:timer",
+                            "8a5da52ed126447d359e70c05721a8aa"
+                        ],
+                        "total": 3
+                    },
+                    "write": {
+                        "keys": [
+                            "8a5da52ed126447d359e70c05721a8aa:timer",
+                            "8a5da52ed126447d359e70c05721a8aa"
+                        ],
+                        "total": 2
+                    },
+                    "forget": {
+                        "keys": [],
+                        "total": 0
+                    }
+                },
+                "profiling": [],
+                "memory": {
+                    "usage": 25830088,
+                    "peak": 25876296
+                }
+            }
+        }
+    },
+    {
+        "url": "\/api\/auth\/login",
+        "method": "post",
+        "payload": {
+            "email": "hope83@example.org",
+            "password": "\uff57rong password"
+        },
+        "status": 401,
+        "resp": {
+            "errors": [
+                "Unauthorized"
+            ],
+            "debug": {
+                "database": {
+                    "total": 2,
+                    "items": [
+                        {
+                            "connection": "mysql",
+                            "query": "insert into `users` (`username`, `firstname`, `lastname`, `email`, `phone`, `gender`, `flag`, `avatar`, `email_verified_at`, `password`, `remember_token`, `updated_at`, `created_at`) values ('tookit_test', 'Enrique', 'Wiegand', 'hope83@example.org', '(904) 697-3999', 'male', '1', 'https:\/\/ui-avatars.com\/api\/?name=crist.thurman', '2021-05-03 10:14:00', '$2y$04$daiRlKc2cgfF6oZSADyZduU1mc9mayIdOOgtj7Ys0DiAaiHAZJXQy', 'aTPmztyjP6', '2021-05-03 10:14:00', '2021-05-03 10:14:00');",
+                            "time": 0.34
+                        },
+                        {
+                            "connection": "mysql",
+                            "query": "select * from `users` where `email` = 'hope83@example.org' limit 1;",
+                            "time": 0.31
+                        }
+                    ]
+                },
+                "cache": {
+                    "hit": {
+                        "keys": [
+                            "8a5da52ed126447d359e70c05721a8aa"
+                        ],
+                        "total": 1
+                    },
+                    "miss": {
+                        "keys": [
+                            "8a5da52ed126447d359e70c05721a8aa",
+                            "8a5da52ed126447d359e70c05721a8aa:timer",
+                            "8a5da52ed126447d359e70c05721a8aa"
+                        ],
+                        "total": 3
+                    },
+                    "write": {
+                        "keys": [
+                            "8a5da52ed126447d359e70c05721a8aa:timer",
+                            "8a5da52ed126447d359e70c05721a8aa"
+                        ],
+                        "total": 2
+                    },
+                    "forget": {
+                        "keys": [],
+                        "total": 0
+                    }
+                },
+                "profiling": [],
+                "memory": {
+                    "usage": 26460192,
+                    "peak": 26507840
+                }
+            }
+        }
+    }
+]

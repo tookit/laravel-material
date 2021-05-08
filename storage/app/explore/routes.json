@@ -1,0 +1,495 @@
+{
+    "api\/auth\/login": [
+        {
+            "domain": null,
+            "method": "POST",
+            "uri": "api\/auth\/login",
+            "name": "auth.login",
+            "desc": "Login",
+            "prefix": "api",
+            "action": "App\\Http\\Controllers\\Api\\Auth\\AuthController@login",
+            "parameters": [],
+            "middleware": "api"
+        }
+    ],
+    "api\/auth\/register": [
+        {
+            "domain": null,
+            "method": "POST",
+            "uri": "api\/auth\/register",
+            "name": "auth.register",
+            "desc": "Register",
+            "prefix": "api",
+            "action": "App\\Http\\Controllers\\Api\\Auth\\AuthController@register",
+            "parameters": [],
+            "middleware": "api"
+        }
+    ],
+    "api\/storage\/dir": [
+        {
+            "domain": null,
+            "method": "GET|HEAD",
+            "uri": "api\/storage\/dir",
+            "name": "storage.dir.list",
+            "desc": "List dir",
+            "prefix": "api",
+            "action": "App\\Http\\Controllers\\Api\\StorageController@listDir",
+            "parameters": [],
+            "middleware": "api"
+        }
+    ],
+    "api\/storage\/file": [
+        {
+            "domain": null,
+            "method": "GET|HEAD",
+            "uri": "api\/storage\/file",
+            "name": "storage.file.list",
+            "desc": "List file",
+            "prefix": "api",
+            "action": "App\\Http\\Controllers\\Api\\StorageController@listFile",
+            "parameters": [],
+            "middleware": "api"
+        }
+    ],
+    "api\/auth\/logout": [
+        {
+            "domain": null,
+            "method": "POST",
+            "uri": "api\/auth\/logout",
+            "name": "lauth.ogout",
+            "desc": "Logout",
+            "prefix": "api\/auth",
+            "action": "App\\Http\\Controllers\\Api\\Auth\\AuthController@logout",
+            "parameters": [],
+            "middleware": "api\nauth:api"
+        }
+    ],
+    "api\/auth\/refresh": [
+        {
+            "domain": null,
+            "method": "POST",
+            "uri": "api\/auth\/refresh",
+            "name": "token.refresh",
+            "desc": "Refresh token",
+            "prefix": "api\/auth",
+            "action": "App\\Http\\Controllers\\Api\\Auth\\AuthController@refresh",
+            "parameters": [],
+            "middleware": "api\nauth:api"
+        }
+    ],
+    "api\/me": [
+        {
+            "domain": null,
+            "method": "GET|HEAD",
+            "uri": "api\/me",
+            "name": "self.view",
+            "desc": "View self",
+            "prefix": "api",
+            "action": "App\\Http\\Controllers\\Api\\Acl\\UserController@me",
+            "parameters": [],
+            "middleware": "api\nauth:api"
+        }
+    ],
+    "api\/message": [
+        {
+            "domain": null,
+            "method": "GET|HEAD",
+            "uri": "api\/message",
+            "name": "message.list",
+            "desc": "List message",
+            "prefix": "api",
+            "action": "App\\Http\\Controllers\\Api\\MessageController@index",
+            "parameters": [],
+            "middleware": "api\nauth:api"
+        },
+        {
+            "domain": null,
+            "method": "POST",
+            "uri": "api\/message",
+            "name": "message.create",
+            "desc": "Create messsage",
+            "prefix": "api",
+            "action": "App\\Http\\Controllers\\Api\\MessageController@store",
+            "parameters": [],
+            "middleware": "api\nauth:api"
+        }
+    ],
+    "api\/acl\/user": [
+        {
+            "domain": null,
+            "method": "GET|HEAD",
+            "uri": "api\/acl\/user",
+            "name": "user.index",
+            "desc": "List user",
+            "prefix": "api\/acl",
+            "action": "App\\Http\\Controllers\\Api\\Acl\\UserController@index",
+            "parameters": [],
+            "middleware": "api\nauth:api"
+        },
+        {
+            "domain": null,
+            "method": "POST",
+            "uri": "api\/acl\/user",
+            "name": "user.create",
+            "desc": "Create user",
+            "prefix": "api\/acl",
+            "action": "App\\Http\\Controllers\\Api\\Acl\\UserController@store",
+            "parameters": [],
+            "middleware": "api\nauth:api"
+        }
+    ],
+    "api\/acl\/user\/{id}": [
+        {
+            "domain": null,
+            "method": "GET|HEAD",
+            "uri": "api\/acl\/user\/{id}",
+            "name": "user.view",
+            "desc": "View user detail",
+            "prefix": "api\/acl",
+            "action": "App\\Http\\Controllers\\Api\\Acl\\UserController@show",
+            "parameters": {
+                "id": "[0-9]+"
+            },
+            "middleware": "api\nauth:api"
+        },
+        {
+            "domain": null,
+            "method": "PUT",
+            "uri": "api\/acl\/user\/{id}",
+            "name": "user.edit",
+            "desc": "Update user",
+            "prefix": "api\/acl",
+            "action": "App\\Http\\Controllers\\Api\\Acl\\UserController@update",
+            "parameters": {
+                "id": "[0-9]+"
+            },
+            "middleware": "api\nauth:api"
+        },
+        {
+            "domain": null,
+            "method": "DELETE",
+            "uri": "api\/acl\/user\/{id}",
+            "name": "user.delete",
+            "desc": "Delete User",
+            "prefix": "api\/acl",
+            "action": "App\\Http\\Controllers\\Api\\Acl\\UserController@destroy",
+            "parameters": {
+                "id": "[0-9]+"
+            },
+            "middleware": "api\nauth:api"
+        }
+    ],
+    "api\/cms\/post": [
+        {
+            "domain": null,
+            "method": "GET|HEAD",
+            "uri": "api\/cms\/post",
+            "name": "post.index",
+            "desc": "List post",
+            "prefix": "api\/cms",
+            "action": "Modules\\CMS\\Http\\Controllers\\Api\\PostController@index",
+            "parameters": [],
+            "middleware": "api\nauth:api"
+        },
+        {
+            "domain": null,
+            "method": "POST",
+            "uri": "api\/cms\/post",
+            "name": "post.create",
+            "desc": "Create post",
+            "prefix": "api\/cms",
+            "action": "Modules\\CMS\\Http\\Controllers\\Api\\PostController@store",
+            "parameters": [],
+            "middleware": "api\nauth:api"
+        }
+    ],
+    "api\/cms\/post\/{id}": [
+        {
+            "domain": null,
+            "method": "GET|HEAD",
+            "uri": "api\/cms\/post\/{id}",
+            "name": "post.view",
+            "desc": "View post detail",
+            "prefix": "api\/cms",
+            "action": "Modules\\CMS\\Http\\Controllers\\Api\\PostController@show",
+            "parameters": {
+                "id": "[0-9]+"
+            },
+            "middleware": "api\nauth:api"
+        },
+        {
+            "domain": null,
+            "method": "PUT",
+            "uri": "api\/cms\/post\/{id}",
+            "name": "post.edit",
+            "desc": "Update post",
+            "prefix": "api\/cms",
+            "action": "Modules\\CMS\\Http\\Controllers\\Api\\PostController@update",
+            "parameters": {
+                "id": "[0-9]+"
+            },
+            "middleware": "api\nauth:api"
+        },
+        {
+            "domain": null,
+            "method": "DELETE",
+            "uri": "api\/cms\/post\/{id}",
+            "name": "post.delete",
+            "desc": "Delete post",
+            "prefix": "api\/cms",
+            "action": "Modules\\CMS\\Http\\Controllers\\Api\\PostController@destroy",
+            "parameters": {
+                "id": "[0-9]+"
+            },
+            "middleware": "api\nauth:api"
+        }
+    ],
+    "api\/cms\/category": [
+        {
+            "domain": null,
+            "method": "GET|HEAD",
+            "uri": "api\/cms\/category",
+            "name": "category.index",
+            "desc": "",
+            "prefix": "api\/cms",
+            "action": "Modules\\CMS\\Http\\Controllers\\Api\\CategoryController@index",
+            "parameters": [],
+            "middleware": "api\nauth:api"
+        },
+        {
+            "domain": null,
+            "method": "POST",
+            "uri": "api\/cms\/category",
+            "name": "category.store",
+            "desc": "",
+            "prefix": "api\/cms",
+            "action": "Modules\\CMS\\Http\\Controllers\\Api\\CategoryController@store",
+            "parameters": [],
+            "middleware": "api\nauth:api"
+        }
+    ],
+    "api\/cms\/category\/{category}": [
+        {
+            "domain": null,
+            "method": "GET|HEAD",
+            "uri": "api\/cms\/category\/{category}",
+            "name": "category.show",
+            "desc": "",
+            "prefix": "api\/cms",
+            "action": "Modules\\CMS\\Http\\Controllers\\Api\\CategoryController@show",
+            "parameters": [],
+            "middleware": "api\nauth:api"
+        },
+        {
+            "domain": null,
+            "method": "PUT|PATCH",
+            "uri": "api\/cms\/category\/{category}",
+            "name": "category.update",
+            "desc": "",
+            "prefix": "api\/cms",
+            "action": "Modules\\CMS\\Http\\Controllers\\Api\\CategoryController@update",
+            "parameters": [],
+            "middleware": "api\nauth:api"
+        },
+        {
+            "domain": null,
+            "method": "DELETE",
+            "uri": "api\/cms\/category\/{category}",
+            "name": "category.destroy",
+            "desc": "",
+            "prefix": "api\/cms",
+            "action": "Modules\\CMS\\Http\\Controllers\\Api\\CategoryController@destroy",
+            "parameters": [],
+            "middleware": "api\nauth:api"
+        }
+    ],
+    "api\/cms\/tag": [
+        {
+            "domain": null,
+            "method": "GET|HEAD",
+            "uri": "api\/cms\/tag",
+            "name": "tag.index",
+            "desc": "",
+            "prefix": "api\/cms",
+            "action": "Modules\\CMS\\Http\\Controllers\\Api\\TagController@index",
+            "parameters": [],
+            "middleware": "api\nauth:api"
+        },
+        {
+            "domain": null,
+            "method": "POST",
+            "uri": "api\/cms\/tag",
+            "name": "tag.store",
+            "desc": "",
+            "prefix": "api\/cms",
+            "action": "Modules\\CMS\\Http\\Controllers\\Api\\TagController@store",
+            "parameters": [],
+            "middleware": "api\nauth:api"
+        }
+    ],
+    "api\/cms\/tag\/{tag}": [
+        {
+            "domain": null,
+            "method": "GET|HEAD",
+            "uri": "api\/cms\/tag\/{tag}",
+            "name": "tag.show",
+            "desc": "",
+            "prefix": "api\/cms",
+            "action": "Modules\\CMS\\Http\\Controllers\\Api\\TagController@show",
+            "parameters": [],
+            "middleware": "api\nauth:api"
+        },
+        {
+            "domain": null,
+            "method": "PUT|PATCH",
+            "uri": "api\/cms\/tag\/{tag}",
+            "name": "tag.update",
+            "desc": "",
+            "prefix": "api\/cms",
+            "action": "Modules\\CMS\\Http\\Controllers\\Api\\TagController@update",
+            "parameters": [],
+            "middleware": "api\nauth:api"
+        },
+        {
+            "domain": null,
+            "method": "DELETE",
+            "uri": "api\/cms\/tag\/{tag}",
+            "name": "tag.destroy",
+            "desc": "",
+            "prefix": "api\/cms",
+            "action": "Modules\\CMS\\Http\\Controllers\\Api\\TagController@destroy",
+            "parameters": [],
+            "middleware": "api\nauth:api"
+        }
+    ],
+    "api\/task": [
+        {
+            "domain": null,
+            "method": "GET|HEAD",
+            "uri": "api\/task",
+            "name": "task.index",
+            "desc": "List task",
+            "prefix": "api\/task",
+            "action": "Modules\\Task\\Http\\Controllers\\Api\\TaskController@index",
+            "parameters": [],
+            "middleware": "api\nauth:api"
+        },
+        {
+            "domain": null,
+            "method": "POST",
+            "uri": "api\/task",
+            "name": "task.create",
+            "desc": "Create task",
+            "prefix": "api\/task",
+            "action": "Modules\\Task\\Http\\Controllers\\Api\\TaskController@store",
+            "parameters": [],
+            "middleware": "api\nauth:api"
+        }
+    ],
+    "api\/task\/{id}": [
+        {
+            "domain": null,
+            "method": "GET|HEAD",
+            "uri": "api\/task\/{id}",
+            "name": "task.view",
+            "desc": "View task detail",
+            "prefix": "api\/task",
+            "action": "Modules\\Task\\Http\\Controllers\\Api\\TaskController@show",
+            "parameters": {
+                "id": "[0-9]+"
+            },
+            "middleware": "api\nauth:api"
+        },
+        {
+            "domain": null,
+            "method": "PUT",
+            "uri": "api\/task\/{id}",
+            "name": "task.edit",
+            "desc": "Update task",
+            "prefix": "api\/task",
+            "action": "Modules\\Task\\Http\\Controllers\\Api\\TaskController@update",
+            "parameters": {
+                "id": "[0-9]+"
+            },
+            "middleware": "api\nauth:api"
+        },
+        {
+            "domain": null,
+            "method": "DELETE",
+            "uri": "api\/task\/{id}",
+            "name": "task.delete",
+            "desc": "Delete task",
+            "prefix": "api\/task",
+            "action": "Modules\\Task\\Http\\Controllers\\Api\\TaskController@destroy",
+            "parameters": {
+                "id": "[0-9]+"
+            },
+            "middleware": "api\nauth:api"
+        }
+    ],
+    "api\/project": [
+        {
+            "domain": null,
+            "method": "GET|HEAD",
+            "uri": "api\/project",
+            "name": "project.index",
+            "desc": "List project",
+            "prefix": "api\/project",
+            "action": "Modules\\Task\\Http\\Controllers\\Api\\ProjectController@index",
+            "parameters": [],
+            "middleware": "api\nauth:api"
+        },
+        {
+            "domain": null,
+            "method": "POST",
+            "uri": "api\/project",
+            "name": "project.create",
+            "desc": "Create project",
+            "prefix": "api\/project",
+            "action": "Modules\\Task\\Http\\Controllers\\Api\\ProjectController@store",
+            "parameters": [],
+            "middleware": "api\nauth:api"
+        }
+    ],
+    "api\/project\/{id}": [
+        {
+            "domain": null,
+            "method": "GET|HEAD",
+            "uri": "api\/project\/{id}",
+            "name": "project.view",
+            "desc": "View project detail",
+            "prefix": "api\/project",
+            "action": "Modules\\Task\\Http\\Controllers\\Api\\ProjectController@show",
+            "parameters": {
+                "id": "[0-9]+"
+            },
+            "middleware": "api\nauth:api"
+        },
+        {
+            "domain": null,
+            "method": "PUT",
+            "uri": "api\/project\/{id}",
+            "name": "project.edit",
+            "desc": "Update project",
+            "prefix": "api\/project",
+            "action": "Modules\\Task\\Http\\Controllers\\Api\\ProjectController@update",
+            "parameters": {
+                "id": "[0-9]+"
+            },
+            "middleware": "api\nauth:api"
+        },
+        {
+            "domain": null,
+            "method": "DELETE",
+            "uri": "api\/project\/{id}",
+            "name": "project.delete",
+            "desc": "Delete project",
+            "prefix": "api\/project",
+            "action": "Modules\\Task\\Http\\Controllers\\Api\\ProjectController@destroy",
+            "parameters": {
+                "id": "[0-9]+"
+            },
+            "middleware": "api\nauth:api"
+        }
+    ]
+}

@@ -12,6 +12,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Routing\Route;
 use Illuminate\Routing\Router;
+use ReflectionMethod;
 
 class GenerateDocument extends Command
 {
@@ -20,7 +21,7 @@ class GenerateDocument extends Command
      *
      * @var string
      */
-    protected $signature = 'gen:doc';
+    protected $name = 'gen:doc';
 
     /**
      * The console command description.
@@ -59,9 +60,7 @@ class GenerateDocument extends Command
     public function handle()
     {
 
-        // list routes -> parse action -> 
         $this->genRoutes();
-        $this->genModels();
         return 0;
     }
 
@@ -70,24 +69,24 @@ class GenerateDocument extends Command
      */
     public function genModels()
     {
-        $ret = collect([]);
-        $tables = Schema::connection('mysql')->getAllTables();
-        foreach($tables as $table)
-        {
-            $item = [];
-            $tableName = $table->Tables_in_demo;
-            $item['table'] = $tableName;
-            $item['fields'] = DB::select(DB::raw("SHOW FIELDS FROM {$tableName}"));
-            $ret->push($item);
-        }
-        Storage::put('explore/models.json',$ret->toJson());        
-        return $ret;
+        // $ret = collect([]);
+        // $tables = Schema::connection('mysql')->getAllTables();
+        // foreach($tables as $table)
+        // {
+        //     $item = [];
+        //     $tableName = $table->Tables_in_demo;
+        //     $item['table'] = $tableName;
+        //     $item['fields'] = DB::select(DB::raw("SHOW FIELDS FROM {$tableName}"));
+        //     $ret->push($item);
+        // }
+        // Storage::put('explore/models.json',$ret->toJson());        
+        // return $ret;
     }
 
 
     public function genRoutes()
     {
-        $routes = $this->getRoutes();
+        $routes = $this->getRoutes()->groupBy('uri');
         return Storage::put('explore/routes.json',$routes->toJson());
 
     }
@@ -126,9 +125,13 @@ class GenerateDocument extends Command
             'desc' => $route->getAction()['desc'] ?? '',
             'prefix' => $route->getPrefix(),
             'action' => ltrim($route->getActionName(), '\\'),
+            'parameters' => $route->wheres,
             'middleware' => $this->getMiddleware($route),
         ];
     }    
+
+
+
 
     /**
      * Get the middleware for the route.
@@ -141,20 +144,6 @@ class GenerateDocument extends Command
         return collect($this->router->gatherRouteMiddleware($route))->map(function ($middleware) {
             return $middleware instanceof Closure ? 'Closure' : $middleware;
         })->implode("\n");
-    }
-
-
-    /**
-     * Remove unnecessary columns from the routes.
-     *
-     * @param  array  $routes
-     * @return array
-     */
-    protected function pluckColumns(array $routes)
-    {
-        return array_map(function ($route) {
-            return Arr::only($route, $this->getColumns());
-        }, $routes);
     }
 
 }
