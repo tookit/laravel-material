@@ -34,6 +34,10 @@ class Post extends Model
         'created_at' => 'datetime:Y-m-d H:i:s'
     ];
 
+    public static function getTagClassName(): string
+    {
+        return Tag::class;
+    }
 
     /**
      * The "booted" method of the model.

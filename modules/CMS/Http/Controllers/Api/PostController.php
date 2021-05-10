@@ -26,7 +26,7 @@ class PostController extends Controller
     {
 
         $builder = QueryBuilder::for(Model::class)
-            ->with(['category'])
+            ->with(['category', 'tags'])
             ->allowedFilters([
                 AllowedFilter::exact('status'),
                 AllowedFilter::exact('category_id'),
