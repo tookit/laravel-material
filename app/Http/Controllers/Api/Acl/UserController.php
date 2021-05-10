@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Acl;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Builder;
 use Spatie\QueryBuilder\QueryBuilder;
 
 use App\Models\User as Model;
@@ -27,7 +28,9 @@ class UserController extends Controller
 
         $builder = QueryBuilder::for(Model::class)
             ->allowedFilters([
-                AllowedFilter::exact('active'),
+                AllowedFilter::callback('flag', function (Builder $query, $value) {
+                    $query->where('flag', '=', Model::getFlagValue($value));
+                }),
                 AllowedFilter::exact('gender'),
                 'username',
             ]);

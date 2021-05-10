@@ -24,6 +24,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
+
         'username', 'email', 'password', 'phone','flag','gender','firstname','lastname'
     ];
 
@@ -33,6 +34,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $hidden = [
+
         'password', 'remember_token','email_verified_at'
     ];
 
@@ -43,7 +45,7 @@ class User extends Authenticatable implements JWTSubject
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'created_at' => 'datetime'
+        'created_at' => 'datetime:Y-m-d H:i:s'
     ];
 
     /**
@@ -61,11 +63,18 @@ class User extends Authenticatable implements JWTSubject
     public static function getFlags()
     {
         return  [
-            self::FLAG_ACTIVE,
-            self::FLAG_INACTIVE,
-            self::FLAG_FROZEN,
+            'active'=> self::FLAG_ACTIVE,
+            'inactive'=> self::FLAG_INACTIVE,
+            'frozen' => self::FLAG_FROZEN 
         ];
     }
+
+    public static function getFlagValue($label)
+    {
+        $flags = self::getFlags();
+        return $flags[$label] ?? null;
+    }
+
 
     public  function isActive()
     {

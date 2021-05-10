@@ -27,7 +27,7 @@ class PostController extends Controller
 
         $builder = QueryBuilder::for(Model::class)
             ->with(['category', 'tags'])
-            ->allowedSorts('created_at')
+            ->allowedSorts(['created_at','name','id'])
             ->allowedFilters([
                 AllowedFilter::exact('status'),
                 AllowedFilter::exact('category_id'),
