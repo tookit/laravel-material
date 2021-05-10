@@ -53,7 +53,11 @@ class PostController extends Controller
     public function store(ValidateRequest $request): Resource
     {
 
-        $item = Model::create($request->validated());
+        $data = $request->validated();
+        $item = Model::create($data);
+        if($data['tags']) {
+            $item->attachTags($data['tags'], 'post');
+        }        
         $resoure = new Resource($item);
         return $resoure
             ->additional(
@@ -87,8 +91,14 @@ class PostController extends Controller
      */
     public function update(ValidateRequest $request, $id)
     {
+        $data = $request->validated();
         $item = Model::findOrFail($id);
-        $item->update($request->validated());
+        $item->update($data);
+
+        if($data['tags']) {
+            $item->attachTags($data['tags'], 'post');
+        }
+
         $resource = new Resource($item);
         return $resource
             ->additional(
@@ -100,6 +110,8 @@ class PostController extends Controller
                 ]
             );
     }
+
+
 
     /**
      * Remove the specified Post from storage.

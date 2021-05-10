@@ -25,7 +25,9 @@ Route::middleware(['auth:api'])->group(function () {
         Route::delete('post/{id}',['uses'=>'PostController@destroy','desc'=>'Delete post'])->where('id', '[0-9]+')->name('post.delete');    
 
         Route::apiResource('category','CategoryController');
+        Route::get('/tag/type',['uses'=>'TagController@getType','desc'=>'List tag type'])->name('tag.type.list');
         Route::apiResource('tag','TagController');
+
     });
 
 });

@@ -41,6 +41,13 @@ class TagController extends Controller
         );
     }
 
+
+    public function getType()
+    {
+        $types = Model::getTypes();
+        return new Resource($types);
+    }
+
     /**
      * create a new resource.
      *

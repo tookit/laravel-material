@@ -28,7 +28,9 @@ class PostRequest extends FormRequest
             'name' => ['required', 'string', 'unique_translation:cms_post,name'],
             'description' => ['nullable', 'string', 'max:256'],
             'category_id' => ['integer'],
-            'status' => ['integer']
+            'status' => ['integer'],
+            'body' => ['string', 'nullable'],
+            'tags' => ['array']
         ];
     }
     public  function updateRule()
@@ -38,7 +40,9 @@ class PostRequest extends FormRequest
             'name' => ['string', 'unique_translation:cms_post,name,' . $this->id],
             'description' => ['nullable', 'string'],
             'category_id' => ['integer'],
-            'status' => ['integer']
+            'status' => ['integer'],
+            'body' => ['string', 'nullable'],
+            'tags' => ['array']
         ];
     }
 }
