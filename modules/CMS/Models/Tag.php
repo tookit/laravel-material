@@ -19,6 +19,11 @@ class Tag extends Base
         'name', 'type'
     ];
 
+    protected $casts = [
+        
+        'created_at' => 'datetime:Y-m-d H:i:s'
+    ];
+
 
     /**
      * factory 

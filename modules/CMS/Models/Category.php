@@ -30,6 +30,11 @@ class Category extends Model implements Sortable
         'name', 'description','body'
     ];
 
+    protected $casts = [
+
+        'created_at' => 'datetime:Y-m-d H:i:s'
+    ];
+
     /**
      * The "booted" method of the model.
      *
