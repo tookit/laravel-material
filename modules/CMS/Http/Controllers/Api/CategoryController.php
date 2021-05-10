@@ -26,6 +26,7 @@ class CategoryController extends Controller
     {
 
         $builder = QueryBuilder::for(Model::class)
+            ->allowedSorts(['created_at', 'name','id'])
             ->allowedFilters([
                 'name',
             ]);

@@ -26,6 +26,7 @@ class TagController extends Controller
     {
 
         $builder = QueryBuilder::for(Model::class)
+            ->allowedSorts(['created_at', 'name'])
             ->allowedFilters([
                 'name',
             ]);
