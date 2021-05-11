@@ -2,7 +2,11 @@
 
 namespace Modules\CMS\Policies;
 
+
 use Illuminate\Auth\Access\HandlesAuthorization;
+use App\Models\User;
+use Modules\CMS\Transformers\Post;
+
 
 class PostPolicy
 {
@@ -17,4 +21,14 @@ class PostPolicy
     {
         //
     }
+
+    public function viewAny(User $user) 
+    {
+        return true;
+    }
+
+    public function update(User $user, Post $post) 
+    {
+        return true;
+    }    
 }
