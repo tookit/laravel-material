@@ -1,5 +1,6 @@
 {
     "CMS": true,
     "Task": true,
-    "Tag": true
+    "Tag": true,
+    "ACL": true
 }

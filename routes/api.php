@@ -33,10 +33,6 @@ Route::middleware(['auth:api'])->group(function () {
 
     Route::get('me',['uses'=>'Acl\UserController@me','desc'=>'View self'])->name('self.view');
 
-    // message
-    Route::get('message',['uses'=>'MessageController@index','desc'=>'List message'])->name('message.list');
-    Route::post('message',['uses'=>'MessageController@store','desc'=>'Create messsage'])->name('message.create');
-
     // Access control
     Route::prefix('acl')->group(function (){
         //User
@@ -45,8 +41,8 @@ Route::middleware(['auth:api'])->group(function () {
         Route::get('user/{id}',['uses'=>'Acl\UserController@show','desc'=>'View user detail'])->where('id', '[0-9]+')->name('user.view');
         Route::put('user/{id}',['uses'=>'Acl\UserController@update','desc'=>'Update user'])->where('id', '[0-9]+')->name('user.edit');
         Route::delete('user/{id}',['uses'=>'Acl\UserController@destroy','desc'=>'Delete User'])->where('id', '[0-9]+')->name('user.delete');
+        //Role
         Route::apiResource('role', 'Acl\RoleController');
-
     });
 });
 

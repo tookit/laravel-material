@@ -27,4 +27,9 @@ class AuthServiceProvider extends ServiceProvider
 
         //
     }
+
+    protected function definePolicies()
+    {
+        
+    }
 }
