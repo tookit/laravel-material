@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers\Api\Acl;
 
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Builder;
 use Spatie\QueryBuilder\QueryBuilder;
 
-use App\Models\User as Model;
-use App\Http\Resources\Acl\UserResource as Resource;
-use App\Http\Requests\Acl\UserRequest as ValidateRequest;
+// use App\Models\Role as Model;
+use Spatie\Permission\Models\Role as Model;
+use App\Http\Resources\Acl\RoleResource as Resource;
+use App\Http\Requests\Acl\RoleRequest as ValidateRequest;
 use Spatie\QueryBuilder\AllowedFilter;
 
 
@@ -18,7 +17,7 @@ use Spatie\QueryBuilder\AllowedFilter;
 class RoleController extends Controller
 {
     /**
-     * Display a listing of users.
+     * Display a listing of Roles.
      *
      * @param Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
@@ -28,11 +27,7 @@ class RoleController extends Controller
 
         $builder = QueryBuilder::for(Model::class)
             ->allowedFilters([
-                AllowedFilter::callback('flag', function (Builder $query, $value) {
-                    $query->where('flag', '=', Model::getFlagValue($value));
-                }),
-                AllowedFilter::exact('gender'),
-                'username',
+                'name'
             ]);
 
         return Resource::collection(
@@ -48,10 +43,10 @@ class RoleController extends Controller
 
 
     /**
-     * create a new user.
+     * create a new role.
      *
-     * @param  \App\Http\Requests\Acl\UserRequest $request
-     * @return \App\Http\Resources\Acl\UserResource
+     * @param  \App\Http\Requests\Acl\RoleRequest $request
+     * @return \App\Http\Resources\Acl\RoleResource
      */
     public function store(ValidateRequest $request): Resource
     {
@@ -62,7 +57,7 @@ class RoleController extends Controller
                  [
                      'meta' =>
                         [
-                             'message' => 'User updated',
+                             'message' => 'Role updated',
                         ]
                  ]
             );
@@ -83,7 +78,7 @@ class RoleController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\Acl\UserRequest $request
+     * @param  \App\Http\Requests\Acl\RoleRequest $request
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
@@ -97,7 +92,7 @@ class RoleController extends Controller
                 [
                     'meta' =>
                     [
-                        'message' => 'User updated',
+                        'message' => 'Role updated',
                     ]
                 ]
             );
