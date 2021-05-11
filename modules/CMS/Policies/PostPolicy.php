@@ -24,7 +24,7 @@ class PostPolicy
 
     public function viewAny(User $user) 
     {
-        return true;
+        return $user->can('user.list');
     }
 
     public function update(User $user, Post $post) 
