@@ -21,9 +21,9 @@ class RoleFactory extends Factory
      */
     public function definition()
     {
-        $username = $this->faker->username;
         return [
-
+            'name' => $this->faker->name,
+            'guard_name' => $this->faker->randomElement(['api','web'])
         ];
     }
 }

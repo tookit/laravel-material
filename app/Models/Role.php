@@ -11,6 +11,9 @@ class Role extends Base
 
     protected $table = 'acl_roles';
 
- 
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d H:i:s'
+    ];
+
     
 }

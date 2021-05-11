@@ -21,9 +21,10 @@ class PermissionFactory extends Factory
      */
     public function definition()
     {
-        $username = $this->faker->username;
         return [
-
+            'name' => $this->faker->name,
+            'description' => $this->faker->words(),
+            'guard_name' => $this->faker->randomElement(['api','web'])
         ];
     }
 }

@@ -2,10 +2,13 @@
 
 namespace App\Http\Requests\Acl;
 
+use App\Models\Permission;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PermissionRequest extends FormRequest
 {
+
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -15,6 +18,7 @@ class PermissionRequest extends FormRequest
     {
         return true;
     }
+
 
     /**
      * Get the validation rules that apply to the request.
@@ -48,8 +52,9 @@ class PermissionRequest extends FormRequest
     protected function createRules()
     {
         return [
-            'name' => ['string'],
-            'guard_name' => ['required','unique:roles,guard_name'],
+            'guard_name' => ['string'],
+            'description' => ['string'],
+            'name' => ['required',sprintf('unique:%s,name',Permission::getTableName())],
         ];
 
     }
@@ -57,8 +62,9 @@ class PermissionRequest extends FormRequest
     protected function updateRules()
     {
         return [
-            'name' => ['string'],
-            'guard_name' => ['unique:roles,guard_name,'.$this->uniqueIdentifier()],
+            'guard_name' => ['string'],
+            'description' => ['string'],
+            'name' => [sprintf('unique:%s,name, %s',Permission::getTableName(),$this->uniqueIdentifier())],
         ];
     }
 

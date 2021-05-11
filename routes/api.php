@@ -42,8 +42,18 @@ Route::middleware(['auth:api'])->group(function () {
         Route::put('user/{id}',['uses'=>'Acl\UserController@update','desc'=>'Update user'])->where('id', '[0-9]+')->name('user.edit')->middleware('can:user.edit');
         Route::delete('user/{id}',['uses'=>'Acl\UserController@destroy','desc'=>'Delete User'])->where('id', '[0-9]+')->name('user.delete')->middleware('can:user.delete');
         //Role
-        Route::apiResource('role', 'Acl\RoleController');
-        Route::apiResource('permission', 'Acl\PermissionController');
+        Route::get('role',['uses'=>'Acl\RoleController@index','desc'=>'List role'])->name('role.list')->middleware('can:role.list');
+        Route::post('role',['uses'=>'Acl\RoleController@store','desc'=>'Create role'])->name('role.create')->middleware('can:role.create');
+        Route::get('role/{id}',['uses'=>'Acl\RoleController@show','desc'=>'View role detail'])->where('id', '[0-9]+')->name('role.view')->middleware('can:role.view');
+        Route::put('role/{id}',['uses'=>'Acl\RoleController@update','desc'=>'Update role'])->where('id', '[0-9]+')->name('role.edit')->middleware('can:role.edit');
+        Route::delete('role/{id}',['uses'=>'Acl\RoleController@destroy','desc'=>'Delete role'])->where('id', '[0-9]+')->name('role.delete')->middleware('can:role.delete');
+
+        //permission
+        Route::get('permission',['uses'=>'Acl\PermissionController@index','desc'=>'List permission'])->name('permission.list')->middleware('can:permission.list');
+        Route::post('permission',['uses'=>'Acl\PermissionController@store','desc'=>'Create permission'])->name('permission.create')->middleware('can:permission.create');
+        Route::get('permission/{id}',['uses'=>'Acl\PermissionController@show','desc'=>'View permission detail'])->where('id', '[0-9]+')->name('permission.view')->middleware('can:permission.view');
+        Route::put('permission/{id}',['uses'=>'Acl\PermissionController@update','desc'=>'Update permission'])->where('id', '[0-9]+')->name('permission.edit')->middleware('can:permission.edit');
+        Route::delete('permission/{id}',['uses'=>'Acl\PermissionController@destroy','desc'=>'Delete permission'])->where('id', '[0-9]+')->name('permission.delete')->middleware('can:permission.delete');
     });
 });
 

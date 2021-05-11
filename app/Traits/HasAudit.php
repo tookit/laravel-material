@@ -18,21 +18,21 @@ trait HasAudit
     {
         static::creating(function (Model $model) {
             if (! $model->created_by) {
-                $model->created_by = $this->getAuthenticatedUserId();
+                $model->created_by = self::getAuthenticatedUserId();
             }
             if (! $model->updated_by) {
-                $model->updated_by = $this->getAuthenticatedUserId();
+                $model->updated_by = self::getAuthenticatedUserId();
             }
         });
 
         static::updating(function (Model $model) {
             if (! $model->isDirty('updated_by')) {
-                $model->updated_by = $this->getAuthenticatedUserId();
+                $model->updated_by = self::getAuthenticatedUserId();
             }
         });
     }
 
-    protected function getAuthenticatedUserId()
+    public static function getAuthenticatedUserId()
     {
         return Auth::check() ? Auth::id() : 0;
     }    

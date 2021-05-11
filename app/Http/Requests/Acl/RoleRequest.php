@@ -48,8 +48,8 @@ class RoleRequest extends FormRequest
     protected function createRules()
     {
         return [
-            'name' => ['string'],
-            'guard_name' => ['required','unique:roles,guard_name'],
+            'guard_name' => ['string'],
+            'name' => ['required','unique:acl_roles,guard_name'],
         ];
 
     }
@@ -57,8 +57,8 @@ class RoleRequest extends FormRequest
     protected function updateRules()
     {
         return [
-            'name' => ['string'],
-            'guard_name' => ['unique:roles,guard_name,'.$this->uniqueIdentifier()],
+            'guard_name' => ['string'],
+            'name' => ['unique:acl_roles,guard_name,'.$this->uniqueIdentifier()],
         ];
     }
 

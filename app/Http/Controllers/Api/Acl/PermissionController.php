@@ -49,6 +49,8 @@ class PermissionController extends Controller
      */
     public function store(ValidateRequest $request): Resource
     {
+        $data = $request->validated();
+        $data['type'] = 'custom';
         $item = Model::create($request->validated());
         $resoure = new Resource($item);
          return $resoure
