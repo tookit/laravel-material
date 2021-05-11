@@ -25,7 +25,7 @@ class CreatePermissionTables extends Migration
             $table->string('name');
             $table->string('description')->nullable();
             $table->string('guard_name');
-            $table->sting('action')->comment('controller action')->unique();
+            $table->string('action')->comment('controller action')->unique();
             $table->enum('verb',['get','post','head','put','delete','patch'])->default('post');
             $table->string('endpoint')->comment('rest end point');
             $table->integer('created_by')->unsigned()->default(0);
