@@ -23,7 +23,7 @@ class PermissionSync extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'sync system permission';
 
 
     /**

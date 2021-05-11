@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\User;
 use Illuminate\Support\Facades\Config;
 
 class UserSeeder extends Seeder
@@ -16,21 +15,23 @@ class UserSeeder extends Seeder
     public function run()
     {
         // seed admin
-        User::updateOrCreate(
+        $admin = \App\Models\Role::findByName('admin');
+        $user = \App\Models\User::updateOrCreate(
             ['email' => Config::get('admin.email')],
             [
                 'username' => Config::get('admin.username'),
                 'password' => (Config::get('admin.password')),
                 'email' => Config::get('admin.email'),
                 'phone' => Config::get('admin.mobile'),
-                'flag'=> User::FLAG_ACTIVE,
+                'flag'=> \App\Models\User::FLAG_ACTIVE,
                 'gender' => 'male',
                 'avatar' => 'https://avatars.githubusercontent.com/u/149564?s=60&v=4'
             ]
         );
+        $user->assignRole($admin);
         if(Config::get('app.env') !== 'production'){
 
-            User::factory()->times(25)->create();
+            \App\Models\User::factory()->times(25)->create();
         }
     }
 }

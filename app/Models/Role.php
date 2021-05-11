@@ -11,5 +11,6 @@ class Role extends Base
 
     protected $table = 'acl_roles';
 
+ 
     
 }
