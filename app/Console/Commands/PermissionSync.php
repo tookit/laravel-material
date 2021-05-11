@@ -90,10 +90,15 @@ class PermissionSync extends Command
     {
         $routes = $this->getRoutes();
         $routes->each(function(Route $route) {
-            $name = $route->getName();
-            $desc = $route->getAction()['desc'] ?? '';
-            $data = ['name'=>$name, 'guard_name' => 'api'];
-            Permission::updateOrCreate($data);
+
+            $data = [
+                'name' => $route->getName(),
+                'description' => $route->getAction()['desc'] ?? '',
+                'action' => $route->getActionName(),
+                'verb' => $route->methods()[0],
+                'endpoint' => $route->uri
+            ];
+            Permission::updateOrCreate(['name'=>$data['name']], $data);
         });
     }
 }

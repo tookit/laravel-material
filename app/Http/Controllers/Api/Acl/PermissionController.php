@@ -6,14 +6,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\QueryBuilder;
 
-use App\Models\Role as Model;
-use App\Http\Resources\Acl\RoleResource as Resource;
-use App\Http\Requests\Acl\RoleRequest as ValidateRequest;
+use App\Models\Permission as Model;
+use App\Http\Resources\Acl\PermissionResource as Resource;
+use App\Http\Requests\Acl\PermissionRequest as ValidateRequest;
 use Spatie\QueryBuilder\AllowedFilter;
 
 
 
-class RoleController extends Controller
+class PermissionController extends Controller
 {
     /**
      * Display a listing of Roles.
@@ -44,8 +44,8 @@ class RoleController extends Controller
     /**
      * create a new role.
      *
-     * @param  \App\Http\Requests\Acl\RoleRequest $request
-     * @return \App\Http\Resources\Acl\RoleResource
+     * @param  \App\Http\Requests\Acl\PermissionRequest $request
+     * @return \App\Http\Resources\Acl\PermissionResource
      */
     public function store(ValidateRequest $request): Resource
     {
@@ -56,7 +56,7 @@ class RoleController extends Controller
                  [
                      'meta' =>
                         [
-                             'message' => 'Role updated',
+                             'message' => 'Permission updated',
                         ]
                  ]
             );
@@ -77,7 +77,7 @@ class RoleController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\Acl\RoleRequest $request
+     * @param  \App\Http\Requests\Acl\PermissionRequest $request
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
@@ -91,7 +91,7 @@ class RoleController extends Controller
                 [
                     'meta' =>
                     [
-                        'message' => 'Role updated',
+                        'message' => 'Permission updated',
                     ]
                 ]
             );

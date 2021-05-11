@@ -43,6 +43,7 @@ Route::middleware(['auth:api'])->group(function () {
         Route::delete('user/{id}',['uses'=>'Acl\UserController@destroy','desc'=>'Delete User'])->where('id', '[0-9]+')->name('user.delete')->middleware('can:user.delete');
         //Role
         Route::apiResource('role', 'Acl\RoleController');
+        Route::apiResource('permission', 'Acl\PermissionController');
     });
 });
 
