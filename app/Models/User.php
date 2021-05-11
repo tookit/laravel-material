@@ -48,6 +48,12 @@ class User extends Authenticatable implements JWTSubject
         'created_at' => 'datetime:Y-m-d H:i:s'
     ];
 
+
+    public $appends = [
+        
+        'flag_label'
+    ];
+
     /**
      * Set password attribute
      *
@@ -75,6 +81,11 @@ class User extends Authenticatable implements JWTSubject
         return $flags[$label] ?? null;
     }
 
+    public function getFlagLabelAttribute() 
+    {
+        $fliped = array_flip(self::getFlags());
+        return $fliped[$this->flag];
+    }
 
     public  function isActive()
     {
