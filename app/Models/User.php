@@ -20,6 +20,8 @@ class User extends Authenticatable implements JWTSubject
     const FLAG_INACTIVE = 0;
     const FLAG_FROZEN = 2;
 
+
+
     /**
      * The attributes that are mass assignable.
      *
@@ -130,6 +132,17 @@ class User extends Authenticatable implements JWTSubject
     }
 
 
+    /**
+     * The guard for `laravel-permissions` to use.
+     *
+     * Patching `Spatie\Permission\Guard` because it's not picking up Laravel's default.
+     *
+     * @return string
+     */
+    public function guardName(): string
+    {
+        return 'api';
+    }    
     /**
      * Login with email/username/mobile
      *

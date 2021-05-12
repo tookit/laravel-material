@@ -16,18 +16,19 @@ class AccessControll
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next, $permssion, $guard = 'api')
+    public function handle(Request $request, Closure $next, $permission, $guard = 'api')
     {
         if (Auth::guard($guard)->guest()) {
             throw UnauthorizedException::notLoggedIn();
         }
 
-        $permissions = is_array($permssion)
-            ? $permssion
-            : explode('|', $permssion);
+        $permissions = is_array($permission)
+            ? $permission
+            : explode('|', $permission);
 
-        if (! self::getUser()->hasAnyPermission($permissions)) {
-            throw UnauthorizedException::forRolesOrPermissions($permissions);
+
+        if (! self::getUser($guard)->hasAnyPermission($permissions)) {
+            throw UnauthorizedException::forPermissions($permissions);
         }
 
         return $next($request);
