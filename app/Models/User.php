@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\UserFactory;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -88,7 +89,7 @@ class User extends Authenticatable implements JWTSubject
     public function getFlagLabelAttribute() 
     {
         $fliped = array_flip(self::getFlags());
-        return $fliped[$this->flag];
+        return $fliped[$this->flag] ?? 'none';
     }
 
     public  function isActive()
@@ -154,4 +155,11 @@ class User extends Authenticatable implements JWTSubject
         return $this->orWhere('email', $identifier)->orWhere('username', $identifier)->orWhere('mobile',$identifier)->first();
     }
 
+    /**
+     * factory 
+     */
+    protected static function newFactory() : UserFactory
+    {
+        return UserFactory::new();
+    }
 }
