@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 class PermissionFactory extends Factory
 {
@@ -23,7 +22,7 @@ class PermissionFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'description' => $this->faker->words(),
+            'description' => $this->faker->name,
             'guard_name' => $this->faker->randomElement(['api','web'])
         ];
     }
