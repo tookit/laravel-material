@@ -2,12 +2,19 @@
 
 namespace Tests\Feature;
 
-use App\Models\Permission;
-use App\Models\User;
+
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Str;
+use Closure;
+use Illuminate\Routing\Route;
 use Tests\TestCase;
+
+use App\Models\Permission;
+use App\Models\User;
+
+
 
 class AclTest extends TestCase
 {
@@ -16,20 +23,36 @@ class AclTest extends TestCase
      *
      * @return void
      */
-    public function testPermission()
+    public function testAccessDenied()
     {
-        $user = User::factory()->create();
 
 
+        $user = User::factory()->create(); // create random user
         $permission = Permission::findByName('user.list');
-
-
         $user->givePermissionTo($permission);
-
-        $resp = $this->actingAs($user)->getJson('/api/acl/user');
-
-        $resp->assertStatus(200);
+        $resp = $this->actingAs($user)->getJson('/api/acl/role');
+        $resp->assertStatus(403);
         
     }
+
+    public function testAccessAllow()
+    {
+
+        $user = User::factory()->create(); // create random user
+        $permission = Permission::findByName('user.list');
+        $user->givePermissionTo($permission);
+        $resp = $this->actingAs($user)->getJson('/api/acl/user');
+        $resp->assertStatus(200);
+        
+    }    
+
+    public function testWildcardPermission()
+    {
+
+        
+    }
+
+
+
 
 }
