@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\Auth\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,7 +48,7 @@ Route::middleware(['auth:api'])->group(function () {
         Route::put('role/{id}',['uses'=>'Acl\RoleController@update','desc'=>'Update role'])->where('id', '[0-9]+')->name('role.edit')->middleware('can:role.edit');
         Route::delete('role/{id}',['uses'=>'Acl\RoleController@destroy','desc'=>'Delete role'])->where('id', '[0-9]+')->name('role.delete')->middleware('can:role.delete');
 
-        //permission
+        //Permission
         Route::get('permission',['uses'=>'Acl\PermissionController@index','desc'=>'List permission'])->name('permission.list')->middleware('can:permission.list');
         Route::post('permission',['uses'=>'Acl\PermissionController@store','desc'=>'Create permission'])->name('permission.create')->middleware('can:permission.create');
         Route::get('permission/{id}',['uses'=>'Acl\PermissionController@show','desc'=>'View permission detail'])->where('id', '[0-9]+')->name('permission.view')->middleware('can:permission.view');
