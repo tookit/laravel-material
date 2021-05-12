@@ -2,11 +2,13 @@
 
 namespace App\Console\Commands;
 
+use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Routing\Router;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Str;
 use Closure;
+use Illuminate\Support\Facades\Gate;
 use Spatie\Permission\Models\Permission;
 
 class PermissionSync extends Command
@@ -35,8 +37,6 @@ class PermissionSync extends Command
 
 
 
-
-
     /**
      * Create a new command instance.
      *
@@ -55,7 +55,11 @@ class PermissionSync extends Command
      */
     public function handle()
     {
+
+
         $this->syncPermission();
+
+
         return 0;
     }
 
@@ -101,4 +105,6 @@ class PermissionSync extends Command
             Permission::updateOrCreate(['name'=>$data['name']], $data);
         });
     }
+
+    
 }

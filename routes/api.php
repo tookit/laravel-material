@@ -22,6 +22,7 @@ Route::post('/auth/register',['uses'=>'Auth\AuthController@register','desc'=>'Re
 Route::get('storage/dir',['uses'=>'StorageController@listDir','desc'=>'List dir'])->name('storage.dir.list');
 Route::get('storage/file',['uses'=>'StorageController@listFile','desc'=>'List file'])->name('storage.file.list');
 
+
 //protected route
 
 Route::middleware(['auth:api'])->group(function () {
@@ -35,12 +36,13 @@ Route::middleware(['auth:api'])->group(function () {
 
     // Access control
     Route::prefix('acl')->group(function (){
+
         //User
-        Route::get('user',['uses'=>'Acl\UserController@index','desc'=>'List user'])->name('user.list')->middleware('can:user.list');
-        Route::post('user',['uses'=>'Acl\UserController@store','desc'=>'Create user'])->name('user.create')->middleware('can:user.create');
+        Route::get('user',['uses'=>'Acl\UserController@index','desc'=>'List user'])->name('user.list')->middleware('acl:user.list');
+        Route::post('user',['uses'=>'Acl\UserController@store','desc'=>'Create user'])->name('user.create')->middleware('acl:user.create');
         Route::get('user/{id}',['uses'=>'Acl\UserController@show','desc'=>'View user detail'])->where('id', '[0-9]+')->name('user.view')->middleware('can:user.view');
         Route::put('user/{id}',['uses'=>'Acl\UserController@update','desc'=>'Update user'])->where('id', '[0-9]+')->name('user.edit')->middleware('can:user.edit');
-        Route::delete('user/{id}',['uses'=>'Acl\UserController@destroy','desc'=>'Delete User'])->where('id', '[0-9]+')->name('user.delete')->middleware('can:user.delete');
+        Route::delete('user/{id}',['uses'=>'Acl\UserController@destroy','desc'=>'Delete single User'])->where('id', '[0-9]+')->name('user.delete')->middleware('can:user.delete');
         //Role
         Route::get('role',['uses'=>'Acl\RoleController@index','desc'=>'List role'])->name('role.list')->middleware('can:role.list');
         Route::post('role',['uses'=>'Acl\RoleController@store','desc'=>'Create role'])->name('role.create')->middleware('can:role.create');

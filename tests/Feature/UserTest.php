@@ -21,6 +21,12 @@ class UserTest extends TestCase
         $response->assertSee('tookit_test');
     }
 
+
+    public function testView()
+    {
+        
+    }
+
     protected function createUniqueUser()
     {
         return \App\Models\User::factory()->create(

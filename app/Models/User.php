@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
+
 class User extends Authenticatable implements JWTSubject
 {
     use HasFactory, Notifiable, HasRoles;
@@ -108,6 +109,8 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->getAttribute('username') === config('admin.username');
     }
+
+
 
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
