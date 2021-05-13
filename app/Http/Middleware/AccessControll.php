@@ -18,19 +18,25 @@ class AccessControll
      */
     public function handle(Request $request, Closure $next, $permission, $guard = 'api')
     {
-        if (Auth::guard($guard)->guest()) {
-            throw UnauthorizedException::notLoggedIn();
+        if(self::getUser($guard)->isRoot()) {
+            //skip acl
+            return $next($request);
+        } else {
+            if (Auth::guard($guard)->guest()) {
+                throw UnauthorizedException::notLoggedIn();
+            }
+    
+            $permissions = is_array($permission)
+                ? $permission
+                : explode('|', $permission);
+    
+    
+            if (! self::getUser($guard)->hasAnyPermission($permissions) ) {
+                throw UnauthorizedException::forPermissions($permissions);
+            }
+    
         }
-
-        $permissions = is_array($permission)
-            ? $permission
-            : explode('|', $permission);
-
-
-        if (! self::getUser($guard)->hasAnyPermission($permissions)) {
-            throw UnauthorizedException::forPermissions($permissions);
-        }
-
+ 
         return $next($request);
     }
 

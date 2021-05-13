@@ -49,6 +49,8 @@ Route::middleware(['auth:api'])->group(function () {
         Route::post('role',['uses'=>'Acl\RoleController@store','desc'=>'Create role'])->name('role.create')->middleware('acl:role.create');
         Route::get('role/{id}',['uses'=>'Acl\RoleController@show','desc'=>'View role detail'])->where('id', '[0-9]+')->name('role.view')->middleware('acl:role.view');
         Route::put('role/{id}',['uses'=>'Acl\RoleController@update','desc'=>'Update role'])->where('id', '[0-9]+')->name('role.edit')->middleware('acl:role.edit');
+        Route::post('role/{id}/permission',['uses'=>'Acl\RoleController@attachPermission','desc'=>'Attach permission for role'])->where('id', '[0-9]+')->name('role.attachPermission')->middleware('acl:role.attachPermission');
+        Route::post('role/{id}/user',['uses'=>'Acl\RoleController@attachUser','desc'=>'Attach user for role'])->where('id', '[0-9]+')->name('role.attachUser')->middleware('acl:role.attachUser');
         Route::delete('role/{id}',['uses'=>'Acl\RoleController@destroy','desc'=>'Delete role'])->where('id', '[0-9]+')->name('role.delete')->middleware('acl:role.delete');
         //Permission
         Route::get('permission',['uses'=>'Acl\PermissionController@index','desc'=>'List permission'])->name('permission.list')->middleware('acl:permission.list');

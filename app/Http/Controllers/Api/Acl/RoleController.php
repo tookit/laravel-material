@@ -7,8 +7,11 @@ use Illuminate\Http\Request;
 use Spatie\QueryBuilder\QueryBuilder;
 
 use App\Models\Role as Model;
+use App\Models\Permission;
 use App\Http\Resources\Acl\RoleResource as Resource;
 use App\Http\Requests\Acl\RoleRequest as ValidateRequest;
+use App\Http\Requests\Acl\PermissionAttachRequest;
+use App\Http\Requests\Acl\UserAttachRequest;
 use Spatie\QueryBuilder\AllowedFilter;
 
 
@@ -109,4 +112,36 @@ class RoleController extends Controller
         $item->delete();
         return new Resource($item);
     }
+
+
+     /**
+     * Attach Permission for specify role
+     *
+     * @param  int $id
+     * @param  \App\Http\Requests\Acl\PermissionAttachRequest $request
+     * @return \Illuminate\Http\Response
+     */
+    public function attachPermission(PermissionAttachRequest $request, $id)
+    {
+        $item = Model::findOrFail($id);
+        $ids = $request->validated();
+        $permissions = Permission::find($ids);
+        $item->syncPermissions($permissions);
+        return new Resource($item);
+    }    
+
+     /**
+     * Attach users for specify role
+     *
+     * @param  int $id
+     * @param  \App\Http\Requests\Acl\UserAttachRequest $request
+     * @return \Illuminate\Http\Response
+     */
+    public function attachUser(UserAttachRequest $request, $id)
+    {
+        $item = Model::findOrFail($id);
+        $data = $request->validated();
+        $item->users()->sync($data['ids']);
+        return new Resource($item);
+    }     
 }

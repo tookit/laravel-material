@@ -59,6 +59,12 @@ class User extends Authenticatable implements JWTSubject
         'flag_label'
     ];
 
+    public static function getTableName()
+    {
+        return (new self())->getTable();        
+    }
+
+
     /**
      * Set password attribute
      *

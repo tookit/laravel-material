@@ -2,11 +2,12 @@
 
 namespace Tests\Feature;
 
-use App\Models\Permission;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User as Model;
+use App\Models\Permission;
+
 
 class UserTest extends TestCase
 {
@@ -89,6 +90,7 @@ class UserTest extends TestCase
         $endpoint = self::ENDPOINT.$user->id.'/permission';
         $response = $this->actingAs($this->makeAdmin(), 'api')->postJson($endpoint, $data);
         $response->assertStatus(200);
+        $this->assertEquals($user->hasAnyPermission($permissions), true);
     }
 
 

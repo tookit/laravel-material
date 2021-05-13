@@ -6,6 +6,8 @@ use App\Models\Role as Model;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\Permission;
+use App\Models\User;
 
 class RoleTest extends TestCase
 {
@@ -61,6 +63,30 @@ class RoleTest extends TestCase
 
     }
 
+    public function testAttachUser()
+    {
+
+        $users = User::factory(2)->create();
+        $data = ['ids'=>$users->pluck('id')->toArray()];
+        $role = $this->createUniqueItem();
+        $endpoint = self::ENDPOINT.$role->id.'/user';
+        $response = $this->actingAs($this->makeAdmin(), 'api')->postJson($endpoint, $data);
+        $response->assertStatus(200);
+        $this->assertEquals($role->users->pluck('id')->toArray(),$data['ids']);
+    }
+
+
+    public function testAttachPermission()
+    {
+
+        $permissions = Permission::factory(2)->create();
+        $data = ['ids'=>$permissions->pluck('id')->toArray()];
+        $role = $this->createUniqueItem();
+        $endpoint = self::ENDPOINT.$role->id.'/permission';
+        $response = $this->actingAs($this->makeAdmin(), 'api')->postJson($endpoint, $data);
+        $response->assertStatus(200);
+        $this->assertEquals($role->hasAnyPermission($permissions),true);
+    }
 
 
     protected function createUniqueItem()
