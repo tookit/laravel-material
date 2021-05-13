@@ -11,6 +11,8 @@ use Spatie\QueryBuilder\QueryBuilder;
 use App\Models\User as Model;
 use App\Http\Resources\Acl\UserResource as Resource;
 use App\Http\Requests\Acl\UserRequest as ValidateRequest;
+use App\Http\Requests\Acl\PermissionAttachRequest;
+use App\Models\Permission;
 use Spatie\QueryBuilder\AllowedFilter;
 
 
@@ -119,6 +121,23 @@ class UserController extends Controller
     {
         $item = Model::findOrFail($id);
         $item->delete();
+        return new Resource($item);
+    }
+
+
+     /**
+     * Remove the specified user from storage.
+     *
+     * @param  int $id
+     * @param  \App\Http\Requests\Acl\PermissionAttachRequest $request
+     * @return \Illuminate\Http\Response
+     */
+    public function attachPermission(PermissionAttachRequest $request, $id)
+    {
+        $item = Model::findOrFail($id);
+        $ids = $request->validated();
+        $permissions = Permission::find($ids);
+        $item->syncPermissions($permissions);
         return new Resource($item);
     }
 }

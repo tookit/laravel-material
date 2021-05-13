@@ -23,7 +23,6 @@ class PermissionFactory extends Factory
         return [
             'name' => $this->faker->name,
             'description' => $this->faker->name,
-            'guard_name' => $this->faker->randomElement(['api','web'])
         ];
     }
 }

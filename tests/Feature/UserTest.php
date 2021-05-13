@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Permission;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -77,6 +78,19 @@ class UserTest extends TestCase
         $response->assertStatus(200);
 
     }
+
+
+    public function testAttachPermission()
+    {
+
+        $permissions = Permission::factory(2)->create();
+        $data = ['ids'=>$permissions->pluck('id')->toArray()];
+        $user = $this->createUniqueItem();
+        $endpoint = self::ENDPOINT.$user->id.'/permission';
+        $response = $this->actingAs($this->makeAdmin(), 'api')->postJson($endpoint, $data);
+        $response->assertStatus(200);
+    }
+
 
 
 

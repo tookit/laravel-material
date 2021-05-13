@@ -48,10 +48,16 @@ class AclTest extends TestCase
 
     public function testWildcardPermission()
     {
-
+        $user = User::factory()->create(); // create random user
+        $permission = Permission::updateOrCreate([
+            'name' => 'user.*',
+            'guard_name' => 'api',
+        ]);
+        $user->givePermissionTo($permission);
+        $resp = $this->actingAs($user)->getJson('/api/acl/user');
+        $resp->assertStatus(200);
         
     }
-
 
 
 
