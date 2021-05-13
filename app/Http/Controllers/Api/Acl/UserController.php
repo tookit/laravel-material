@@ -31,6 +31,7 @@ class UserController extends Controller
     {
 
         $builder = QueryBuilder::for(Model::class)
+            ->with(['roles'])
             ->allowedFilters([
                 AllowedFilter::callback('flag', function (Builder $query, $value) {
                     $query->where('flag', '=', Model::getFlagValue($value));
@@ -99,8 +100,12 @@ class UserController extends Controller
      */
     public function update(ValidateRequest $request, $id)
     {
+        $data = $request->validated();
         $item = Model::findOrFail($id);
-        $item->update($request->validated());
+        $item->update($data);
+        if($data['role_ids']) {
+            $item->syncRoles($data['role_ids']);
+        }
         $resource = new Resource($item);
         return $resource
             ->additional(

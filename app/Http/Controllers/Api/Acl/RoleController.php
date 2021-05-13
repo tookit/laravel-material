@@ -28,6 +28,7 @@ class RoleController extends Controller
     {
 
         $builder = QueryBuilder::for(Model::class)
+            ->with(['users','permissions'])
             ->allowedFilters([
                 'name'
             ]);
