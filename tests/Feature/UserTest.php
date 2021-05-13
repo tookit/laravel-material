@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User as Model;
 use App\Models\Permission;
-
+use App\Models\Role;
 
 class UserTest extends TestCase
 {
@@ -91,6 +91,18 @@ class UserTest extends TestCase
         $response = $this->actingAs($this->makeAdmin(), 'api')->postJson($endpoint, $data);
         $response->assertStatus(200);
         $this->assertEquals($user->hasAnyPermission($permissions), true);
+    }
+
+    public function testAssignRole()
+    {
+
+        $roles = Role::factory(2)->create(['guard_name'=>'api']);
+        $data = ['ids'=>$roles->pluck('id')->toArray()];
+        $user = $this->createUniqueItem();
+        $endpoint = self::ENDPOINT.$user->id.'/role';
+        $response = $this->actingAs($this->makeAdmin(), 'api')->postJson($endpoint, $data);
+        $response->assertStatus(200);
+        $this->assertEquals($user->hasAnyRole($roles), true);
     }
 
 

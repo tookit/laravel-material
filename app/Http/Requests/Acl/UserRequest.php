@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Acl;
 
+use App\Models\Role;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UserRequest extends FormRequest
@@ -56,6 +57,8 @@ class UserRequest extends FormRequest
             'active' => ['boolean'],
             'avatar' => ['url','nullable'],
             'password' => ['required'],
+            'roles' => ['array', 'nullable'],
+            'roles.*' => ['integer', sprintf('exists:%s,id',Role::getTableName())]
         ];
 
     }
@@ -70,6 +73,7 @@ class UserRequest extends FormRequest
             'phone' => ['unique:users,phone,'.$this->uniqueIdentifier()],
             'active' => ['boolean'],
             'avatar' => ['url','nullable'],
+            'roles.*' => ['integer', sprintf('exists:%s,id',Role::getTableName())]
 //            'password' => ['required','confirmed'],
         ];
     }

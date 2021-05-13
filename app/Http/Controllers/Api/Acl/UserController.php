@@ -12,7 +12,9 @@ use App\Models\User as Model;
 use App\Http\Resources\Acl\UserResource as Resource;
 use App\Http\Requests\Acl\UserRequest as ValidateRequest;
 use App\Http\Requests\Acl\PermissionAttachRequest;
+use App\Http\Requests\Acl\RoleAssignRequest;
 use App\Models\Permission;
+use App\Models\Role;
 use Spatie\QueryBuilder\AllowedFilter;
 
 
@@ -126,7 +128,7 @@ class UserController extends Controller
 
 
      /**
-     * Remove the specified user from storage.
+     * Attach Permission for a Role.
      *
      * @param  int $id
      * @param  \App\Http\Requests\Acl\PermissionAttachRequest $request
@@ -140,4 +142,21 @@ class UserController extends Controller
         $item->syncPermissions($permissions);
         return new Resource($item);
     }
+
+     /**
+     * Assign roles for a user.
+     *
+     * @param  int $id
+     * @param  \App\Http\Requests\Acl\RoleAssignRequest $request
+     * @return \Illuminate\Http\Response
+     */
+    public function assignRole(RoleAssignRequest $request, $id)
+    {
+        $item = Model::findOrFail($id);
+        $data = $request->validated();
+        $roles = Role::find($data['ids']);
+        $item->syncRoles($roles);
+        return new Resource($item);
+    }
+
 }
