@@ -29,35 +29,47 @@ class AclTest extends TestCase
 
         $user = User::factory()->create(); // create random user
         $permission = Permission::findByName('user.list');
-        $user->givePermissionTo($permission);
-        $resp = $this->actingAs($user)->getJson('/api/acl/role');
+        $user->givePermissionTo($permission);        
+        $resp = $this->actingAs($user)->getJson('/api/acl/user');
         $resp->assertStatus(403);
         
     }
 
-    public function testAccessAllow()
-    {
+    // public function testAccessDenied()
+    // {
 
-        $user = User::factory()->create(); // create random user
-        $permission = Permission::findByName('user.list');
-        $user->givePermissionTo($permission);
-        $resp = $this->actingAs($user)->getJson('/api/acl/user');
-        $resp->assertStatus(200);
-        
-    }    
 
-    public function testWildcardPermission()
-    {
-        $user = User::factory()->create(); // create random user
-        $permission = Permission::updateOrCreate([
-            'name' => 'user.*',
-            'guard_name' => 'api',
-        ]);
-        $user->givePermissionTo($permission);
-        $resp = $this->actingAs($user)->getJson('/api/acl/user');
-        $resp->assertStatus(200);
+    //     $user = User::factory()->create(); // create random user
+    //     $permission = Permission::findByName('user.list');
+    //     $user->givePermissionTo($permission);
+    //     $resp = $this->actingAs($user)->getJson('/api/acl/role');
+    //     $resp->assertStatus(403);
         
-    }
+    // }    
+
+    // public function testAccessAllow()
+    // {
+
+    //     $user = User::factory()->create(); // create random user
+    //     $permission = Permission::findByName('user.list');
+    //     $user->givePermissionTo($permission);
+    //     $resp = $this->actingAs($user)->getJson('/api/acl/user');
+    //     $resp->assertStatus(200);
+        
+    // }    
+
+    // public function testWildcardPermission()
+    // {
+    //     $user = User::factory()->create(); // create random user
+    //     $permission = Permission::updateOrCreate([
+    //         'name' => 'user.*',
+    //         'guard_name' => 'api',
+    //     ]);
+    //     $user->givePermissionTo($permission);
+    //     $resp = $this->actingAs($user)->getJson('/api/acl/user');
+    //     $resp->assertStatus(200);
+        
+    // }
 
 
 

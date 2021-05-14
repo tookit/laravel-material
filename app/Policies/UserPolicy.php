@@ -16,9 +16,9 @@ class UserPolicy
      * @param  \App\Models\User  $user
      * @return mixed
      */
-    public function viewAny(User $user)
+    public function viewAny(User $user, $model)
     {
-        return true;
+        return $user->hasAnyPermission('user.list');
     }
     
     

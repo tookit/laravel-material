@@ -14,7 +14,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Model' => 'App\Policies\ModelPolicy',
-        // \App\Models\User::class => \App\Policies\UserPolicy::class,
+        \App\Models\User::class => \App\Policies\UserPolicy::class,
+        \App\Models\Role::class => \App\Policies\RolePolicy::class,
     ];
 
     /**
@@ -24,8 +25,10 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // $this->registerPolicies();
+        $this->registerPolicies();
+
         // $this->definePolicies();
+
         // super admin
         Gate::before(function ($user, $ability) {
             return $user->isRoot() ? true: null;
@@ -34,6 +37,6 @@ class AuthServiceProvider extends ServiceProvider
 
     protected function definePolicies()
     {
-        Gate::define('user.list', 'App\Policies\RolePolicy@viewAny');
+        // Gate::define('user.list', 'App\Policies\RolePolicy@viewAny');
     }
 }
