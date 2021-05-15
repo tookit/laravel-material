@@ -51,12 +51,20 @@ class UserController extends Controller
         );
     }
 
-    public function me()
+    public function getProfile()
     {
         $me = Auth::guard('api')->user();
         return new Resource($me);
 
     }
+
+
+    public function updateProfile()
+    {
+        $me = Auth::guard('api')->user();
+        return new Resource($me);
+    }
+
 
     /**
      * create a new user.

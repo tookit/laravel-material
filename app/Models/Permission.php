@@ -4,11 +4,12 @@ namespace App\Models;
 
 use App\Traits\HasAudit;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Kalnoy\Nestedset\NodeTrait;
 use Spatie\Permission\Models\Permission as Base;
 
 class Permission extends Base
 {
-    use HasFactory, HasAudit;
+    use HasFactory, HasAudit, NodeTrait;
 
     protected $table = 'acl_permissions';
 
@@ -28,10 +29,5 @@ class Permission extends Base
     {
         return (new self())->getTable();        
     }
-
-
-
-
-
 
 }

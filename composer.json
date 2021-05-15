@@ -16,6 +16,7 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "jacobcyl/ali-oss-storage": "^2.1",
+        "kalnoy/nestedset": "^5.0",
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
         "nwidart/laravel-modules": "^8.2",

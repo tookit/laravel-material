@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Modules\Task\Http\Controllers\Api\TaskController;
+use Modules\Task\Models\Project;
+use Modules\Task\Models\Task;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,21 +18,20 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth:api'])->group(function () {
 
     Route::prefix('task')->group(function (){
-
-        Route::get('/',['uses'=>'TaskController@index','desc'=>'List task'])->name('task.index');
-        Route::post('/',['uses'=>'TaskController@store','desc'=>'Create task'])->name('task.create');
-        Route::get('/{id}',['uses'=>'TaskController@show','desc'=>'View task detail'])->where('id', '[0-9]+')->name('task.view');
-        Route::put('/{id}',['uses'=>'TaskController@update','desc'=>'Update task'])->where('id', '[0-9]+')->name('task.edit');
-        Route::delete('/{id}',['uses'=>'TaskController@destroy','desc'=>'Delete task'])->where('id', '[0-9]+')->name('task.delete');    
+        Route::get('/',[TaskController::class, 'index'])->name('task.index')->middleware(['can:task.list']);
+        Route::post('/',[TaskController::class, 'store'])->name('task.create')->middleware(['can:task.create']);
+        Route::get('/{id}',[TaskController::class, 'view'])->where('id', '[0-9]+')->name('task.view')->middleware(['can:task.view']);
+        Route::put('/{id}',[TaskController::class, 'update'])->where('id', '[0-9]+')->name('task.edit')->middleware(['can:task.update']);
+        Route::delete('/{id}',[TaskController::class, 'destroy'])->where('id', '[0-9]+')->name('task.delete')->middleware(['can:task.delete']);    
 
     });
     Route::prefix('project')->group(function (){
 
-        Route::get('/',['uses'=>'ProjectController@index','desc'=>'List project'])->name('project.index');
-        Route::post('/',['uses'=>'ProjectController@store','desc'=>'Create project'])->name('project.create');
-        Route::get('/{id}',['uses'=>'ProjectController@show','desc'=>'View project detail'])->where('id', '[0-9]+')->name('project.view');
-        Route::put('/{id}',['uses'=>'ProjectController@update','desc'=>'Update project'])->where('id', '[0-9]+')->name('project.edit');
-        Route::delete('/{id}',['uses'=>'ProjectController@destroy','desc'=>'Delete project'])->where('id', '[0-9]+')->name('project.delete');    
+        Route::get('/',[Project::class, 'index'])->name('project.index')->middleware('can:project.list');
+        Route::post('/',[Project::class, 'store'])->name('project.create')->middleware('can:project.create');
+        Route::get('/{id}',[Project::class, 'view'])->where('id', '[0-9]+')->name('project.view')->middleware('can:project.view');
+        Route::put('/{id}',[Project::class, 'update'])->where('id', '[0-9]+')->name('project.edit')->middleware('can:project.update');
+        Route::delete('/{id}',[Project::class, 'destry'])->where('id', '[0-9]+')->name('project.delete')->middleware('can:project.delete');    
 
     });    
 

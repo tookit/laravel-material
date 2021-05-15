@@ -7,6 +7,7 @@ use Illuminate\Console\Command;
 use Illuminate\Routing\Router;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Str;
+use Illuminate\Support\Collection;
 use Closure;
 use Illuminate\Support\Facades\Gate;
 use Spatie\Permission\Models\Permission;
@@ -68,10 +69,10 @@ class PermissionSync extends Command
      *
      * @return collection | array
      */
-    protected function getRoutes()
+    protected function getProtectedRoutes()
     {
         $routes = collect($this->router->getRoutes())->filter(function(Route $route){
-            return Str::contains($this->getMiddleware($route), 'api');
+            return Str::contains($route->uri(), 'api');
         });
 
         return $routes;
@@ -81,28 +82,37 @@ class PermissionSync extends Command
      * Get the middleware for the route.
      *
      * @param  \Illuminate\Routing\Route  $route
-     * @return string
+     * @return \Illuminate\Support\Collection
      */
     protected function getMiddleware($route)
     {
         return collect($this->router->gatherRouteMiddleware($route))->map(function ($middleware) {
             return $middleware instanceof Closure ? 'Closure' : $middleware;
-        })->implode("\n");
+        });
     }    
 
     protected function syncPermission()
     {
-        $routes = $this->getRoutes();
+        $routes = $this->getProtectedRoutes();
         $routes->each(function(Route $route) {
+            $filtered = $this->getMiddleware($route)->filter(function($middleware){
+                return Str::contains($middleware,'can');
+            });
+            if($filtered->count() > 0) {
+                $data = [
+                    'name' => $route->getName(),
+                    'description' => $route->getAction()['desc'] ?? $route->getName(),
+                    'action' => $route->getActionName(),
+                    'verb' => $route->methods()[0],
+                    'middleware' => $this->getMiddleware($route)->toArray(),
+                    'prefx' => $route->getPrefix(),
+                    'endpoint' => $route->uri
+                ];
 
-            $data = [
-                'name' => $route->getName(),
-                'description' => $route->getAction()['desc'] ?? '',
-                'action' => $route->getActionName(),
-                'verb' => $route->methods()[0],
-                'endpoint' => $route->uri
-            ];
-            Permission::updateOrCreate(['name'=>$data['name']], $data);
+                Permission::updateOrCreate(['name'=>$data['name']], $data);
+            }
+
+
         });
     }
 
