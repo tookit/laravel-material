@@ -29,7 +29,7 @@ class CreatePermissionTables extends Migration
             $table->string('description')->nullable();
             $table->string('guard_name')->default('api');
             $table->string('action')->comment('controller action')->nullable();
-            $table->enum('verb',['get','post','head','put','delete','patch','*'])->default('*');
+            $table->json('verbs')->comment('http verbs');
             $table->enum('type',['system','custom'])->default('system');
             $table->string('endpoint')->comment('rest end point')->nullable();
             $table->integer('created_by')->unsigned()->default(0);

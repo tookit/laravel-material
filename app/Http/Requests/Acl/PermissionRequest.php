@@ -54,6 +54,7 @@ class PermissionRequest extends FormRequest
         return [
             'guard_name' => ['string'],
             'description' => ['string'],
+            'verbs' => ['array', 'nullable'],
             'name' => ['required',sprintf('unique:%s,name',Permission::getTableName())],
         ];
 
@@ -64,6 +65,7 @@ class PermissionRequest extends FormRequest
         return [
             'guard_name' => ['string'],
             'description' => ['string'],
+            'verbs' => ['array','nullable'],
             'name' => [sprintf('unique:%s,name, %s',Permission::getTableName(),$this->uniqueIdentifier())],
         ];
     }

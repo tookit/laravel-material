@@ -16,12 +16,13 @@ class Permission extends Base
     protected $fillable = [
 
         'name', 'guard_name', 
-        'description', 'action','verb','endpoint', 'type'
+        'description', 'action','verbs','endpoint', 'type'
     ];
 
 
     protected $casts = [
-        'created_at' => 'datetime:Y-m-d H:i:s'
+        'created_at' => 'datetime:Y-m-d H:i:s',
+        'verbs' => 'array', 
     ];
 
 

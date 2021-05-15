@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\User;
+use App\Models\Permission;
 use Illuminate\Console\Command;
 use Illuminate\Routing\Router;
 use Illuminate\Routing\Route;
@@ -10,7 +10,6 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Collection;
 use Closure;
 use Illuminate\Support\Facades\Gate;
-use Spatie\Permission\Models\Permission;
 
 class PermissionSync extends Command
 {
@@ -99,15 +98,18 @@ class PermissionSync extends Command
                 return Str::contains($middleware,'can');
             });
             if($filtered->count() > 0) {
+                $middleware = $filtered->first();
+                $temp = explode(':', $middleware);
+                $ability = $temp[1];
                 $data = [
-                    'name' => $route->getName(),
-                    'description' => $route->getAction()['desc'] ?? $route->getName(),
+                    'name' => $ability,
+                    'description' => $route->getAction()['desc'] ?? $ability,
                     'action' => $route->getActionName(),
-                    'verb' => $route->methods()[0],
-                    'middleware' => $this->getMiddleware($route)->toArray(),
+                    'verbs' => $route->methods(),
                     'prefx' => $route->getPrefix(),
                     'endpoint' => $route->uri
                 ];
+
 
                 Permission::updateOrCreate(['name'=>$data['name']], $data);
             }
