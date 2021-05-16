@@ -14,7 +14,7 @@ class Permission extends Base
 
     protected $fillable = [
 
-        'name', 'guard_name', 'prefix',
+        'name', 'guard_name', 'prefix', 'resource',
         'description', 'action','verbs','endpoint', 'type'
     ];
 

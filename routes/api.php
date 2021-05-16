@@ -45,7 +45,7 @@ Route::middleware(['auth:api'])->group(function () {
         Route::prefix('user')->group(function(){
             Route::get('/',[UserController::class, 'index'])->name('user.list')->middleware('can:user.list');
             Route::post('/',[UserController::class, 'store'])->name('user.create')->middleware('can:user.create');
-            Route::get('/{id}',[UserController::class, 'view'])->where('id', '[0-9]+')->name('user.view')->middleware('can:user.view');
+            Route::get('/{id}',[UserController::class, 'show'])->where('id', '[0-9]+')->name('user.view')->middleware('can:user.view');
             Route::put('/{id}',[UserController::class,'update'])->where('id', '[0-9]+')->name('user.edit')->middleware('can:user.edit');
             Route::post('/{id}/permission',[UserController::class, 'attachPermission'])->where('id', '[0-9]+')->name('user.attachPermission')->middleware('can:user.attachPermission');
             Route::post('/{id}/role',[UserController::class,'assignRole'])->where('id', '[0-9]+')->name('user.assignRole')->middleware('can:user.assignRole');
@@ -56,7 +56,7 @@ Route::middleware(['auth:api'])->group(function () {
         Route::prefix('role')->group(function(){
             Route::get('/',[RoleController::class, 'index'])->name('role.list')->middleware('can:role.list');
             Route::post('/',[RoleController::class, 'store'])->name('role.create')->middleware('can:role.create');
-            Route::get('/{id}',[RoleController::class, 'view'])->where('id', '[0-9]+')->name('role.view')->middleware('can:role.view');
+            Route::get('/{id}',[RoleController::class, 'show'])->where('id', '[0-9]+')->name('role.view')->middleware('can:role.view');
             Route::put('/{id}',[RoleController::class,'update'])->where('id', '[0-9]+')->name('role.edit')->middleware('can:role.edit');
             Route::post('/{id}/permission',[RoleController::class, 'attachPermission'])->where('id', '[0-9]+')->name('role.attachPermission')->middleware('can:role.attachPermission');
             Route::delete('/{id}',[RoleController::class, 'destroy'])->where('id', '[0-9]+')->name('role.delete')->middleware('can:role.delete');
@@ -67,7 +67,7 @@ Route::middleware(['auth:api'])->group(function () {
 
             Route::get('/',[PermissionController::class,'index'])->name('permission.list')->middleware('can:permission.list');
             Route::post('/',[PermissionController::class, 'store'])->name('permission.create')->middleware('can:permission.create');
-            Route::get('/{id}',[PermissionController::class, 'view'])->where('id', '[0-9]+')->name('permission.view')->middleware('can:permission.view');
+            Route::get('/{id}',[PermissionController::class, 'show'])->where('id', '[0-9]+')->name('permission.view')->middleware('can:permission.view');
             Route::put('/{id}',[PermissionController::class, 'update'])->where('id', '[0-9]+')->name('permission.edit')->middleware('can:permission.edit');
             Route::delete('/{id}',[PermissionController::class, 'destroy'])->where('id', '[0-9]+')->name('permission.delete')->middleware('can:permission.delete');
         });

@@ -98,11 +98,13 @@ class PermissionSync extends Command
                 $middleware = $filtered->first();
                 $temp = explode(':', $middleware);
                 $ability = $temp[1];
+                $resource = explode('.',$ability)[0];
                 $data = [
                     'name' => $ability,
                     'description' => $route->getAction()['desc'] ?? $ability,
                     'action' => $route->getActionName(),
                     'verbs' => $route->methods(),
+                    'resource' => $resource,
                     // 'prefix' => $route->getPrefix(),
                     'endpoint' => $route->uri
                 ];
