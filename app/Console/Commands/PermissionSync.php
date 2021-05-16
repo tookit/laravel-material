@@ -56,10 +56,7 @@ class PermissionSync extends Command
     public function handle()
     {
 
-
         $this->syncPermission();
-
-
         return 0;
     }
 
@@ -106,10 +103,9 @@ class PermissionSync extends Command
                     'description' => $route->getAction()['desc'] ?? $ability,
                     'action' => $route->getActionName(),
                     'verbs' => $route->methods(),
-                    'prefx' => $route->getPrefix(),
+                    'prefix' => $route->getPrefix(),
                     'endpoint' => $route->uri
                 ];
-
 
                 Permission::updateOrCreate(['name'=>$data['name']], $data);
             }

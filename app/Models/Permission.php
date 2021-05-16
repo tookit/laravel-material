@@ -4,18 +4,17 @@ namespace App\Models;
 
 use App\Traits\HasAudit;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Kalnoy\Nestedset\NodeTrait;
 use Spatie\Permission\Models\Permission as Base;
 
 class Permission extends Base
 {
-    use HasFactory, HasAudit, NodeTrait;
+    use HasFactory, HasAudit;
 
     protected $table = 'acl_permissions';
 
     protected $fillable = [
 
-        'name', 'guard_name', 
+        'name', 'guard_name', 'prefix',
         'description', 'action','verbs','endpoint', 'type'
     ];
 

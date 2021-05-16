@@ -51,7 +51,7 @@ class PermissionController extends Controller
     {
         $data = $request->validated();
         $data['type'] = 'custom';
-        $item = Model::create($request->validated());
+        $item = Model::create($data);
         $resoure = new Resource($item);
          return $resoure
             ->additional(
