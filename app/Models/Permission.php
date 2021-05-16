@@ -30,4 +30,9 @@ class Permission extends Base
         return (new self())->getTable();        
     }
 
+    public static function getResources()
+    {
+        return static::groupBy('resource')->pluck('resource');
+    }
+
 }

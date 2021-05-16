@@ -66,6 +66,7 @@ Route::middleware(['auth:api'])->group(function () {
         Route::prefix('permission')->group(function() {
 
             Route::get('/',[PermissionController::class,'index'])->name('permission.list')->middleware('can:permission.list');
+            Route::get('/resource',[PermissionController::class,'getResources'])->name('permission.listResources')->middleware('can:permission.listResources');
             Route::post('/',[PermissionController::class, 'store'])->name('permission.create')->middleware('can:permission.create');
             Route::get('/{id}',[PermissionController::class, 'show'])->where('id', '[0-9]+')->name('permission.view')->middleware('can:permission.view');
             Route::put('/{id}',[PermissionController::class, 'update'])->where('id', '[0-9]+')->name('permission.edit')->middleware('can:permission.edit');

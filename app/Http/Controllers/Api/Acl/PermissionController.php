@@ -28,7 +28,8 @@ class PermissionController extends Controller
             ->allowedSorts(['id','name','created_at'])
             ->allowedFilters([
                 'name',
-                AllowedFilter::exact('type')
+                AllowedFilter::exact('type'),
+                AllowedFilter::exact('resource')
             ]);
 
         return Resource::collection(
@@ -65,6 +66,12 @@ class PermissionController extends Controller
                  ]
             );
     }
+
+    public function getResources()
+    {
+        $collections = Model::getResources();
+        return new Resource($collections);
+    }    
 
     /**
      * Display the specified user.
