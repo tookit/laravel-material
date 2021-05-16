@@ -56,7 +56,7 @@ class PostController extends Controller
 
         $data = $request->validated();
         $item = Model::create($data);
-        if($data['tags']) {
+        if($request->get('tags')) {
             $item->attachTags($data['tags'], 'post');
         }        
         $resoure = new Resource($item);
@@ -96,9 +96,9 @@ class PostController extends Controller
         $item = Model::findOrFail($id);
         $item->update($data);
 
-        if($data['tags']) {
+        if($request->get('tags')) {
             $item->attachTags($data['tags'], 'post');
-        }
+        }  
 
         $resource = new Resource($item);
         return $resource
