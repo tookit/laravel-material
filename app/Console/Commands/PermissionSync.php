@@ -103,7 +103,7 @@ class PermissionSync extends Command
                     'description' => $route->getAction()['desc'] ?? $ability,
                     'action' => $route->getActionName(),
                     'verbs' => $route->methods(),
-                    'prefix' => $route->getPrefix(),
+                    // 'prefix' => $route->getPrefix(),
                     'endpoint' => $route->uri
                 ];
 

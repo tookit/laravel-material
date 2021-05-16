@@ -3,6 +3,7 @@
 namespace Modules\CMS\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Modules\CMS\Models\Post;
 
 class PostRequest extends FormRequest
 {
@@ -25,7 +26,7 @@ class PostRequest extends FormRequest
     public   function createRule()
     {
         return [
-            'name' => ['required', 'string', 'unique_translation:cms_post,name'],
+            'name' => ['required', 'string', sprintf('unique_translation:%s,name', Post::getTableName())],
             'description' => ['nullable', 'string', 'max:256'],
             'category_id' => ['integer'],
             'status' => ['integer'],
@@ -37,7 +38,7 @@ class PostRequest extends FormRequest
     {
 
         return [
-            'name' => ['string', 'unique_translation:cms_post,name,' . $this->id],
+            'name' => ['string',  sprintf('unique_translation:%s,name, %s', Post::getTableName(), $this->id)],
             'description' => ['nullable', 'string'],
             'category_id' => ['integer'],
             'status' => ['integer'],

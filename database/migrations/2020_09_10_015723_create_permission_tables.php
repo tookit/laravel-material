@@ -28,7 +28,8 @@ class CreatePermissionTables extends Migration
             $table->string('action')->comment('controller action')->nullable();
             $table->json('verbs')->comment('http verbs')->nullable();
             $table->enum('type',['system','custom'])->default('system');
-            $table->string('prefix')->comment('api prefix')->nullable();
+            $table->string('resource')->default('*');
+            $table->string('prefix')->comment('api prefix')->default('api');
             $table->string('endpoint')->comment('rest end point')->nullable();
             $table->integer('created_by')->unsigned()->default(0);
             $table->integer('updated_by')->unsigned()->default(0);

@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Acl;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\Role;
 
 class RoleRequest extends FormRequest
 {
@@ -49,7 +50,7 @@ class RoleRequest extends FormRequest
     {
         return [
             'guard_name' => ['string'],
-            'name' => ['required','unique:acl_roles,guard_name'],
+            'name' => ['required',sprintf('unique:%s,name', Role::getTableName())],
         ];
 
     }
@@ -58,7 +59,7 @@ class RoleRequest extends FormRequest
     {
         return [
             'guard_name' => ['string'],
-            'name' => ['unique:acl_roles,guard_name,'.$this->uniqueIdentifier()],
+            'name' => ['string', sprintf('unique:%s,name,%s', Role::getTableName(), $this->uniqueIdentifier())],
         ];
     }
 

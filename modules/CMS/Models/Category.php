@@ -17,7 +17,7 @@ class Category extends Model implements Sortable
     use HasFactory, HasTranslations, HasSlug, HasStatus, SortableTrait;
 
 
-    protected $table = 'cms_category';
+    protected $table = 'cms_categories';
 
     protected $fillable = [
 
@@ -34,6 +34,13 @@ class Category extends Model implements Sortable
 
         'created_at' => 'datetime:Y-m-d H:i:s'
     ];
+
+
+    public static function getTableName()
+    {
+        return (new self())->getTable();        
+    }
+        
 
     /**
      * The "booted" method of the model.

@@ -13,7 +13,7 @@ class CreateCmsTable extends Migration
      */
     public function up()
     {
-        Schema::create('cms_post', function (Blueprint $table) {
+        Schema::create('cms_posts', function (Blueprint $table) {
             $table->id();
             $table->integer('category_id',false, true)->default(0)->comment('post category');
             $table->string('slug')->unique();
@@ -24,7 +24,7 @@ class CreateCmsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('cms_category', function (Blueprint $table) {
+        Schema::create('cms_categories', function (Blueprint $table) {
             $table->id();
             $table->string('slug')->unique();
             $table->json('name')->comment('category title');
@@ -43,7 +43,7 @@ class CreateCmsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cms_post');
-        Schema::dropIfExists('cms_category');
+        Schema::dropIfExists('cms_posts');
+        Schema::dropIfExists('cms_categories');
     }
 }

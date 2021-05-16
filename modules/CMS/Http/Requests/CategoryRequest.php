@@ -3,6 +3,7 @@
 namespace Modules\CMS\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Modules\CMS\Models\Category;
 
 class CategoryRequest extends FormRequest
 {
@@ -25,14 +26,14 @@ class CategoryRequest extends FormRequest
     public   function createRule()
     {
         return [
-            'name' => ['required','string', 'unique_translation:cms_category,name'],
+            'name' => ['required','string', sprintf('unique_translation:%s,name', Category::getTableName())],
             'description'=>['nullable', 'string','max:256'],
         ];
     }
     public  function updateRule()
     {
         return [
-            'name' => ['string','unique_translation:cms_category,name,'.$this->id],
+            'name' => ['string',sprintf('unique_translation:%s,name,', Category::getTableName(), $this->id)],
             'description'=>['nullable','string'],
         ];
     }

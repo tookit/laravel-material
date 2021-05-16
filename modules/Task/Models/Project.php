@@ -16,7 +16,7 @@ class Project extends Model implements Sortable
     use HasFactory, HasTranslations, HasSlug, HasStatus, SortableTrait;
 
 
-    protected $table = 'task_project';
+    protected $table = 'task_projects';
 
     protected $fillable = [
 
@@ -27,6 +27,12 @@ class Project extends Model implements Sortable
     public $translatable = [
 
     ];
+
+    public static function getTableName()
+    {
+        return (new self())->getTable();        
+    }
+            
 
     /**
      * The "booted" method of the model.

@@ -27,7 +27,8 @@ class PermissionController extends Controller
         $builder = QueryBuilder::for(Model::class)
             ->allowedSorts(['id','name','created_at'])
             ->allowedFilters([
-                'name'
+                'name',
+                AllowedFilter::exact('type')
             ]);
 
         return Resource::collection(

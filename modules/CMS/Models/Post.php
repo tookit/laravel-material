@@ -16,7 +16,7 @@ class Post extends Model
     use HasFactory, HasTranslations, HasSlug, HasStatus, HasTags;
 
 
-    protected $table = 'cms_post';
+    protected $table = 'cms_posts';
 
     protected $fillable = [
 
@@ -33,6 +33,13 @@ class Post extends Model
         
         'created_at' => 'datetime:Y-m-d H:i:s'
     ];
+
+    public static function getTableName()
+    {
+        return (new self())->getTable();        
+    }
+        
+    
 
     public static function getTagClassName(): string
     {

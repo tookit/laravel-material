@@ -25,6 +25,13 @@ class Tag extends Base
     ];
 
 
+
+    public static function getTableName()
+    {
+        return (new self())->getTable();        
+    }
+        
+    
     /**
      * factory 
      */

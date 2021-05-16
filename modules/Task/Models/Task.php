@@ -16,7 +16,7 @@ class Task extends Model implements Sortable
     use HasFactory, HasTranslations, HasSlug, HasStatus, SortableTrait;
 
 
-    protected $table = 'task';
+    protected $table = 'tasks';
 
     protected $fillable = [
 
@@ -27,6 +27,12 @@ class Task extends Model implements Sortable
     public $translatable = [
 
     ];
+
+    public static function getTableName()
+    {
+        return (new self())->getTable();        
+    }
+            
 
     /**
      * The "booted" method of the model.
