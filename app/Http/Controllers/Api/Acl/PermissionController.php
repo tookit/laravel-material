@@ -61,7 +61,7 @@ class PermissionController extends Controller
                  [
                      'meta' =>
                         [
-                             'message' => 'Permission updated',
+                            'message' => 'Permission updated',
                         ]
                  ]
             );

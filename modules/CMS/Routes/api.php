@@ -27,7 +27,7 @@ Route::middleware(['auth:api'])->group(function () {
             Route::post('/',[PostController::class, 'store'])->name('post.create')->middleware('can:post.create');
             Route::get('/{id}',[PostController::class, 'show'])->where('id', '[0-9]+')->name('post.view')->middleware('can:post.view');
             Route::put('/{id}',[PostController::class,'update'])->where('id', '[0-9]+')->name('post.edit')->middleware('can:post.edit');
-            Route::delete('/{id}',[PostController::class, 'destroy'])->where('id', '[0-9]+')->name('post.delete')->middleware('can:post.delete');
+            Route::delete('/{ids}',[PostController::class, 'destroy'])->name('post.delete')->middleware('can:post.delete');
         });
 
         Route::prefix('category')->group(function(){
@@ -35,7 +35,7 @@ Route::middleware(['auth:api'])->group(function () {
             Route::post('/',[CategoryController::class, 'store'])->name('category.create')->middleware('can:category.create');
             Route::get('/{id}',[CategoryController::class, 'show'])->where('id', '[0-9]+')->name('category.view')->middleware('can:category.view');
             Route::put('/{id}',[CategoryController::class,'update'])->where('id', '[0-9]+')->name('category.edit')->middleware('can:category.edit');
-            Route::delete('/{id}',[CategoryController::class, 'destroy'])->where('id', '[0-9]+')->name('category.delete')->middleware('can:category.delete');
+            Route::delete('/{ids}',[CategoryController::class, 'destroy'])->name('category.delete')->middleware('can:category.delete');
         });        
 
 
@@ -46,7 +46,7 @@ Route::middleware(['auth:api'])->group(function () {
             Route::post('/',[TagController::class, 'store'])->name('tag.create')->middleware('can:tag.create');
             Route::get('/{id}',[TagController::class, 'show'])->where('id', '[0-9]+')->name('tag.view')->middleware('can:tag.view');
             Route::put('/{id}',[TagController::class,'update'])->where('id', '[0-9]+')->name('tag.edit')->middleware('can:tag.edit');
-            Route::delete('/{id}',[TagController::class, 'destroy'])->where('id', '[0-9]+')->name('tag.delete')->middleware('can:tag.delete');
+            Route::delete('/{ids}',[TagController::class, 'destroy'])->name('tag.delete')->middleware('can:tag.delete');
         }); 
         
         

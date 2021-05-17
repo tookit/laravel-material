@@ -101,14 +101,14 @@ class CategoryController extends Controller
     /**
      * Remove the specified Category from storage.
      *
-     * @param  int $id
+     * @param  mix int $ids || string $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($ids)
     {
-        $item = Model::findOrFail($id);
-        $item->delete();
-        $resource = new Resource($item);
+        $items = Model::find($ids);
+        $items->delete();
+        $resource = new Resource($items);
         return $resource
         ->additional(
             [
@@ -119,4 +119,5 @@ class CategoryController extends Controller
             ]
         );
     }
+   
 }

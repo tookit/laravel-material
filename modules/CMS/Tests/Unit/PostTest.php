@@ -62,8 +62,9 @@ class PostTest extends TestCase
 
     public function testDeletePost()
     {
-        $item = $this->createUniquePost();
-        $response = $this->actingAs($this->makeAdmin(), 'api')->delete(self::ENDPOINT.$item->id);
+        $items = Post::factory(3)->create();
+        $ids = $items->pluck('id')->join(',');
+        $response = $this->actingAs($this->makeAdmin(), 'api')->delete(self::ENDPOINT.$ids);
         $response->assertSee(['message'=>'Post deleted']);
         $response->assertStatus(200);
 
