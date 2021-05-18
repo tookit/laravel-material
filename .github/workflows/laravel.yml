@@ -10,9 +10,9 @@ jobs:
       DB_USERNAME: root
       DB_PASSWORD: password
       BROADCAST_DRIVER: log
-      CACHE_DRIVER: redis
-      QUEUE_CONNECTION: redis
-      SESSION_DRIVER: redis    
+      # CACHE_DRIVER: redis
+      # QUEUE_CONNECTION: redis
+      # SESSION_DRIVER: redis    
     services:
       mysql:
         image: mysql:5.7
@@ -31,7 +31,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-versions: ['7.2', '7.3', '7.4']
+        php-versions: ['7.4']
     steps:
       - name: Checkout
         uses: actions/checkout@v2
