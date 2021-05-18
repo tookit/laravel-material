@@ -111,7 +111,7 @@ class UserController extends Controller
         $data = $request->validated();
         $item = Model::findOrFail($id);
         $item->update($data);
-        if($data['role_ids']) {
+        if($request->get('role_ids')) {
             $item->syncRoles($data['role_ids']);
         }
         $resource = new Resource($item);
