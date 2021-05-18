@@ -59,6 +59,7 @@ Route::middleware(['auth:api'])->group(function () {
             Route::get('/{id}',[RoleController::class, 'show'])->where('id', '[0-9]+')->name('role.view')->middleware('can:role.view');
             Route::put('/{id}',[RoleController::class,'update'])->where('id', '[0-9]+')->name('role.edit')->middleware('can:role.edit');
             Route::post('/{id}/permission',[RoleController::class, 'attachPermission'])->where('id', '[0-9]+')->name('role.attachPermission')->middleware('can:role.attachPermission');
+            Route::post('/{id}/user',[RoleController::class, 'attachUser'])->where('id', '[0-9]+')->name('role.attachUser')->middleware('can:role.attachUser');
             Route::delete('/{id}',[RoleController::class, 'destroy'])->where('id', '[0-9]+')->name('role.delete')->middleware('can:role.delete');
         });
 
