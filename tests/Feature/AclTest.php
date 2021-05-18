@@ -28,9 +28,11 @@ class AclTest extends TestCase
 
 
         $user = User::factory()->create(); // create random user
-        $permission = Permission::findByName('user.list');
+        $permission = Permission::updateOrCreate([
+            'name' => 'user.list',
+        ]);
         $user->givePermissionTo($permission);        
-        $resp = $this->actingAs($user)->getJson('/api/acl/user');
+        $resp = $this->actingAs($user)->getJson('/api/acl/role');
         $resp->assertStatus(403);
         
     }
