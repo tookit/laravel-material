@@ -10,5 +10,4 @@ final class ProjectStatus extends Enum {
     const PROGRESSING = 1;
     const DONE = 2;
 
-
 }

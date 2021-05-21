@@ -4,6 +4,8 @@ namespace Modules\PMS\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Modules\PMS\Models\Project;
+use BenSampo\Enum\Rules\EnumValue;
+use Modules\PMS\Enum\ProjectStatus;
 
 class ProjectRequest extends FormRequest
 {
@@ -35,18 +37,18 @@ class ProjectRequest extends FormRequest
     public  function createRule()
     {
         return [
-            'name' => [sprintf('unique:%s,name',Project::getTableName())],
+            'name' => ['required', sprintf('unique:%s,name',Project::getTableName())],
             'description'=>['nullable', 'string','max:256'],
-            'status' => ['integer']
+            'status' => ['required', new EnumValue(ProjectStatus::class)]
         ];
     }
     public  function updateRule()
     {
 
         return [
-            'name' => [sprintf('unique:%s,name, %s',Project::getTableName(),$this->uniqueIdentifier())],
+            'name' => ['required', sprintf('unique:%s,name, %s',Project::getTableName(),$this->uniqueIdentifier())],
             'description'=>['nullable','string'],
-            'status' => ['integer']
+            'status' => ['required', new EnumValue(ProjectStatus::class)]
         ];
     }
 }

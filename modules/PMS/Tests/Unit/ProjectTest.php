@@ -22,6 +22,7 @@ class ProjectTest extends TestCase
         $response->assertStatus(200);
     }
 
+
     public function testCreateProject()
     {
         $item = Project::factory()->make()->toArray();
@@ -35,8 +36,9 @@ class ProjectTest extends TestCase
         $item = Project::factory()->make(['name'=> ''])->toArray();
         $response = $this->actingAs($this->makeAdmin(), 'api')->postJson(self::ENDPOINT, $item);
         $response->assertStatus(422);
-
     }
+
+
 
     public function testUniqueRule()
     {
@@ -60,6 +62,9 @@ class ProjectTest extends TestCase
     }
 
 
+    /**
+     * 
+     */
     public function testDeleteProject()
     {
         $items = Project::factory(3)->create();

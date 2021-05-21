@@ -5,6 +5,7 @@ namespace Modules\PMS\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Modules\PMS\Enum\ProjectStatus;
 use Spatie\QueryBuilder\QueryBuilder;
 
 use Modules\PMS\Models\Project as Model;
@@ -75,6 +76,11 @@ class ProjectController extends Controller
         return new Resource($item);
     }
 
+    public function getStatus()
+    {
+        return new Resource(ProjectStatus::asSelectArray());
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -101,12 +107,12 @@ class ProjectController extends Controller
     /**
      * Remove the specified Project from storage.
      *
-     * @param  int $id
+     * @param  mix $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($ids)
     {
-        $item = Model::findOrFail($id);
+        $item = Model::find($ids);
         $item->delete();
         $resource = new Resource($item);
         return $resource
