@@ -1,5 +1,5 @@
 {
-    "name": "tookit/task",
+    "name": "tookit/pms",
     "description": "",
     "authors": [
         {
@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Modules\\Task\\": ""
+            "Modules\\PMS\\": ""
         }
     }
 }

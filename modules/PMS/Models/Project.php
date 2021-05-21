@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Task\Models;
+namespace Modules\PMS\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,16 +11,16 @@ use Spatie\Sluggable\SlugOptions;
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
 
-class Task extends Model implements Sortable
+class Project extends Model implements Sortable
 {
     use HasFactory, HasTranslations, HasSlug, HasStatus, SortableTrait;
 
 
-    protected $table = 'tasks';
+    protected $table = 'pms_projects';
 
     protected $fillable = [
 
-        'name','description', 'status', 'owner', 'project_id'
+        'name','description', 'status'
     ];
 
 
@@ -60,9 +60,9 @@ class Task extends Model implements Sortable
      * 
      */
 
-    public function project()
+    public function task()
     {
-        return $this->belongsTo(Project::class);
+        return $this->hasMany(Task::class);
     }
 
 }

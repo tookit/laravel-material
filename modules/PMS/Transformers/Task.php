@@ -1,10 +1,10 @@
 <?php
 
-namespace Modules\Task\Transformers;
+namespace Modules\PMS\Transformers;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Project extends JsonResource
+class Task extends JsonResource
 {
     /**
      * Transform the resource into an array.

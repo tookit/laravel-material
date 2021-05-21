@@ -1,10 +1,10 @@
 <?php
 
-namespace Modules\Task\Http\Requests;
+namespace Modules\PMS\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProjectRequest extends FormRequest
+class TaskRequest extends FormRequest
 {
 
     /**
@@ -25,18 +25,23 @@ class ProjectRequest extends FormRequest
     public   function createRule()
     {
         return [
-            'name' => ['required','string', 'unique_translation:task_project,name'],
+            'name' => ['required','string', 'unique:task,name'],
             'description'=>['nullable', 'string','max:256'],
-            'status' => ['integer']
+            'owner'=>['nullable', 'string','max:256'],
+            'status' => ['integer'],
+            'project_id' => ['required','integer']
+
+
         ];
     }
     public  function updateRule()
     {
-
         return [
-            'name' => ['string','unique_translation:task_project,name,'.$this->id],
-            'description'=>['nullable','string'],
-            'status' => ['integer']
+            'name' => ['string','unique:task,name,'.$this->id],
+            'description'=>['nullable', 'string','max:256'],
+            'owner'=>['nullable', 'string','max:256'],
+            'status' => ['integer'],
+            'project_id' => ['integer']
         ];
     }
 }

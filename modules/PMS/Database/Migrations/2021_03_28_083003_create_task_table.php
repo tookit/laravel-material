@@ -13,7 +13,7 @@ class CreateTaskTable extends Migration
      */
     public function up()
     {
-        Schema::create('tasks', function (Blueprint $table) {
+        Schema::create('pms_tasks', function (Blueprint $table) {
             $table->id();
             $table->integer('project_id',false, true)->default(0)->comment('Project');
             $table->string('slug')->unique();
@@ -26,7 +26,7 @@ class CreateTaskTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('task_projects', function (Blueprint $table) {
+        Schema::create('pms_projects', function (Blueprint $table) {
             $table->id();
             $table->string('slug')->unique();
             $table->string('name')->comment('project name');
@@ -47,7 +47,7 @@ class CreateTaskTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tasks');
-        Schema::dropIfExists('task_projects');
+        Schema::dropIfExists('pms_tasks');
+        Schema::dropIfExists('pms_projects');
     }
 }

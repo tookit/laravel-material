@@ -1,15 +1,15 @@
 <?php
 
-namespace Modules\Task\Http\Controllers\Api;
+namespace Modules\PMS\Http\Controllers\Api;
 
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\QueryBuilder;
 
-use Modules\Task\Models\Project as Model;
-use Modules\Task\Transformers\Project as Resource;
-use Modules\Task\Http\Requests\ProjectRequest as ValidateRequest;
+use Modules\PMS\Models\Project as Model;
+use Modules\PMS\Transformers\Project as Resource;
+use Modules\PMS\Http\Requests\ProjectRequest as ValidateRequest;
 use Spatie\QueryBuilder\AllowedFilter;
 
 

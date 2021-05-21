@@ -1,10 +1,10 @@
 <?php
 
-namespace Modules\Task\Database\Seeders;
+namespace Modules\PMS\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
-use Modules\Task\Models\Project;
+use Modules\PMS\Models\Project;
 
 class ProjectSeeder extends Seeder
 {

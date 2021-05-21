@@ -1,11 +1,11 @@
 {
-    "name": "Task",
-    "alias": "task",
+    "name": "PMS",
+    "alias": "PMS",
     "description": "",
     "keywords": [],
     "priority": 0,
     "providers": [
-        "Modules\\Task\\Providers\\TaskServiceProvider"
+        "Modules\\PMS\\Providers\\PMSServiceProvider"
     ],
     "aliases": {},
     "files": [],

@@ -1,21 +1,22 @@
 <?php
 
-namespace Modules\Task\Providers;
+namespace Modules\PMS\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Support\Facades\Config;
 
-class TaskServiceProvider extends ServiceProvider
+class PMSServiceProvider extends ServiceProvider
 {
     /**
      * @var string $moduleName
      */
-    protected $moduleName = 'Task';
+    protected $moduleName = 'PMS';
 
     /**
      * @var string $moduleNameLower
      */
-    protected $moduleNameLower = 'task';
+    protected $moduleNameLower = 'pms';
 
     /**
      * Boot the application events.
@@ -102,7 +103,7 @@ class TaskServiceProvider extends ServiceProvider
     private function getPublishableViewPaths(): array
     {
         $paths = [];
-        foreach (\Config::get('view.paths') as $path) {
+        foreach (Config::get('view.paths') as $path) {
             if (is_dir($path . '/modules/' . $this->moduleNameLower)) {
                 $paths[] = $path . '/modules/' . $this->moduleNameLower;
             }

@@ -1,15 +1,15 @@
 <?php
 
-namespace Modules\Task\Http\Controllers\Api;
+namespace Modules\PMS\Http\Controllers\Api;
 
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\QueryBuilder;
 
-use Modules\Task\Models\Task as Model;
-use Modules\Task\Transformers\Task as Resource;
-use Modules\Task\Http\Requests\TaskRequest as ValidateRequest;
+use Modules\PMS\Models\Task as Model;
+use Modules\PMS\Transformers\Task as Resource;
+use Modules\PMS\Http\Requests\TaskRequest as ValidateRequest;
 use Spatie\QueryBuilder\AllowedFilter;
 
 
