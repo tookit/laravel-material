@@ -20,7 +20,7 @@ class Project extends Model implements Sortable
 
     protected $fillable = [
 
-        'name','description', 'status'
+        'name','description', 'status', 'user_id'
     ];
 
 
@@ -60,7 +60,7 @@ class Project extends Model implements Sortable
      * 
      */
 
-    public function task()
+    public function tasks()
     {
         return $this->hasMany(Task::class);
     }

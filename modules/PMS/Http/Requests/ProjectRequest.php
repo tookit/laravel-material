@@ -3,6 +3,7 @@
 namespace Modules\PMS\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Modules\PMS\Models\Project;
 
 class ProjectRequest extends FormRequest
 {
@@ -17,15 +18,24 @@ class ProjectRequest extends FormRequest
         return true;
     }
 
+    /**
+     * @return mixed null|integer
+     */
+    protected function uniqueIdentifier()
+    {
+        return $this->id;
+    }
+    
+    
     public  function rules()
     {
-        return !$this->id ? $this->createRule() : $this->updateRule();
+        return !$this->uniqueIdentifier() ? $this->createRule() : $this->updateRule();
     }
 
-    public   function createRule()
+    public  function createRule()
     {
         return [
-            'name' => ['required','string', 'unique_translation:task_project,name'],
+            'name' => [sprintf('unique:%s,name',Project::getTableName())],
             'description'=>['nullable', 'string','max:256'],
             'status' => ['integer']
         ];
@@ -34,7 +44,7 @@ class ProjectRequest extends FormRequest
     {
 
         return [
-            'name' => ['string','unique_translation:task_project,name,'.$this->id],
+            'name' => [sprintf('unique:%s,name, %s',Project::getTableName(),$this->uniqueIdentifier())],
             'description'=>['nullable','string'],
             'status' => ['integer']
         ];

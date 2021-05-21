@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Modules\PMS\Http\Controllers\Api\ProjectController;
 use Modules\PMS\Http\Controllers\Api\TaskController;
 
 /*
@@ -21,6 +22,15 @@ Route::middleware(['auth:api'])->group(function () {
         Route::get('/{id}',[TaskController::class, 'view'])->where('id', '[0-9]+')->name('task.view')->middleware(['can:task.view']);
         Route::put('/{id}',[TaskController::class, 'update'])->where('id', '[0-9]+')->name('task.edit')->middleware(['can:task.update']);
         Route::delete('/{id}',[TaskController::class, 'destroy'])->where('id', '[0-9]+')->name('task.delete')->middleware(['can:task.delete']);    
+
+    });
+
+    Route::prefix('pms/project')->group(function (){
+        Route::get('/',[ProjectController::class, 'index'])->name('project.index')->middleware(['can:project.list']);
+        Route::post('/',[ProjectController::class, 'store'])->name('project.create')->middleware(['can:project.create']);
+        Route::get('/{id}',[ProjectController::class, 'view'])->where('id', '[0-9]+')->name('project.view')->middleware(['can:project.view']);
+        Route::put('/{id}',[ProjectController::class, 'update'])->where('id', '[0-9]+')->name('project.edit')->middleware(['can:project.update']);
+        Route::delete('/{id}',[ProjectController::class, 'destroy'])->where('id', '[0-9]+')->name('project.delete')->middleware(['can:project.delete']);    
 
     });
 

@@ -27,9 +27,8 @@ class ProjectController extends Controller
 
         $builder = QueryBuilder::for(Model::class)
             ->allowedFilters([
-                AllowedFilter::exact('active'),
-                AllowedFilter::exact('gender'),
-                'username',
+                AllowedFilter::exact('status'),
+                'name',
             ]);
 
         return Resource::collection(

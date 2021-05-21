@@ -3,7 +3,6 @@
 namespace Modules\PMS\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Support\Facades\Config;
 
 class PMSServiceProvider extends ServiceProvider
