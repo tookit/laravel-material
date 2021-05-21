@@ -40,7 +40,6 @@ Route::middleware(['auth:api'])->group(function () {
     Route::post('me',[UserController::class, 'updateProfile'])->name('self.view');
     // Access control
     Route::prefix('acl')->group(function (){
-        
         //User
         Route::prefix('user')->group(function(){
             Route::get('/',[UserController::class, 'index'])->name('user.list')->middleware('can:user.list');

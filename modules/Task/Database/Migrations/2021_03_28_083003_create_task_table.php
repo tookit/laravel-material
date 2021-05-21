@@ -20,7 +20,7 @@ class CreateTaskTable extends Migration
             $table->string('name')->comment('task name');
             $table->mediumText('description')->nullable()->comment('task short description');
             $table->unsignedInteger('sort_number');
-            $table->string('owner')->nullable();
+            $table->integer('user_id')->unsigned()->default(0)->comment('Task owner id');
             $table->tinyInteger('status')->default(0)->comment('task status');
             $table->softDeletes();
             $table->timestamps();
@@ -33,6 +33,7 @@ class CreateTaskTable extends Migration
             $table->mediumText('description')->nullable()->comment('project description');
             $table->text('body')->nullable();
             $table->unsignedInteger('sort_number');
+            $table->integer('user_id')->unsigned()->default(0)->comment('Task owner id');
             $table->tinyInteger('status')->default(0)->comment('project status');
             $table->softDeletes();
             $table->timestamps();
