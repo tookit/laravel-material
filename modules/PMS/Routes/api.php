@@ -21,7 +21,7 @@ Route::middleware(['auth:api'])->group(function () {
         Route::post('/',[TaskController::class, 'store'])->name('task.create')->middleware(['can:task.create']);
         Route::get('/{id}',[TaskController::class, 'show'])->where('id', '[0-9]+')->name('task.view')->middleware(['can:task.view']);
         Route::put('/{id}',[TaskController::class, 'update'])->where('id', '[0-9]+')->name('task.edit')->middleware(['can:task.update']);
-        Route::delete('/{id}',[TaskController::class, 'destroy'])->where('id', '[0-9]+')->name('task.delete')->middleware(['can:task.delete']);    
+        Route::delete('/{ids}',[TaskController::class, 'destroy'])->name('task.delete')->middleware(['can:task.delete']);    
 
     });
 

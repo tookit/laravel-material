@@ -104,12 +104,12 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param  mixed int|string $ids
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($ids)
     {
-        $item = Model::findOrFail($id);
+        $item = Model::find($ids);
         $item->delete();
         $resource = new Resource($item);
         return $resource

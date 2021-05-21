@@ -3,6 +3,7 @@
 namespace Modules\PMS\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Modules\PMS\Models\Task;
 
 class TaskRequest extends FormRequest
 {
@@ -17,15 +18,26 @@ class TaskRequest extends FormRequest
         return true;
     }
 
+    /**
+     * @return mixed null|integer
+     */
+    protected function uniqueIdentifier()
+    {
+        return $this->id;
+    }
+    
+    
+    
+
     public  function rules()
     {
-        return !$this->id ? $this->createRule() : $this->updateRule();
+        return !$this->uniqueIdentifier() ? $this->createRule() : $this->updateRule();
     }
 
     public   function createRule()
     {
         return [
-            'name' => ['required','string', 'unique:task,name'],
+            'name' => ['required', sprintf('unique:%s,name',Task::getTableName())],
             'description'=>['nullable', 'string','max:256'],
             'owner'=>['nullable', 'string','max:256'],
             'status' => ['integer'],
@@ -37,7 +49,7 @@ class TaskRequest extends FormRequest
     public  function updateRule()
     {
         return [
-            'name' => ['string','unique:task,name,'.$this->id],
+            'name' => ['required', sprintf('unique:%s,name, %s',Task::getTableName(),$this->uniqueIdentifier())],
             'description'=>['nullable', 'string','max:256'],
             'owner'=>['nullable', 'string','max:256'],
             'status' => ['integer'],

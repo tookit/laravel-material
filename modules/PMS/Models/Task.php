@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Traits\HasTranslations;
 use App\Traits\HasStatus;
+use Modules\PMS\Database\factories\TaskFactory;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\EloquentSortable\Sortable;
@@ -68,5 +69,14 @@ class Task extends Model implements Sortable
     {
         return $this->belongsTo(Project::class);
     }
+
+    /**
+     * factory 
+     */
+    protected static function newFactory() : TaskFactory
+    {
+        return TaskFactory::new();
+    }    
+
 
 }
