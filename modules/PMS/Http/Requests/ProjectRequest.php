@@ -46,7 +46,7 @@ class ProjectRequest extends FormRequest
     {
 
         return [
-            'name' => ['required', sprintf('unique:%s,name, %s',Project::getTableName(),$this->uniqueIdentifier())],
+            'name' => [sprintf('unique:%s,name, %s',Project::getTableName(),$this->uniqueIdentifier())],
             'description'=>['nullable','string'],
             'status' => [new EnumValue(ProjectStatus::class)]
         ];

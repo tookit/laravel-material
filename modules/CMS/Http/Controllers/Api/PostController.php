@@ -79,7 +79,7 @@ class PostController extends Controller
      */
     public function show($id): Resource
     {
-        $item = Model::with([])->findOrFail($id);
+        $item = Model::with(['tags'])->findOrFail($id);
         return new Resource($item);
     }
 
