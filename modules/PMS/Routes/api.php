@@ -27,6 +27,7 @@ Route::middleware(['auth:api'])->group(function () {
 
     Route::prefix('pms/project')->group(function (){
         Route::get('/',[ProjectController::class, 'index'])->name('project.index')->middleware(['can:project.list']);
+        Route::get('/status',[ProjectController::class, 'getStatus'])->name('project.getStatus')->middleware(['can:project.getStatus']);
         Route::post('/',[ProjectController::class, 'store'])->name('project.create')->middleware(['can:project.create']);
         Route::get('/{id}',[ProjectController::class, 'show'])->where('id', '[0-9]+')->name('project.view')->middleware(['can:project.view']);
         Route::put('/{id}',[ProjectController::class, 'update'])->where('id', '[0-9]+')->name('project.edit')->middleware(['can:project.update']);

@@ -23,6 +23,10 @@ class Task extends Model implements Sortable
         'name','description', 'status', 'owner', 'project_id'
     ];
 
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d H:i:s',
+    ];
+
 
     public $translatable = [
 
