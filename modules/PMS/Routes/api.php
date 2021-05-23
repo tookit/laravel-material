@@ -15,7 +15,6 @@ use Modules\PMS\Http\Controllers\Api\TaskController;
 |
 */
 Route::middleware(['auth:api'])->group(function () {
-
     Route::prefix('pms/task')->group(function (){
         Route::get('/',[TaskController::class, 'index'])->name('task.index')->middleware(['can:task.list']);
         Route::post('/',[TaskController::class, 'store'])->name('task.create')->middleware(['can:task.create']);
@@ -32,7 +31,6 @@ Route::middleware(['auth:api'])->group(function () {
         Route::get('/{id}',[ProjectController::class, 'show'])->where('id', '[0-9]+')->name('project.view')->middleware(['can:project.view']);
         Route::put('/{id}',[ProjectController::class, 'update'])->where('id', '[0-9]+')->name('project.edit')->middleware(['can:project.update']);
         Route::delete('/{ids}',[ProjectController::class, 'destroy'])->name('project.delete')->middleware(['can:project.delete']);    
-
     });
 
 });

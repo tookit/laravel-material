@@ -21,10 +21,11 @@ class Task extends Model implements Sortable
 
     protected $fillable = [
 
-        'name','description', 'status', 'owner', 'project_id'
+        'name','description', 'status', 'owner_name', 'project_id'
     ];
 
     protected $casts = [
+
         'created_at' => 'datetime:Y-m-d H:i:s',
     ];
 

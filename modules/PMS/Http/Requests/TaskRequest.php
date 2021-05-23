@@ -39,7 +39,7 @@ class TaskRequest extends FormRequest
         return [
             'name' => ['required', sprintf('unique:%s,name',Task::getTableName())],
             'description'=>['nullable', 'string','max:256'],
-            'owner'=>['nullable', 'string','max:256'],
+            'owner_name'=>['nullable', 'string','max:256'],
             'status' => ['integer'],
             'project_id' => ['required','integer']
 
@@ -49,9 +49,9 @@ class TaskRequest extends FormRequest
     public  function updateRule()
     {
         return [
-            'name' => ['required', sprintf('unique:%s,name, %s',Task::getTableName(),$this->uniqueIdentifier())],
+            'name' => [sprintf('unique:%s,name, %s',Task::getTableName(),$this->uniqueIdentifier())],
             'description'=>['nullable', 'string','max:256'],
-            'owner'=>['nullable', 'string','max:256'],
+            'owner_name'=>['nullable', 'string','max:256'],
             'status' => ['integer'],
             'project_id' => ['integer']
         ];

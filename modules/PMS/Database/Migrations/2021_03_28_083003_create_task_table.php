@@ -32,6 +32,7 @@ class CreateTaskTable extends Migration
             $table->string('name')->comment('project name');
             $table->mediumText('description')->nullable()->comment('project description');
             $table->text('body')->nullable();
+            $table->string('owner_name')->nullable()->comment('duplicate for demo');
             $table->unsignedInteger('sort_number');
             $table->integer('user_id')->unsigned()->default(0)->comment('Task owner id');
             $table->tinyInteger('status')->default(0)->comment('project status');
