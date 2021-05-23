@@ -12,9 +12,11 @@ use App\Models\User as Model;
 use App\Http\Resources\Acl\UserResource as Resource;
 use App\Http\Requests\Acl\UserRequest as ValidateRequest;
 use App\Http\Requests\Acl\PermissionAttachRequest;
+use App\Http\Requests\Acl\ProfileRequest;
 use App\Http\Requests\Acl\RoleAssignRequest;
 use App\Models\Permission;
 use App\Models\Role;
+use App\Models\User;
 use Spatie\QueryBuilder\AllowedFilter;
 
 
@@ -58,11 +60,27 @@ class UserController extends Controller
 
     }
 
-
-    public function updateProfile()
+    /**
+     * create a new user.
+     *
+     * @param  \App\Http\Requests\Acl\ProfileRequest $request
+     * @return \App\Http\Resources\Acl\UserResource
+     */
+    public function updateProfile(ProfileRequest $request)
     {
+        $data = $request->validated();
         $me = Auth::guard('api')->user();
-        return new Resource($me);
+        $me->update($data);
+        $resoure = new Resource($me);
+        return $resoure
+            ->additional(
+                 [
+                     'meta' =>
+                        [
+                             'message' => 'Profile updated',
+                        ]
+                 ]
+            );
     }
 
 
@@ -76,7 +94,7 @@ class UserController extends Controller
     {
         $item = Model::create($request->validated());
         $resoure = new Resource($item);
-         return $resoure
+        return $resoure
             ->additional(
                  [
                      'meta' =>
