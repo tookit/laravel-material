@@ -45,7 +45,7 @@ class PasswordReset extends Command
             ['email' => Config::get('admin.email')],
             [
                 'username' => Config::get('admin.username'),
-                'password' => 'tookit',
+                'password' => 'admin',
                 'email' => Config::get('admin.email'),
                 'phone' => Config::get('admin.mobile'),
             ]
