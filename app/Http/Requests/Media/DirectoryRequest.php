@@ -4,7 +4,7 @@ namespace App\Http\Requests\Media;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class FileRequest extends FormRequest
+class DirectoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,9 +27,7 @@ class FileRequest extends FormRequest
 
         return [
             
-            'file' => ['mimes:jpg,bmp,png,webp','required','file','max:1024'],
-            'disk' => ['nullable', 'string'],
-            'directory' => ['nullable','string']
+            'path' => ['required', 'string'],
         ];
 
     }

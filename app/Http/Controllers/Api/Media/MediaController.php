@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Media;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Media\DirectoryRequest;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\QueryBuilder;
 
@@ -45,10 +46,10 @@ class MediaController extends Controller
     }
 
 
-    public function createDirectory(Request $request)
+    public function createDirectory(DirectoryRequest $request)
     {
-        $path = $request->get('path');
-        Storage::disk('public')->makeDirectory($path);
+        $data = $request->validated();
+        Storage::disk('public')->makeDirectory($data['path']);
         $resoure = new Resource([]);
         return $resoure
            ->additional(

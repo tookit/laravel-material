@@ -17,6 +17,11 @@ class Media extends Base
         
     ];
 
+
+    public $appends = [
+        'basename'
+    ];
+
     
 
     public static function getTableName()
