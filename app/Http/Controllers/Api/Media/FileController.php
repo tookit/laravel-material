@@ -11,7 +11,8 @@ use App\Http\Resources\Media\FileResource as Resource;
 use App\Http\Requests\Media\FileRequest as ValidateRequest;
 use Spatie\QueryBuilder\AllowedFilter;
 use Plank\Mediable\Facades\MediaUploader;
-
+use Plank\Mediable\SourceAdapters\SourceAdapterInterface;
+use Illuminate\Http\UploadedFile;
 
 
 class FileController extends Controller
@@ -51,7 +52,15 @@ class FileController extends Controller
     public function store(ValidateRequest $request): Resource
     {
         $data = $request->validated();
-        $item = MediaUploader::fromSource($data['file'])->upload();
+        $uploader = MediaUploader::fromSource($data['file']);
+        $aggrationType = $uploader->inferAggregateType($data['file']->getClientMimeType(), $data['file']->getClientOriginalExtension());
+        $disk = $request->get('disk','public');
+        $directory = $request->get('directory', $aggrationType);
+        $item = MediaUploader::fromSource($data['file'])
+            ->toDisk($disk)
+            ->toDirectory($directory)
+            // pass the callable
+            ->upload();
         $resoure = new Resource($item);
          return $resoure
             ->additional(
@@ -62,6 +71,17 @@ class FileController extends Controller
                         ]
                  ]
             );
+    }
+
+    /**
+     *
+     * @param  \App\Http\Requests\Media\FileRequest $request
+     * @return \Illuminate\Http\UploadedFile
+     */
+    public function getUploadFile(ValidateRequest $request) {
+
+
+
     }
 
 

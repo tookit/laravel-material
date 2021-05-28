@@ -25,6 +25,7 @@ return [
      */
     'allowed_disks' => [
         'public',
+        'upload'
     ],
 
     /*
