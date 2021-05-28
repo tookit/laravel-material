@@ -6,9 +6,6 @@ use App\Http\Controllers\Api\Acl\PermissionController;
 use App\Http\Controllers\Api\Acl\RoleController;
 use App\Http\Controllers\Api\Acl\UserController;
 use App\Http\Controllers\Api\Auth\AuthController;
-use App\Http\Controllers\Api\Media\MediaController;
-use App\Http\Controllers\Api\ModuleController;
-use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------

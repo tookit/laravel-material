@@ -1,15 +1,15 @@
 <?php
 
-namespace Module\Media\Http\Controllers\Api;
+namespace Modules\Media\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\QueryBuilder;
 
-use Module\Media\Models\Media as Model;
-use Module\Media\Http\Resources\MediaResource as Resource;
-use Module\Media\Http\Requests\MediaRequest as ValidateRequest;
-use Module\Media\Http\Requests\DirectoryRequest;
+use Modules\Media\Models\Media as Model;
+use Modules\Media\Transformers\MediaResource as Resource;
+use Modules\Media\Http\Requests\MediaRequest as ValidateRequest;
+use Modules\Media\Http\Requests\DirectoryRequest;
 use Spatie\QueryBuilder\AllowedFilter;
 use Plank\Mediable\Facades\MediaUploader;
 use Illuminate\Support\Facades\Storage;

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Modules\Media\Http\Controllers\MediaController;
+use Modules\Media\Http\Controllers\Api\MediaController;
 
 /*
 |--------------------------------------------------------------------------

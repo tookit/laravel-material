@@ -1,6 +1,6 @@
 <?php
 
-namespace Module\Media\Models;
+namespace Modules\Media\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Plank\Mediable\Media as Base;
