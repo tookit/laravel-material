@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Listeners\LogTest;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Http\Events\RequestHandled;
@@ -21,7 +20,6 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         RequestHandled::class => [
-            LogTest::class,
         ]
     ];
 

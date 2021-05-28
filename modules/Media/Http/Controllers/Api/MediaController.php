@@ -1,19 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Api\Media;
+namespace Module\Media\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Media\DirectoryRequest;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\QueryBuilder;
 
-use App\Models\Media as Model;
-use App\Http\Resources\Media\FileResource as Resource;
-use App\Http\Requests\Media\FileRequest as ValidateRequest;
+use Module\Media\Models\Media as Model;
+use Module\Media\Http\Resources\MediaResource as Resource;
+use Module\Media\Http\Requests\MediaRequest as ValidateRequest;
+use Module\Media\Http\Requests\DirectoryRequest;
 use Spatie\QueryBuilder\AllowedFilter;
 use Plank\Mediable\Facades\MediaUploader;
-use Plank\Mediable\SourceAdapters\SourceAdapterInterface;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
 class MediaController extends Controller

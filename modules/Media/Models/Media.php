@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Models;
+namespace Module\Media\Models;
 
-use App\Traits\HasAudit;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Plank\Mediable\Media as Base;
 
@@ -19,10 +18,16 @@ class Media extends Base
 
 
     public $appends = [
-        'basename'
+        'basename',
+        'url'
+
     ];
 
     
+    public function getUrlAttribute()
+    {
+        return $this->getUrl();
+    }
 
     public static function getTableName()
     {
@@ -33,7 +38,6 @@ class Media extends Base
     {
         return static::groupBy('directory')->pluck('directory');
     }
-
 
 
 }

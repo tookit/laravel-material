@@ -16,7 +16,10 @@
         </testsuite>       
         <testsuite name="PMS">
             <directory suffix="Test.php">./modules/PMS/Tests/Unit</directory>
-        </testsuite>              
+        </testsuite>     
+        <testsuite name="Media">
+            <directory suffix="Test.php">./modules/Media/Tests/Feature</directory>
+        </testsuite>                      
     </testsuites>
     <coverage processUncoveredFiles="true">
         <include>

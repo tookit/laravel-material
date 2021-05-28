@@ -43,17 +43,6 @@ Route::middleware(['auth:api'])->group(function () {
     Route::post('me',[UserController::class, 'updateProfile'])->name('self.view');
     //module
 
-    // file
-    Route::prefix('media')->group(function(){
-        Route::get('/',[MediaController::class, 'index'])->name('file.list')->middleware('can:file.list');
-        Route::get('/type',[MediaController::class, 'getTypes'])->name('file.getTypes')->middleware('can:file.getTypes');
-        Route::get('/directory',[MediaController::class, 'getDirectory'])->name('file.getDirectory')->middleware('can:file.getDirectory');
-        Route::post('/directory',[MediaController::class, 'createDirectory'])->name('file.createDirectory')->middleware('can:file.createDirectory');
-        Route::get('/{id}',[MediaController::class, 'show'])->where('id', '[0-9]+')->name('file.view')->middleware('can:file.view');
-        Route::post('/',[MediaController::class, 'store'])->name('file.create')->middleware('can:file.create');
-        Route::delete('/{ids}',[MediaController::class, 'destroy'])->name('file.delete')->middleware('can:file.delete');
-    });
-
 
     // Access control
     Route::prefix('acl')->group(function (){

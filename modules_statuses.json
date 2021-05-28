@@ -1,5 +1,6 @@
 {
     "CMS": true,
     "ACL": true,
-    "PMS": true
+    "PMS": true,
+    "Media": true
 }

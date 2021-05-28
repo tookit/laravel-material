@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources\Media;
+namespace Module\Media\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class FileResource extends JsonResource
+class MediaResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

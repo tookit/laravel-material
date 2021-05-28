@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Module\Media\Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 use Illuminate\Http\UploadedFile;
 
-class FileTest extends TestCase
+class MediaTest extends TestCase
 {
     const ENDPOINT = '/api/media/';
 

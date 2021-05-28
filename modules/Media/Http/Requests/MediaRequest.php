@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Media;
+namespace Module\Media\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DirectoryRequest extends FormRequest
+class MediaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,7 +27,9 @@ class DirectoryRequest extends FormRequest
 
         return [
             
-            'path' => ['required', 'string'],
+            'file' => ['mimes:jpg,bmp,png,webp,xml,json,txt,doc,docx,xls,xlsx','required','file','max:1024'],
+            'disk' => ['nullable', 'string'],
+            'directory' => ['nullable','string']
         ];
 
     }
