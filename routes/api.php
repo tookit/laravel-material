@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\Acl\PermissionController;
 use App\Http\Controllers\Api\Acl\RoleController;
 use App\Http\Controllers\Api\Acl\UserController;
 use App\Http\Controllers\Api\Auth\AuthController;
+use App\Http\Controllers\Api\Media\FileController;
 use App\Http\Controllers\Api\ModuleController;
 use Illuminate\Support\Facades\Auth;
 
@@ -41,7 +42,12 @@ Route::middleware(['auth:api'])->group(function () {
     Route::get('me',[UserController::class, 'getProfile'])->name('self.view');
     Route::post('me',[UserController::class, 'updateProfile'])->name('self.view');
     //module
-    Route::get('module',[ModuleController::class, 'index'])->name('module.list');
+
+    // file
+    Route::prefix('file')->group(function(){
+        Route::get('/',[FileController::class, 'index'])->name('file.list')->middleware('can:file.list');
+        Route::post('/',[FileController::class, 'store'])->name('file.create')->middleware('can:file.create');
+    });
 
 
     // Access control

@@ -6,7 +6,7 @@ return [
      *
      * Should extend `Plank\Mediable\Media`
      */
-    'model' => Plank\Mediable\Media::class,
+    'model' => App\Models\Media::class,
 
     /*
      * Name to be used for mediables joining table

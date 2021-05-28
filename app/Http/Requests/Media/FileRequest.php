@@ -17,10 +17,7 @@ class FileRequest extends FormRequest
     }
 
 
-    public function uniqueIdentifier() {
 
-        return $this->user()->id;
-    }
 
     /**
      * Get the validation rules that apply to the request.
@@ -31,11 +28,8 @@ class FileRequest extends FormRequest
     {
 
         return [
-            'firstname' => ['string', 'nullable'],
-            'lastname' => ['string', 'nullable'],
-            'email' => ['required','email','unique:users,email,'.$this->uniqueIdentifier()],
-            'phone' => ['required','unique:users,phone,'.$this->uniqueIdentifier()],
-            'avatar' => ['url','nullable'],
+            
+            'file' => ['mimes:jpg,bmp,png','required','file']
         ];
 
     }

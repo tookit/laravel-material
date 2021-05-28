@@ -6,10 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\QueryBuilder;
 
-use Plank\Mediable\Media as Model;
+use App\Models\Media as Model;
 use App\Http\Resources\Media\FileResource as Resource;
 use App\Http\Requests\Media\FileRequest as ValidateRequest;
 use Spatie\QueryBuilder\AllowedFilter;
+use Plank\Mediable\Facades\MediaUploader;
 
 
 
@@ -49,14 +50,15 @@ class FileController extends Controller
      */
     public function store(ValidateRequest $request): Resource
     {
-        $item = Model::create($request->validated());
+        $data = $request->validated();
+        $item = MediaUploader::fromSource($data['file'])->upload();
         $resoure = new Resource($item);
          return $resoure
             ->additional(
                  [
                      'meta' =>
                         [
-                             'message' => 'File uploaded',
+                            'message' => 'File uploaded',
                         ]
                  ]
             );
