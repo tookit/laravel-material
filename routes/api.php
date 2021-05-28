@@ -1,10 +1,12 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\Api\Acl\PermissionController;
 use App\Http\Controllers\Api\Acl\RoleController;
 use App\Http\Controllers\Api\Acl\UserController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Auth\AuthController;
+use App\Http\Controllers\Api\ModuleController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -38,6 +40,10 @@ Route::middleware(['auth:api'])->group(function () {
 
     Route::get('me',[UserController::class, 'getProfile'])->name('self.view');
     Route::post('me',[UserController::class, 'updateProfile'])->name('self.view');
+    //module
+    Route::get('module',[ModuleController::class, 'index'])->name('module.list');
+
+
     // Access control
     Route::prefix('acl')->group(function (){
         //User

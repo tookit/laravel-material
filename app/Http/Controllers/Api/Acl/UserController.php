@@ -77,7 +77,7 @@ class UserController extends Controller
                  [
                      'meta' =>
                         [
-                             'message' => 'Profile updated',
+                            'message' => 'Profile updated',
                         ]
                  ]
             );

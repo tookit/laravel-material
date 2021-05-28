@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Models\User;
 use Closure;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Schema;
@@ -11,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Routing\Route;
+use Symfony\Component\Console\Input\InputOption;
 use Illuminate\Routing\Router;
 use ReflectionMethod;
 
@@ -60,7 +60,15 @@ class GenerateDocument extends Command
     public function handle()
     {
 
-        $this->genRoutes();
+        // $this->genRoutes();
+        if($this->option('schema')) {
+            $this->genModels();
+        }
+
+        if($this->option('path')) {
+            $this->genRoutes();
+        }
+
         return 0;
     }
 
@@ -131,8 +139,6 @@ class GenerateDocument extends Command
     }    
 
 
-
-
     /**
      * Get the middleware for the route.
      *
@@ -146,4 +152,18 @@ class GenerateDocument extends Command
         })->implode("\n");
     }
 
+
+
+    /**
+     * Get the console command options.
+     *
+     * @return array
+     */
+    protected function getOptions()
+    {
+        return [
+            ['path', '-p', InputOption::VALUE_NONE, 'Generate path defination'],
+            ['schema', '-s', InputOption::VALUE_NONE, 'Generate schema object defination'],
+        ];
+    }
 }
