@@ -29,7 +29,7 @@ class FileRequest extends FormRequest
 
         return [
             
-            'file' => ['mimes:jpg,bmp,png,webp','required','file'],
+            'file' => ['mimes:jpg,bmp,png,webp','required','file','max:1024'],
             'disk' => ['nullable', 'string'],
             'directory' => ['nullable','string']
         ];

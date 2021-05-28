@@ -12,18 +12,23 @@ class Media extends Base
 
 
     protected $casts = [
+        'created_at' => 'datetime:Y-m-d H:i:s',
+        'updated_at' => 'datetime:Y-m-d H:i:s',
         
     ];
 
+    
 
     public static function getTableName()
     {
         return (new self())->getTable();        
     }
 
-    public static function getResources()
+    public static function getDirectory()
     {
-        return static::groupBy('resource')->pluck('resource');
+        return static::groupBy('directory')->pluck('directory');
     }
+
+
 
 }

@@ -13,9 +13,9 @@ use Spatie\QueryBuilder\AllowedFilter;
 use Plank\Mediable\Facades\MediaUploader;
 use Plank\Mediable\SourceAdapters\SourceAdapterInterface;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 
-
-class FileController extends Controller
+class MediaController extends Controller
 {
     /**
      * Display a listing of files.
@@ -28,7 +28,9 @@ class FileController extends Controller
 
         $builder = QueryBuilder::for(Model::class)
             ->allowedFilters([
-                'name'
+                'name',
+                AllowedFilter::exact('disk'),
+                AllowedFilter::exact('aggregate_type')
             ]);
 
         return Resource::collection(
@@ -40,6 +42,50 @@ class FileController extends Controller
                 $builder->get()
 
         );
+    }
+
+
+    public function createDirectory(Request $request)
+    {
+        $path = $request->get('path');
+        Storage::disk('public')->makeDirectory($path);
+        $resoure = new Resource([]);
+        return $resoure
+           ->additional(
+                [
+                    'meta' =>
+                       [
+                           'message' => 'Directory created',
+                       ]
+                ]
+           );        
+    }
+
+    public function getDirectory()
+    {
+        return new Resource(Model::getDirectory());
+    }
+
+
+    public function getTypes()
+    {
+
+        $collection = collect(config('mediable.aggregate_types'));
+        return new Resource($collection);
+
+    }
+
+
+    /**
+     * Display the specified Media.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id): Resource
+    {
+        $item = Model::findOrFail($id);
+        return new Resource($item);
     }
 
 
@@ -84,6 +130,27 @@ class FileController extends Controller
 
     }
 
+    /**
+     * Remove the specified Post from storage.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($ids)
+    {
+        $items = Model::find($ids);
+        $items->delete();
+        $resource = new Resource([]);
+        return $resource
+        ->additional(
+            [
+                'meta' =>
+                [
+                    'message' => 'Media deleted',
+                ]
+            ]
+        );
+    }    
 
  
 }

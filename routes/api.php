@@ -6,7 +6,7 @@ use App\Http\Controllers\Api\Acl\PermissionController;
 use App\Http\Controllers\Api\Acl\RoleController;
 use App\Http\Controllers\Api\Acl\UserController;
 use App\Http\Controllers\Api\Auth\AuthController;
-use App\Http\Controllers\Api\Media\FileController;
+use App\Http\Controllers\Api\Media\MediaController;
 use App\Http\Controllers\Api\ModuleController;
 use Illuminate\Support\Facades\Auth;
 
@@ -44,9 +44,14 @@ Route::middleware(['auth:api'])->group(function () {
     //module
 
     // file
-    Route::prefix('file')->group(function(){
-        Route::get('/',[FileController::class, 'index'])->name('file.list')->middleware('can:file.list');
-        Route::post('/',[FileController::class, 'store'])->name('file.create')->middleware('can:file.create');
+    Route::prefix('media')->group(function(){
+        Route::get('/',[MediaController::class, 'index'])->name('file.list')->middleware('can:file.list');
+        Route::get('/type',[MediaController::class, 'getTypes'])->name('file.getTypes')->middleware('can:file.getTypes');
+        Route::get('/directory',[MediaController::class, 'getDirectory'])->name('file.getDirectory')->middleware('can:file.getDirectory');
+        Route::post('/directory',[MediaController::class, 'createDirectory'])->name('file.createDirectory')->middleware('can:file.createDirectory');
+        Route::get('/{id}',[MediaController::class, 'show'])->where('id', '[0-9]+')->name('file.view')->middleware('can:file.view');
+        Route::post('/',[MediaController::class, 'store'])->name('file.create')->middleware('can:file.create');
+        Route::delete('/{ids}',[MediaController::class, 'destroy'])->name('file.delete')->middleware('can:file.delete');
     });
 
 
