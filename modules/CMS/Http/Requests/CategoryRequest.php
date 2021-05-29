@@ -20,7 +20,7 @@ class CategoryRequest extends FormRequest
 
     public  function rules()
     {
-        return $this->id ? $this->createRule() : $this->updateRule();
+        return !$this->id ? $this->createRule() : $this->updateRule();
     }
 
     public   function createRule()
@@ -33,7 +33,7 @@ class CategoryRequest extends FormRequest
     public  function updateRule()
     {
         return [
-            'name' => ['string',sprintf('unique_translation:%s,name,', Category::getTableName(), $this->id)],
+            'name' => ['string',sprintf('unique_translation:%s,name,%s', Category::getTableName(), $this->id)],
             'description'=>['nullable','string'],
         ];
     }

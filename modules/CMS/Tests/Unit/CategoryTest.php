@@ -48,6 +48,9 @@ class CategoryTest extends TestCase
     }
 
 
+    /**
+     * @uses update
+     */
     public function testUpdateCategory()
     {
         $item = $this->createUniqueCategory();
