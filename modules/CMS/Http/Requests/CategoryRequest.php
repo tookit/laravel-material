@@ -34,7 +34,7 @@ class CategoryRequest extends FormRequest
     {
         return [
             'name' => ['string',sprintf('unique_translation:%s,name,%s', Category::getTableName(), $this->id)],
-            'description'=>['nullable','string'],
+            'description'=>['nullable', 'string','max:256'],
         ];
     }
 }
