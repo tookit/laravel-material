@@ -17,6 +17,7 @@ class CreateCmsTable extends Migration
             $table->id();
             $table->integer('category_id',false, true)->default(0)->comment('post category');
             $table->string('slug')->unique();
+            $table->string('featured_image')->nullable();
             $table->json('name')->comment('post title');
             $table->json('description')->nullable()->comment('post short description');
             $table->text('body')->nullable();
@@ -27,6 +28,7 @@ class CreateCmsTable extends Migration
         Schema::create('cms_categories', function (Blueprint $table) {
             $table->id();
             $table->string('slug')->unique();
+            $table->string('featured_image')->nullable();
             $table->json('name')->comment('category title');
             $table->json('description')->nullable()->comment('category short description');
             $table->json('body')->nullable();

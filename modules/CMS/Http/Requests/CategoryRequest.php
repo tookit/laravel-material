@@ -28,6 +28,7 @@ class CategoryRequest extends FormRequest
         return [
             'name' => ['required','string', sprintf('unique_translation:%s,name', Category::getTableName())],
             'description'=>['nullable', 'string','max:256'],
+            'featured_image' => ['string','url']
         ];
     }
     public  function updateRule()
@@ -35,6 +36,7 @@ class CategoryRequest extends FormRequest
         return [
             'name' => ['string',sprintf('unique_translation:%s,name,%s', Category::getTableName(), $this->id)],
             'description'=>['nullable', 'string','max:256'],
+            'featured_image' => ['string','url']
         ];
     }
 }

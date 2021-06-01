@@ -31,7 +31,8 @@ class PostRequest extends FormRequest
             'category_id' => ['integer'],
             'status' => ['integer'],
             'body' => ['string', 'nullable'],
-            'tags' => ['array']
+            'tags' => ['array'],
+            'featured_image' => ['string','url']
         ];
     }
     public  function updateRule()
@@ -43,7 +44,8 @@ class PostRequest extends FormRequest
             'category_id' => ['integer'],
             'status' => ['integer'],
             'body' => ['string', 'nullable'],
-            'tags' => ['array']
+            'tags' => ['array'],
+            'featured_image' => ['string','url']
         ];
     }
 }

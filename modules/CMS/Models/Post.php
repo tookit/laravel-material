@@ -20,7 +20,7 @@ class Post extends Model
 
     protected $fillable = [
 
-        'name','description','body','category_id', 'status'
+        'name','description','body','category_id', 'status', 'featured_image'
     ];
 
 
