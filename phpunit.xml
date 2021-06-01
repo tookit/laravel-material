@@ -12,7 +12,7 @@
             <directory suffix="Test.php">./tests/Feature</directory>
         </testsuite>
         <testsuite name="CMS">
-            <directory suffix="Test.php">./modules/CMS/Tests/Unit</directory>
+            <directory suffix="Test.php">./modules/CMS/Tests/Feature</directory>
         </testsuite>       
         <testsuite name="PMS">
             <directory suffix="Test.php">./modules/PMS/Tests/Unit</directory>

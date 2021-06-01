@@ -1,10 +1,11 @@
 <?php
 
-namespace Modules\CMS\Tests\Unit;
+namespace Modules\CMS\Tests\Feature;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Modules\CMS\Models\Category;
 use Modules\CMS\Models\Post;
 
 class PostTest extends TestCase
@@ -12,7 +13,7 @@ class PostTest extends TestCase
 
     const ENDPOINT = '/api/cms/post/';
 
-    public function testViewPost() 
+    public function testView() 
     {
         $item = $this->createUniquePost();
         $response = $this->actingAs($this->makeAdmin(), 'api')->getJson(self::ENDPOINT.$item->id);
@@ -22,9 +23,10 @@ class PostTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function testCreatePost()
+    public function testCreate()
     {
-        $item = Post::factory()->make()->toArray();
+        $category = $this->createCategory();
+        $item = Post::factory()->make(['category_id' => $category->id])->toArray();
         $response = $this->actingAs($this->makeAdmin(), 'api')->postJson(self::ENDPOINT, $item);
         $response->assertStatus(201);
     }
@@ -46,6 +48,15 @@ class PostTest extends TestCase
         $response->assertStatus(422);
 
     }
+
+    public function testUrlRule()
+    {
+        $data = Post::factory()->make(['featured_image'=> 'invalid url'])->toArray();
+        $response = $this->actingAs($this->makeAdmin(), 'api')->postJson(self::ENDPOINT, $data);
+        $response->assertStatus(422);
+
+    }
+    
 
 
     public function testUpdatePost()
@@ -75,6 +86,12 @@ class PostTest extends TestCase
     {
         return Post::factory()->create();
     }
+
+    protected function createCategory()
+    {
+        return Category::factory()->create();
+    }
+
 
 
 }

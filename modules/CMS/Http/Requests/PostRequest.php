@@ -3,6 +3,7 @@
 namespace Modules\CMS\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Modules\CMS\Models\Category;
 use Modules\CMS\Models\Post;
 
 class PostRequest extends FormRequest
@@ -28,7 +29,7 @@ class PostRequest extends FormRequest
         return [
             'name' => ['required', 'string', sprintf('unique_translation:%s,name', Post::getTableName())],
             'description' => ['nullable', 'string', 'max:256'],
-            'category_id' => ['integer'],
+            'category_id' => ['integer', sprintf('exists:%s,id', Category::getTableName())],
             'status' => ['integer'],
             'body' => ['string', 'nullable'],
             'tags' => ['array'],

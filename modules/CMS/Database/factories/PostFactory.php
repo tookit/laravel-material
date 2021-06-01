@@ -22,7 +22,8 @@ class PostFactory extends Factory
         return [
             'name' => $this->faker->word(),
             'description' => $this->faker->sentence(),
-            'category_id' => $this->faker->randomDigit
+            'category_id' => $this->faker->randomDigit,
+            'featured_image' => $this->faker->imageUrl()
         ];
     }
 }
