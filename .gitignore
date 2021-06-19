@@ -6,6 +6,7 @@ nbproject
 
 /node_modules
 /.idea
+/.vscode
 Homestead.json
 Homestead.yaml
 .env

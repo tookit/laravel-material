@@ -38,8 +38,10 @@ Route::middleware(['auth:api'])->group(function () {
 
     Route::get('me',[UserController::class, 'getProfile'])->name('self.view');
     Route::post('me',[UserController::class, 'updateProfile'])->name('self.view');
-    //module
 
+    Route::post('translation',[TranslationController::class, 'index'])->name('trans');
+    Route::get('translation/instance',[TranslationController::class, 'getFieldTranslation'])->name('trans.instance.get');
+    Route::put('translation/instance',[TranslationController::class, 'getFieldTranslation'])->name('trans.instance.set');
 
     // Access control
     Route::prefix('acl')->group(function (){
