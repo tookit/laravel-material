@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\Acl\PermissionController;
 use App\Http\Controllers\Api\Acl\RoleController;
 use App\Http\Controllers\Api\Acl\UserController;
 use App\Http\Controllers\Api\Auth\AuthController;
+use App\Http\Controllers\Api\TranslationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,8 +41,8 @@ Route::middleware(['auth:api'])->group(function () {
     Route::post('me',[UserController::class, 'updateProfile'])->name('self.view');
 
     Route::post('translation',[TranslationController::class, 'index'])->name('trans');
-    Route::get('translation/instance',[TranslationController::class, 'getFieldTranslation'])->name('trans.instance.get');
-    Route::put('translation/instance',[TranslationController::class, 'getFieldTranslation'])->name('trans.instance.set');
+    Route::get('translation/field',[TranslationController::class, 'getFieldTranslation'])->name('trans.field.get');
+    Route::put('translation/field',[TranslationController::class, 'getFieldTranslation'])->name('trans.field.set');
 
     // Access control
     Route::prefix('acl')->group(function (){
