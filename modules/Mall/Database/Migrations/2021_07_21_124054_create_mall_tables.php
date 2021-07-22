@@ -30,6 +30,11 @@ class CreateMallTables extends Migration
             $table->timestamps();
         });
 
+        Schema::create('mall_category_has_items', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('mall_category_id')->default(0);
+            $table->integer('mall_item_id')->default(0);
+        });
         # product items // spus
         Schema::create('mall_items', function (Blueprint $table) {
             $table->increments('id');
@@ -52,20 +57,14 @@ class CreateMallTables extends Migration
             $table->increments('id');
             $table->integer('mall_spu_id')->default(0);
             $table->json('body')->nullable();
-            $table->json('generic_specs')->nullable()->comment('Generic specs|[<{spec_id:spec_value}>]');
-            $table->json('special_specs')->nullable()->comment('Speical specs|[<{spec_id:spec_value}>]');
+            $table->json('generic_specs')->nullable()->comment('Generic specs|[<{spec_id:[...spec_value]}>]');
+            $table->json('special_specs')->nullable()->comment('Speical specs|[<{spec_id:[...spec_value]}>]');
             $table->json('packing')->nullable();
             $table->json('after_service')->nullable();
             $table->integer('created_by')->unsigned()->default(0);
             $table->integer('updated_by')->unsigned()->default(0);
             $table->softDeletes();
             $table->timestamps();
-        });
-
-        Schema::create('mall_category_has_items', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('mall_category_id')->default(0);
-            $table->integer('mall_item_id')->default(0);
         });
 
         # brands
@@ -111,16 +110,16 @@ class CreateMallTables extends Migration
         });
 
         # skus
-        Schema::create('mall_stocks', function (Blueprint $table) {
+        Schema::create('mall_item_skus', function (Blueprint $table) {
             $table->increments('id');
             $table->string('sku_code');
             $table->integer('mall_item_id')->default(0);
-            $table->json('title')->comment('Product title');
+            $table->json('title')->comment('Product sku title');
             $table->integer('stock')->default(0);
             $table->bigint('price')->default(0);
             $table->bigint('promote_price')->default(0);
-            $table->string('indexes')->nullable();
-            $table->json('own_specs')->nullable()->comment('Speical specs|{spec_id:[spec_value...]}');
+            $table->string('indexes')->nullable()->comment('product value index | 1_1_1');
+            $table->json('specs')->nullable()->comment('Speical specs|[{ spec_id:spec_value }]');
             $table->boolean('distributed')->default(false);
             $table->integer('created_by')->unsigned()->default(0);
             $table->integer('updated_by')->unsigned()->default(0);
@@ -128,16 +127,30 @@ class CreateMallTables extends Migration
             $table->timestamps();
         });
 
-
+        # generica properties
         Schema::create('mall_item_has_specs', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('mall_item_id');
-            $table->integer('mall_property_value_id')->default(0);
+            $table->integer('mall_property_value_id');
             $table->timestamps();
         });
 
+        # sku properties
+        Schema::create('mall_sku_has_specs', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('mall_item_id')->comment('duplicated');
+            $table->integer('mall_item_sku_id');
+            $table->integer('mall_property_value_id');
+            $table->timestamps();
+        });
 
-
+        #category property template
+        Schema::create('mall_category_has_specs', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('mall_category_id');
+            $table->integer('mall_property_value_id');
+            $table->timestamps();
+        });
 
 
 
@@ -151,14 +164,16 @@ class CreateMallTables extends Migration
     public function down()
     {
         Schema::dropIfExists('mall_categories');
+        Schema::dropIfExists('mall_category_has_items');
         Schema::dropIfExists('mall_items');
         Schema::dropIfExists('mall_item_details');
-        Schema::dropIfExists('mall_category_has_items');
         Schema::dropIfExists('mall_brands');
         Schema::dropIfExists('mall_property_groups');
         Schema::dropIfExists('mall_properties');
         Schema::dropIfExists('mall_property_values');
-        Schema::dropIfExists('mall_stocks');
+        Schema::dropIfExists('mall_item_skus');
         Schema::dropIfExists('mall_item_has_specs');
+        Schema::dropIfExists('mall_sku_has_specs');
+        Schema::dropIfExists('mall_category_has_specs');
     }
 }
