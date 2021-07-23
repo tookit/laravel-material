@@ -12,7 +12,6 @@ use App\Http\Resources\Acl\RoleResource as Resource;
 use App\Http\Requests\Acl\RoleRequest as ValidateRequest;
 use App\Http\Requests\Acl\PermissionAttachRequest;
 use App\Http\Requests\Acl\UserAttachRequest;
-use Spatie\QueryBuilder\AllowedFilter;
 
 
 
@@ -125,8 +124,8 @@ class RoleController extends Controller
     public function attachPermission(PermissionAttachRequest $request, $id)
     {
         $item = Model::findOrFail($id);
-        $ids = $request->validated();
-        $permissions = Permission::find($ids);
+        $data = $request->validated();
+        $permissions = Permission::find($data['ids']);
         $item->syncPermissions($permissions);
         return new Resource($item);
     }    
