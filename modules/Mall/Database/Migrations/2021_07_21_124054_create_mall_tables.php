@@ -42,7 +42,7 @@ class CreateMallTables extends Migration
             $table->integer('mall_brand_id')->default(0)->comment('duplicated');
             $table->string('slug')->unique();
             $table->json('name')->comment('Product name');
-            $table->json('speical_title')->nullable()->comment('Product title for promotion');
+            $table->json('promotion_title')->nullable()->comment('Product title for promotion');
             $table->json('description')->comment('Product description');
             $table->string('alias')->nullable()->comment('Product alias name');
             $table->string('keywords')->nullable()->comment('Product keywords');
@@ -116,8 +116,8 @@ class CreateMallTables extends Migration
             $table->integer('mall_item_id')->default(0);
             $table->json('title')->comment('Product sku title');
             $table->integer('stock')->default(0);
-            $table->bigint('price')->default(0);
-            $table->bigint('promote_price')->default(0);
+            $table->bigInteger('price')->default(0);
+            $table->bigInteger('promote_price')->default(0);
             $table->string('indexes')->nullable()->comment('product value index | 1_1_1');
             $table->json('specs')->nullable()->comment('Speical specs|[{ spec_id:spec_value }]');
             $table->boolean('distributed')->default(false);
