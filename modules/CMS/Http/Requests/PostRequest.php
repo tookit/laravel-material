@@ -36,6 +36,7 @@ class PostRequest extends FormRequest
             'featured_image' => ['string','url']
         ];
     }
+    
     public  function updateRule()
     {
 

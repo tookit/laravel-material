@@ -6,28 +6,26 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Traits\HasTranslations;
 use App\Traits\HasStatus;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\Tags\HasTags;
 
-class Item extends Model
+class Brand extends Model
 {
     use HasFactory, HasTranslations, HasSlug, HasStatus, HasTags;
 
 
-    protected $table = 'mall_items';
+    protected $table = 'mall_brands';
 
     protected $fillable = [
 
-        'name','description','promotion_title',
-        'mall_category_id', 'mall_brand_id', 'flag'
+        'name','description',
     ];
 
 
     public $translatable = [
 
-        'name', 'description', 'promotion_title'
+        'name', 'description',
     ];
 
     protected $casts = [
@@ -63,22 +61,6 @@ class Item extends Model
             ->saveSlugsTo('slug');        
     }
 
-
-    /**
-     * Brand relation
-     */
-    public function brand(): BelongsTo
-    {
-        return $this->belongsTo(Brand::class);
-    }
-
-    /**
-     * Category Relation
-     */
-    public function category(): BelongsTo
-    {
-        return $this->belongsTo(Category::class);
-    }
 
 
 

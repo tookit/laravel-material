@@ -39,7 +39,7 @@ class CreateMallTables extends Migration
         Schema::create('mall_items', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('mall_category_id')->default(0);
-            $table->integer('mall_brand_id')->default(0)->comment('duplicated');
+            $table->integer('mall_brand_id')->default(0)->comment('brand id');
             $table->string('slug')->unique();
             $table->json('name')->comment('Product name');
             $table->json('promotion_title')->nullable()->comment('Product title for promotion');
