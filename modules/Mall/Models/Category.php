@@ -69,7 +69,7 @@ class Category extends Model
         return $this->hasMany(Item::class);
     }
 
-        /**
+    /**
      * factory 
      */
     protected static function newFactory() : CategoryFactory

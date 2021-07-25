@@ -7,18 +7,18 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\QueryBuilder;
 
-use Modules\Mall\Models\Category as Model;
-use Modules\Mall\Transformers\Category as Resource;
-use Modules\Mall\Http\Requests\CategoryRequest as ValidateRequest;
+use Modules\Mall\Models\Brand as Model;
+use Modules\Mall\Transformers\Brand as Resource;
+use Modules\Mall\Http\Requests\BrandRequest as ValidateRequest;
 use Spatie\QueryBuilder\AllowedFilter;
 use Illuminate\Support\Str;
 
 
 
-class CategoryController extends Controller
+class BrandController extends Controller
 {
 
-    const RESOURCE = "Mall Category";
+    const RESOURCE = "Brand";
 
     /**
      * Display a listing of resource.

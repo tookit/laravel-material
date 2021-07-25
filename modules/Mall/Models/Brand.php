@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Traits\HasTranslations;
 use App\Traits\HasStatus;
+use Modules\Mall\Database\factories\BrandFactory;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\Tags\HasTags;
@@ -61,6 +62,13 @@ class Brand extends Model
             ->saveSlugsTo('slug');        
     }
 
+    /**
+     * factory 
+     */
+    protected static function newFactory() : BrandFactory
+    {
+        return BrandFactory::new();
+    }
 
 
 
