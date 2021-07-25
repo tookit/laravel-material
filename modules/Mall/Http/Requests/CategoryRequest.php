@@ -3,7 +3,7 @@
 namespace Modules\Mall\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Modules\Mall\Models\Item;
+use Modules\Mall\Models\Category;
 
 class CategoryRequest extends FormRequest
 {
@@ -33,8 +33,9 @@ class CategoryRequest extends FormRequest
     public   function createRule()
     {
         return [
-            'name' => ['required', 'string', sprintf('unique_translation:%s,name', Item::getTableName())],
+            'name' => ['required', 'string', sprintf('unique_translation:%s,name', Category::getTableName())],
             'description' => ['nullable', 'string', 'max:256'],
+            'parent_id' => ['integer', 'nullable'],
             'flag' => ['integer'],
         ];
     }
@@ -43,8 +44,9 @@ class CategoryRequest extends FormRequest
     {
 
         return [
-            'name' => ['string',  sprintf('unique_translation:%s,name, %s', Item::getTableName(), $this->id)],
+            'name' => ['string',  sprintf('unique_translation:%s,name, %s', Category::getTableName(), $this->id)],
             'description' => ['nullable', 'string', 'max:256'],
+            'parent_id' => ['integer', 'nullable'],
             'flag' => ['integer'],
         ];
     }
