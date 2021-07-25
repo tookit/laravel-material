@@ -9,17 +9,19 @@ use App\Traits\HasStatus;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\Tags\HasTags;
+use Kalnoy\Nestedset\NodeTrait;
+use Modules\Mall\Database\factories\CategoryFactory;
 
 class Category extends Model
 {
-    use HasFactory, HasTranslations, HasSlug, HasStatus, HasTags;
+    use HasFactory, HasTranslations, HasSlug, HasStatus, HasTags, NodeTrait;
 
 
     protected $table = 'mall_categories';
 
     protected $fillable = [
 
-        'name','description',
+        'name','description','parent_id'
     ];
 
 
@@ -51,7 +53,7 @@ class Category extends Model
     }
 
     /**
-     * 
+     *  generate slug from name
      */
 
     public function getSlugOptions(): SlugOptions
@@ -61,6 +63,19 @@ class Category extends Model
             ->saveSlugsTo('slug');        
     }
 
+
+    public function items()
+    {
+        return $this->hasMany(Item::class);
+    }
+
+        /**
+     * factory 
+     */
+    protected static function newFactory() : CategoryFactory
+    {
+        return CategoryFactory::new();
+    }
 
 
 

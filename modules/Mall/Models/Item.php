@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\Tags\HasTags;
+use Modules\Mall\Database\factories\ItemFactory;
 
 class Item extends Model
 {
@@ -80,6 +81,12 @@ class Item extends Model
         return $this->belongsTo(Category::class);
     }
 
-
+    /**
+     * factory 
+     */
+    protected static function newFactory() : ItemFactory
+    {
+        return ItemFactory::new();
+    }
 
 }

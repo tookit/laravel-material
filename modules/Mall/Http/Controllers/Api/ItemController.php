@@ -14,8 +14,11 @@ use Spatie\QueryBuilder\AllowedFilter;
 
 
 
-class ProjectController extends Controller
+class ItemController extends Controller
 {
+
+    const RESOURCE = "Mall Item";
+
     /**
      * Display a listing of resource.
      *
@@ -57,7 +60,7 @@ class ProjectController extends Controller
                 [
                     'meta' =>
                     [
-                        'message' => 'Item created',
+                        'message' => sprintf('%s created', self::RESOURCE)
                     ]
                 ]
             );
@@ -94,7 +97,7 @@ class ProjectController extends Controller
                 [
                     'meta' =>
                     [
-                        'message' => 'Item updated',
+                        'message' => sprintf('%s updated', self::RESOURCE)
                     ]
                 ]
             );
@@ -116,7 +119,7 @@ class ProjectController extends Controller
             [
                 'meta' =>
                 [
-                    'message' => 'Item deleted',
+                    'message' => sprintf('%s deleted', self::RESOURCE)
                 ]
             ]
         );
