@@ -55,6 +55,14 @@ class BrandTest extends TestCase
     }
 
 
+    public function testUrlRule()
+    {
+        $item = Brand::factory()->make(['url' => 'invalid url']);
+        $response = $this->actingAs($this->makeAdmin(), 'api')->postJson(self::ENDPOINT, $item->toArray());
+        $response->assertStatus(422);
+
+    }
+
 
     public function testUpdate()
     {

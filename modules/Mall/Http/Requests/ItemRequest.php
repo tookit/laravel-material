@@ -3,6 +3,9 @@
 namespace Modules\Mall\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use BenSampo\Enum\Rules\EnumKey;
+use BenSampo\Enum\Rules\EnumValue;
+use Modules\Mall\Enums\ProductFlag;
 use Modules\Mall\Models\Item;
 use Modules\Mall\Models\Category;
 use Modules\Mall\Models\Brand;
@@ -40,7 +43,7 @@ class ItemRequest extends FormRequest
             'promotion_title' => ['nullable', 'string', 'max:256'],
             'mall_category_id' => ['integer', sprintf('exists:%s,id', Category::getTableName())],
             'mall_brand_id' => ['integer', sprintf('exists:%s,id', Brand::getTableName())],
-            'flag' => ['integer'],
+            'flag' => ['integer', new EnumValue(ProductFlag::class)],
             'tags' => ['array'],
         ];
     }
@@ -54,7 +57,7 @@ class ItemRequest extends FormRequest
             'promotion_title' => ['nullable', 'string', 'max:256'],
             'mall_category_id' => ['integer', sprintf('exists:%s,id', Category::getTableName())],
             'mall_brand_id' => ['integer', sprintf('exists:%s,id', Brand::getTableName())],
-            'flag' => ['integer'],
+            'flag' => ['integer', new EnumValue(ProductFlag::class)],
             'tags' => ['array'],
         ];
     }

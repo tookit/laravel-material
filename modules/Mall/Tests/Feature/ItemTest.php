@@ -40,14 +40,22 @@ class ItemTest extends TestCase
 
     }
 
+    public function testInvalidFlag()
+    {
+        $item = Item::factory()->make(['flag'=> ''])->toArray();
+        $response = $this->actingAs($this->makeAdmin(), 'api')->postJson(self::ENDPOINT, $item);
+        $response->assertStatus(422);
+
+    }
+
     public function testUniqueRule()
     {
         $item = $this->createUniqueItem();
         $data = Item::factory()->make(['name'=> $item->name])->toArray();
         $response = $this->actingAs($this->makeAdmin(), 'api')->postJson(self::ENDPOINT, $data);
         $response->assertStatus(422);
-
     }
+
 
 
 
