@@ -5,6 +5,7 @@ namespace Modules\Mall\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Modules\Mall\Http\Requests\DetailRequest;
 use Spatie\QueryBuilder\QueryBuilder;
 
 use Modules\Mall\Models\Item as Model;
@@ -66,6 +67,7 @@ class ItemController extends Controller
             );
     }
 
+
     /**
      * Display the specified resource.
      *
@@ -102,6 +104,35 @@ class ItemController extends Controller
                 ]
             );
     }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  DetailRequest $request
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateDetail(DetailRequest $request, $id)
+    {
+        $item = Model::findOrFail($id);
+        $data = $request->validated();
+        if($item->detail) {
+            $item->detail()->save($data);
+        }else {
+            $item->detail()->create($data);
+        }
+        $resource = new Resource($item);
+        return $resource
+            ->additional(
+                [
+                    'meta' =>
+                    [
+                        'message' => sprintf('%s detail saved', self::RESOURCE)
+                    ]
+                ]
+            );
+    }
+
 
     /**
      * Remove the specified resource from storage.

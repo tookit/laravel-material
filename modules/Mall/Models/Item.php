@@ -81,6 +81,12 @@ class Item extends Model
         return $this->belongsTo(Category::class);
     }
 
+
+    public function detail()
+    {
+        return $this->hasOne(ItemDetail::class);
+    }
+
     /**
      * factory 
      */

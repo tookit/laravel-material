@@ -55,7 +55,7 @@ class CreateMallTables extends Migration
 
         Schema::create('mall_item_details', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('mall_spu_id')->default(0);
+            $table->integer('mall_item_id')->default(0);
             $table->json('body')->nullable();
             $table->json('generic_specs')->nullable()->comment('Generic specs|[<{spec_id:[...spec_value]}>]');
             $table->json('special_specs')->nullable()->comment('Speical specs|[<{spec_id:[...spec_value]}>]');

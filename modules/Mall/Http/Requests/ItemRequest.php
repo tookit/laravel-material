@@ -44,6 +44,7 @@ class ItemRequest extends FormRequest
             'mall_category_id' => ['integer', sprintf('exists:%s,id', Category::getTableName())],
             'mall_brand_id' => ['integer', sprintf('exists:%s,id', Brand::getTableName())],
             'flag' => ['integer', new EnumValue(ProductFlag::class)],
+            'keywords' => ['string','nullable'],
             'tags' => ['array'],
         ];
     }
@@ -58,6 +59,7 @@ class ItemRequest extends FormRequest
             'mall_category_id' => ['integer', sprintf('exists:%s,id', Category::getTableName())],
             'mall_brand_id' => ['integer', sprintf('exists:%s,id', Brand::getTableName())],
             'flag' => ['integer', new EnumValue(ProductFlag::class)],
+            'keywords' => ['string','nullable'],
             'tags' => ['array'],
         ];
     }
