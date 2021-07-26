@@ -5,24 +5,23 @@ namespace Modules\Mall\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Traits\HasTranslations;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class ItemDetail extends Model
+class Group extends Model
 {
-    use HasFactory, HasTranslations;
+    use HasFactory, HasTranslations ;
 
 
-    protected $table = 'mall_item_detail';
+    protected $table = 'mall_property_groups';
 
     protected $fillable = [
 
-        'body','package','after_service','mall_item_id'
+        'name',
     ];
 
 
     public $translatable = [
 
-        'body','package','after_service',
+        'name',
     ];
 
     protected $casts = [
@@ -47,10 +46,7 @@ class ItemDetail extends Model
 
     }
 
-    public function item(): BelongsTo
-    {
-        return $this->belongsTo(Item::class);
-    }
+
 
 
 }
