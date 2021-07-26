@@ -40,8 +40,14 @@ class Item extends Model
     {
         return (new self())->getTable();        
     }
-        
     
+    /**
+     * 
+     */
+    public function properties()
+    {
+        return $this->belongsToMany(Value::class);
+    }
 
     /**
      * The "booted" method of the model.
