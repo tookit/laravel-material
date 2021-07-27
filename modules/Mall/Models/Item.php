@@ -42,7 +42,7 @@ class Item extends Model
     }
     
     /**
-     * 
+     * all properties
      */
     public function properties()
     {

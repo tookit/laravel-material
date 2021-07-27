@@ -80,6 +80,34 @@ class Property extends Model
 
 
     /**
+     * @param array|\ArrayAccess
+     *
+     * @return \Illuminate\Suppport\Collection
+     */
+    public function attachValues($values)
+    {
+        $values = collect($values)->map(function($item) {
+            $item = $this->attachValue($item);
+            return $item;
+        });
+        return $values;
+    }
+
+    /**
+     * @param string|\Modules\Mall\Models\Value $value
+     *
+     * @return $this
+     */
+    public function attachValue($value)
+    {
+        $value = is_object($value) 
+        ? $value 
+        : Value::updateOrCreate(['value' => $value, 'mall_property_id'=>$this->id],['value' => $value, 'mall_property_id'=>$this->id]);
+        $this->values()->saveMany([$value]);
+        return $value;
+    }
+
+    /**
      * factory 
      */
     protected static function newFactory() : PropertyFactory
