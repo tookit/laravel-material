@@ -28,7 +28,7 @@ class PropertyTest extends TestCase
         $property = Property::factory()->make();
         $data = [
             'name' => $property->name,
-            'value' => ['test']
+            'values' => ['test']
         ];
         $response = $this->actingAs($this->makeAdmin(), 'api')->postJson(self::ENDPOINT, $data);
         $response->assertStatus(201);
@@ -37,7 +37,7 @@ class PropertyTest extends TestCase
 
     public function testCreateFailed()
     {
-        $item = Item::factory()->make(['name'=> ''])->toArray();
+        $item = Property::factory()->make(['name'=> ''])->toArray();
         $response = $this->actingAs($this->makeAdmin(), 'api')->postJson(self::ENDPOINT, $item);
         $response->assertStatus(422);
 
@@ -48,7 +48,7 @@ class PropertyTest extends TestCase
     public function testUniqueRule()
     {
         $item = $this->createUniqueItem();
-        $data = Item::factory()->make(['name'=> $item->name])->toArray();
+        $data = Property::factory()->make(['name'=> $item->name])->toArray();
         $response = $this->actingAs($this->makeAdmin(), 'api')->postJson(self::ENDPOINT, $data);
         $response->assertStatus(422);
     }
@@ -79,13 +79,9 @@ class PropertyTest extends TestCase
 
     protected function createUniqueItem()
     {
-        return Item::factory()->create();
-    }
-
-    protected function createProperty()
-    {
         return Property::factory()->create();
     }
+
 
 
 }

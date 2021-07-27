@@ -75,7 +75,7 @@ class Property extends Model
 
     public function values()
     {
-        return $this->hasMany(Value::class);
+        return $this->hasMany(Value::class, 'mall_property_id');
     }
 
 

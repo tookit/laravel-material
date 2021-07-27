@@ -5,13 +5,13 @@ namespace Modules\Mall\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
+use Modules\Mall\Models\Property as Model;
+use Modules\Mall\Transformers\Property as Resource;
+use Modules\Mall\Http\Requests\PropertyRequest as ValidateRequest;
 use Spatie\QueryBuilder\QueryBuilder;
-
-use Modules\Mall\Models\Item as Model;
-use Modules\Mall\Transformers\Item as Resource;
-use Modules\Mall\Http\Requests\ItemRequest as ValidateRequest;
 use Spatie\QueryBuilder\AllowedFilter;
-
+use Illuminate\Support\Str;
 
 
 class PropertyController extends Controller
@@ -121,9 +121,9 @@ class PropertyController extends Controller
      */
     public function destroy($ids)
     {
-        $item = Model::find($ids);
-        $item->delete();
-        $resource = new Resource($item);
+        $ids = Str::of($ids)->explode(',')->toArray();
+        Model::whereIn('id', $ids)->delete();
+        $resource = new Resource([]);
         return $resource
         ->additional(
             [

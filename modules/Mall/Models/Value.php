@@ -6,13 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Traits\HasTranslations;
 use Modules\Mall\Database\factories\ValueFactory;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 /**
  * Property value
  */
 class Value extends Model
 {
-    use HasFactory, HasTranslations;
+    use HasFactory, HasTranslations, HasSlug;
 
 
     protected $table = 'mall_property_values';
@@ -48,7 +50,17 @@ class Value extends Model
         return (new self())->getTable();        
     }
         
-    
+    /**
+     * 
+     */
+
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom(['mall_property_id','value'])
+            ->saveSlugsTo('slug');        
+    }
+
 
     /**
      * The "booted" method of the model.

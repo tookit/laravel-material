@@ -39,9 +39,9 @@ class PropertyRequest extends FormRequest
             'mall_category_id' => ['integer', sprintf('exists:%s,id', Category::getTableName()), 'nullable'],
             'mall_group_id' => ['integer', sprintf('exists:%s,id', Group::getTableName()), 'nullable'],
             'values' => ['array', 'nullable'],
-            'generic' => ['boolean', 'required'],
-            'searchable' => ['boolean', 'required'],
-            'is_numeric' => ['boolean', 'required'],
+            'generic' => ['boolean'],
+            'searchable' => ['boolean'],
+            'is_numeric' => ['boolean'],
             'unit' => ['string', 'nullable'],
             'segments' => ['array', 'nullable']
         ];
@@ -55,9 +55,9 @@ class PropertyRequest extends FormRequest
             'mall_category_id' => ['integer', sprintf('exists:%s,id', Category::getTableName()), 'nullable'],
             'mall_group_id' => ['integer', sprintf('exists:%s,id', Group::getTableName()), 'nullable'],
             'values' => ['array', 'nullable'],
-            'generic' => ['boolean', 'required'],
-            'searchable' => ['boolean', 'required'],
-            'is_numeric' => ['boolean', 'required'],
+            'generic' => ['boolean'],
+            'searchable' => ['boolean'],
+            'is_numeric' => ['boolean'],
             'unit' => ['string', 'nullable'],
             'segments' => ['array', 'nullable']
         ];

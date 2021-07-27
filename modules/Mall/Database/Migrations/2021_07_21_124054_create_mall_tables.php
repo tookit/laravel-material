@@ -93,6 +93,7 @@ class CreateMallTables extends Migration
             $table->integer('mall_category_id')->default(0);
             $table->integer('mall_property_group_id')->default(0);
             $table->json('name')->comment('Product property name');
+            $table->string('slug')->unique();
             $table->boolean('generic')->default(false)->comment('true:SKU|false:SPU');
             $table->boolean('is_numeric')->default(false);
             $table->boolean('searchable')->default(false);
@@ -105,6 +106,7 @@ class CreateMallTables extends Migration
         Schema::create('mall_property_values', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('mall_property_id')->default(0);
+            $table->string('slug')->unique();
             $table->json('value')->comment('Product property value');
             $table->timestamps();
         });
