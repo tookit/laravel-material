@@ -79,6 +79,18 @@ class CategoryTest extends TestCase
     }
 
 
+    public function testAttachProperty()
+    {
+        $item = $this->createUniqueItem();
+        $data = [
+            'names' => ['test'],
+        ];
+        $response = $this->actingAs($this->makeAdmin(), 'api')->putJson(self::ENDPOINT.$item->id.'/property',$data);
+        $response->assertStatus(200);
+
+    }
+
+
     protected function createUniqueItem()
     {
         return Category::factory()->create();

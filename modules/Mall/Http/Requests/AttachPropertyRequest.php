@@ -4,7 +4,7 @@ namespace Modules\Mall\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AttachValueRequest extends FormRequest
+class AttachPropertyRequest extends FormRequest
 {
 
 
@@ -27,8 +27,7 @@ class AttachValueRequest extends FormRequest
     public  function rules()
     {
         return [
-            'name' => ['required','string'],
-            'values' => ['array'],
+            'names' => ['required', 'array'],
         ];
     }
 

@@ -35,8 +35,9 @@ Route::middleware(['auth:api'])->group(function () {
         
         Route::get('/',[CategoryController::class, 'index'])->name('mall.category.index')->middleware(['can:mall.category.list']);
         Route::post('/',[CategoryController::class, 'store'])->name('mall.category.create')->middleware(['can:mall.category.create']);
-        Route::get('/{id}',[CategoryController::class, 'show'])->where('id', '[0-9]+')->name('mall.category.view')->middleware(['can:mall.category.view']);
-        Route::put('/{id}',[CategoryController::class, 'update'])->where('id', '[0-9]+')->name('mall.category.edit')->middleware(['can:mall.category.update']);
+        Route::get('/{id}',[CategoryController::class, 'show'])->name('mall.category.view')->middleware(['can:mall.category.view'])->where('id', '[0-9]+');
+        Route::put('/{id}',[CategoryController::class, 'update'])->name('mall.category.edit')->middleware(['can:mall.category.update'])->where('id', '[0-9]+');
+        Route::put('/{id}/property',[CategoryController::class, 'attachProperty'])->name('mall.category.attachProperty')->middleware(['can:mall.category.attachProperty'])->where('id', '[0-9]+');
         Route::delete('/{ids}',[CategoryController::class, 'destroy'])->name('mall.category.delete')->middleware(['can:mall.category.delete']);    
 
     });

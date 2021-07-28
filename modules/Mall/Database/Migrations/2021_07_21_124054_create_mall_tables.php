@@ -147,10 +147,10 @@ class CreateMallTables extends Migration
         });
 
         #category property template
-        Schema::create('mall_category_has_specs', function (Blueprint $table) {
+        Schema::create('mall_category_has_properties', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('mall_category_id');
-            $table->integer('mall_property_value_id');
+            $table->integer('mall_property_id');
             $table->timestamps();
         });
 
@@ -176,6 +176,6 @@ class CreateMallTables extends Migration
         Schema::dropIfExists('mall_item_skus');
         Schema::dropIfExists('mall_item_has_specs');
         Schema::dropIfExists('mall_sku_has_specs');
-        Schema::dropIfExists('mall_category_has_specs');
+        Schema::dropIfExists('mall_category_has_properties');
     }
 }

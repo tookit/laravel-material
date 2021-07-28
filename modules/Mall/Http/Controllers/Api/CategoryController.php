@@ -12,8 +12,7 @@ use Modules\Mall\Transformers\Category as Resource;
 use Modules\Mall\Http\Requests\CategoryRequest as ValidateRequest;
 use Spatie\QueryBuilder\AllowedFilter;
 use Illuminate\Support\Str;
-
-
+use Modules\Mall\Http\Requests\AttachPropertyRequest;
 
 class CategoryController extends Controller
 {
@@ -121,6 +120,32 @@ class CategoryController extends Controller
                 'meta' =>
                 [
                     'message' => sprintf('%s deleted', self::RESOURCE)
+                ]
+            ]
+        );
+    }
+
+    /**
+     * Attach Property for a category
+     * {
+     *   names: []
+     * }
+     *
+     * @param  mix $id
+     * @return \Illuminate\Http\Response
+     */
+    public function attachProperty($id, AttachPropertyRequest $request)
+    {
+        $item = Model::find($id);
+        $data = $request->validated();
+        $item->attachProperties($data['names']);
+        $resource = new Resource($item);
+        return $resource
+        ->additional(
+            [
+                'meta' =>
+                [
+                    'message' => sprintf('%s propety attached', self::RESOURCE)
                 ]
             ]
         );

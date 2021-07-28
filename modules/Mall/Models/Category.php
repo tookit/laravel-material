@@ -69,6 +69,38 @@ class Category extends Model
         return $this->hasMany(Item::class);
     }
 
+    public function properties()
+    {
+        return $this->belongsToMany(Property::class, 'mall_category_has_properties', 'mall_category_id', 'mall_property_id');
+    }
+
+    /**
+     * @param array|\ArrayAccess
+     *
+     * @return \Illuminate\Suppport\Collection
+     */
+    public function attachProperties($names)
+    {
+        $collection = collect($names)->map(function($item) {
+            $item = $this->attachProperty($item);
+            return $item;
+        });
+        return $collection;
+    }
+
+    /**
+     * @param string|\Modules\Mall\Models\Property $name
+     *
+     * @return $this
+     */
+    public function attachProperty($name)
+    {
+        $name = is_object($name) 
+        ? $name 
+        : Property::updateOrCreate(['name' => $name, 'mall_category_id'=>$this->id],['name' => $name, 'mall_category_id'=>$this->id]);
+        $this->properties()->saveMany([$name]);
+        return $name;
+    }    
     /**
      * factory 
      */
