@@ -81,6 +81,19 @@ class ItemTest extends TestCase
     }
 
 
+    public function testAttachProperty()
+    {
+        $item = $this->createUniqueItem();
+        $data = [
+            'name' => 'test',
+            'value' => ['test']
+        ];
+        $response = $this->actingAs($this->makeAdmin(), 'api')->putJson(self::ENDPOINT.$item->id.'/value',$data);
+        $response->assertStatus(200);
+
+    }
+
+
     protected function createUniqueItem()
     {
         return Item::factory()->create();

@@ -5,12 +5,14 @@ namespace Modules\Mall\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Modules\Mall\Http\Requests\AttachValueRequest;
 use Modules\Mall\Http\Requests\DetailRequest;
 use Spatie\QueryBuilder\QueryBuilder;
 
 use Modules\Mall\Models\Item as Model;
 use Modules\Mall\Transformers\Item as Resource;
 use Modules\Mall\Http\Requests\ItemRequest as ValidateRequest;
+use Modules\Mall\Models\Property;
 use Spatie\QueryBuilder\AllowedFilter;
 
 
@@ -151,6 +153,36 @@ class ItemController extends Controller
                 'meta' =>
                 [
                     'message' => sprintf('%s deleted', self::RESOURCE)
+                ]
+            ]
+        );
+    }
+
+
+    /**
+     * Attach Property for a item
+     * {
+     *   name: ''
+     *   values: []
+     * }
+     *
+     * @param  mix $id
+     * @return \Illuminate\Http\Response
+     */
+    public function attachValue($id, AttachValueRequest $request)
+    {
+        $item = Model::find($id);
+        $data = $request->validated();
+        $propetyName = Property::findOrCreate($data['name']);
+        $values = $propetyName->attachValue($data['values']);
+        $item->properties()->saveMany($values);
+        $resource = new Resource($item);
+        return $resource
+        ->additional(
+            [
+                'meta' =>
+                [
+                    'message' => sprintf('%s propety attached', self::RESOURCE)
                 ]
             ]
         );

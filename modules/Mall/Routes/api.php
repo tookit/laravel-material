@@ -25,6 +25,7 @@ Route::middleware(['auth:api'])->group(function () {
         Route::post('/',[ItemController::class, 'store'])->name('mall.item.create')->middleware(['can:mall.item.create']);
         Route::get('/{id}',[ItemController::class, 'show'])->name('mall.item.view')->middleware(['can:mall.item.view'])->where('id', '[0-9]+');
         Route::put('/{id}',[ItemController::class, 'update'])->name('mall.item.edit')->middleware(['can:mall.item.update'])->where('id', '[0-9]+');
+        Route::put('/{id}/value',[ItemController::class, 'attachValue'])->name('mall.item.attachValue')->middleware(['can:mall.item.attachValue'])->where('id', '[0-9]+');
         Route::put('/{id}/detail',[ItemController::class, 'updateDetail'])->name('mall.item_detail.edit')->middleware(['can:mall.item_detail.update'])->where('id', '[0-9]+');
         Route::delete('/{ids}',[ItemController::class, 'destroy'])->name('mall.item.delete')->middleware(['can:mall.item.delete']);    
 

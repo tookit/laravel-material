@@ -40,14 +40,8 @@ class Item extends Model
     {
         return (new self())->getTable();        
     }
-    
-    /**
-     * all properties
-     */
-    public function properties()
-    {
-        return $this->belongsToMany(Value::class);
-    }
+
+
 
     /**
      * The "booted" method of the model.
@@ -70,6 +64,13 @@ class Item extends Model
             ->saveSlugsTo('slug');        
     }
 
+    /**
+     * all properties
+     */
+    public function properties()
+    {
+        return $this->belongsToMany(Value::class);
+    }
 
     /**
      * Brand relation
@@ -92,6 +93,49 @@ class Item extends Model
     {
         return $this->hasOne(ItemDetail::class);
     }
+
+
+    /**
+     * @param string|array|\ArrayAccess $values
+     * @param string|null $type
+     * @param string|null $locale
+     *
+     * @return $this
+     */
+    public static function findOrCreate($values, string $locale = null)
+    {
+        $items = collect($values)->map(function ($value) use ($locale) {
+            if ($value instanceof self) {
+                return $value;
+            }
+            return static::findOrCreateFromString($value, $locale);
+        });
+
+        return is_string($values) ? $items->first() : $items;
+    }
+
+    protected static function findOrCreateFromString(string $name, string $locale = null)
+    {
+        $locale = $locale ?? app()->getLocale();
+        $name = trim($name);
+        $prop = static::findFromString($name, $locale);
+        if (! $prop) {
+            $prop = static::create([
+                'name' => [$locale => $name],
+            ]);
+        }
+
+        return $prop;
+    }
+
+    public static function findFromString(string $name, string $locale = null)
+    {
+        $locale = $locale ?? app()->getLocale();
+        return static::query()
+            ->where("name->{$locale}", $name)
+            ->first();
+    }
+
 
     /**
      * factory 

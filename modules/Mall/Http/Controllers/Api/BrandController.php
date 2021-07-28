@@ -112,9 +112,9 @@ class BrandController extends Controller
      */
     public function destroy($ids)
     {
-        $ids = Str::of($ids)->explode(',')->toArray();
-        Model::whereIn('id', $ids)->delete();
-        $resource = new Resource([]);
+        $item = Model::find($ids);
+        $item->delete();
+        $resource = new Resource($item);
         return $resource
         ->additional(
             [

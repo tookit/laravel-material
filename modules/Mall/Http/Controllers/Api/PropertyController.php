@@ -55,7 +55,6 @@ class PropertyController extends Controller
         $data = $request->validated();
         $propertyName = Model::create($data);
 
-
         if($request->get('values')) {
             $propertyName->attachValues($request->get('values'));
         }
