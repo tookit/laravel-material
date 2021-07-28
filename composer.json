@@ -15,7 +15,7 @@
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
-        "jacobcyl/ali-oss-storage": "^2.1",
+        "iidestiny/flysystem-oss": "^2.7",
         "kalnoy/nestedset": "^6.0",
         "laravel/framework": "^8.0",
         "nwidart/laravel-modules": "^8.2",
