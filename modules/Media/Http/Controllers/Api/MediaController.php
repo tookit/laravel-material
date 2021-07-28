@@ -93,8 +93,8 @@ class MediaController extends Controller
     /**
      * create a new file.
      *
-     * @param  \App\Http\Requests\Media\FileRequest $request
-     * @return \App\Http\Resources\Media\FileResource 
+     * @param  ValidateRequest $request
+     * @return \Illuminate\Http\Response
      */
     public function store(ValidateRequest $request): Resource
     {
@@ -111,12 +111,12 @@ class MediaController extends Controller
         $resoure = new Resource($item);
          return $resoure
             ->additional(
-                 [
-                     'meta' =>
+                [
+                    'meta' =>
                         [
                             'message' => 'File uploaded',
                         ]
-                 ]
+                ]
             );
     }
 
