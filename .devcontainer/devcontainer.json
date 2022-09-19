@@ -1,14 +1,23 @@
 {
-    "name": "Laradock",
-    "dockerComposeFile": "/home/michaelwang/Project/docker/laradock/docker-compose.yml",
-    "remoteUser": "laradock",
-    "runServices": [
-      "nginx",
-      "mysql",
-      "redis"
-    ],
-    "service": "workspace",
-    "workspaceFolder": "/var/www/laravel-material",
-    "shutdownAction": "stopCompose",
-    "postCreateCommand": "uname -a"
-  }
+	"name": "Laradock",
+	"dockerComposeFile": "/home/michaelwang/Project/docker/laradock/docker-compose.yml",
+	"service": "workspace",
+	"workspaceFolder": "/var/www/demo.isocked.com",
+	"extensions": [
+		"dotjoshjohnson.xml",
+		"ryu1kn.partial-diff",
+		"artdiniz.quitcontrol-vscode",
+		"emallin.phpunit",
+		"eamodio.gitlens",
+		"octref.vetur",
+		"eg2.vscode-npm-script",
+		"sasa.vscode-sass-format",
+		"onecentlin.laravel-extension-pack",
+		"bmewburn.vscode-intelephense-client",
+		"amiralizadeh9480.laravel-extra-intellisense",
+		"fterrag.vscode-php-cs-fixer"
+	],
+	"remoteUser": "laradock",
+	"shutdownAction": "stopCompose",
+	"runServices": ["mysql", "redis", "nginx","meilisearch","phpmyadmin"]
+}

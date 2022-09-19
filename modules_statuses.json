@@ -3,5 +3,6 @@
     "ACL": true,
     "PMS": true,
     "Media": true,
-    "Mall": true
+    "Mall": true,
+    "Test": true
 }

@@ -29,9 +29,9 @@ A laravel materil admin template
 [Demo](https://github.com/tookit/laravel-material)
 
 ## Env requirement
-- Laravel 8
-- php 7.4
-- mysql 5.7
+- Laravel 9
+- php 8.0
+- mysql 
 
 For the detail to how to setup a laravel 8 development, please check [https://laravel.com/docs/8.x/installation] (https://laravel.com/docs/8.x/installation), personally i'm using [laradock](https://laradock.io/documentation/)
 
