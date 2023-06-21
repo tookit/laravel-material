@@ -1,6 +1,6 @@
 {
 	"name": "Laradock",
-	"dockerComposeFile": "/home/michaelwang/Project/docker/laradock/docker-compose.yml",
+	"dockerComposeFile": "E:/Project/laradock/docker-compose.yml",
 	"service": "workspace",
 	"workspaceFolder": "/var/www/demo.isocked.com",
 	"extensions": [
